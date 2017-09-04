@@ -67,6 +67,12 @@ public class AtendimentoConsultaControl extends BaseControl {
 	
 	public String detalhar(){
 		
+		chamadoDetalhar.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamadoDetalhar));
+		
+		if(chamadoDetalhar.getListaAtendimentos() == null 
+				|| chamadoDetalhar.getListaAtendimentos().isEmpty()) {			
+			chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());			
+		}
 		
 		return null;
 	}
@@ -75,6 +81,9 @@ public class AtendimentoConsultaControl extends BaseControl {
 	public String voltar() {
 		
 		chamadoDetalhar = new Chamado();
+		if(chamadoFiltroConsulta.getNrChamado() == null || chamadoFiltroConsulta.getNrChamado() == 0){
+			chamadoFiltroConsulta = new Chamado();
+		}	
 		
 		return null;
 	}
