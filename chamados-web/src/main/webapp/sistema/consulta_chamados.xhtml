@@ -19,12 +19,12 @@
                <p:growl id="growl1" closable="true" showDetail="false"/>
             
                <p:panel style="min-height: 1000px; min-width: 270px;"
-                		 rendered="#{atendimentoConsultaControl.chamadoDetalhar == null or atendimentoConsultaControl.chamadoDetalhar.nrChamado == null}">
+                		 rendered="#{chamadoConsultaControl.chamadoDetalhar == null or chamadoConsultaControl.chamadoDetalhar.nrChamado == null}">
                 	  
               		<p:panel header="Filtros para Consulta">
 	          			<h:panelGrid columns="2" columnClasses="coluna1,coluna2">	          				
 	          				<h:outputText value="Nº do Chamado: " style="font-weight: bold !important; "/>  
-							<h:inputText value="#{atendimentoConsultaControl.chamadoFiltroConsulta.nrChamado}" 
+							<h:inputText value="#{chamadoConsultaControl.chamadoFiltroConsulta.nrChamado}" 
 										 onkeypress="mascara(this, soNumeros)"/>	          			 
 	          			</h:panelGrid>  
           			</p:panel>
@@ -36,7 +36,7 @@
 	          			<p:commandButton value="Consultar Chamados" update="@form" 
 											 id="btConsultarChamados" styleClass="signin-btn"
 											 style="font-weight: bold;"
-											 action="#{atendimentoConsultaControl.consultarChamados()}" 
+											 action="#{chamadoConsultaControl.consultarChamados()}" 
 											 onstart="PF('dialogProcessando').show();" 
 											 oncomplete="PF('dialogProcessando').hide();"									
 										     onsuccess="PF('dialogProcessando').hide();"
@@ -47,7 +47,7 @@
 						<p:commandButton value="Limpar" update="@form" 
 									     id="btLimpar" styleClass="signin-btn"
 									     style="font-weight: bold;"
-										 action="#{atendimentoConsultaControl.limpar()}" 
+										 action="#{chamadoConsultaControl.limpar()}" 
 										 onstart="PF('dialogProcessando').show();" 
 										 oncomplete="PF('dialogProcessando').hide();"									
 									     onsuccess="PF('dialogProcessando').hide();"
@@ -59,14 +59,14 @@
           			
           			<p:spacer height="10"/>  
           			
-          			<p:dataTable value="#{atendimentoConsultaControl.listaChamadosConsulta}" id="tabelaChamados"
-								 rendered="#{atendimentoConsultaControl.listaChamadosConsulta != null and atendimentoConsultaControl.listaChamadosConsulta.size() > 0}"
+          			<p:dataTable value="#{chamadoConsultaControl.listaChamadosConsulta}" id="tabelaChamados"
+								 rendered="#{chamadoConsultaControl.listaChamadosConsulta != null and chamadoConsultaControl.listaChamadosConsulta.size() > 0}"
 								 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
 	                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
 	                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 	                             emptyMessage="Nenhum registro a ser exibido"
 	                             rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 
-	                             rowsPerPageTemplate="10,20,30,40,50" selection="#{atendimentoConsultaControl.chamadoDetalhar}"
+	                             rowsPerPageTemplate="10,20,30,40,50" selection="#{chamadoConsultaControl.chamadoDetalhar}"
 	                             selectionMode="single" rowKey="#{item.nrChamado}">								  
 						
 						<p:column style="text-align: center;">
@@ -142,8 +142,8 @@
 						
 						<p:column style="width: 8%; text-align: center;">                               
 	                        <p:commandLink title="Detalhar" update="@form" value="Detalhar"
-	                         			   action="#{atendimentoConsultaControl.detalhar()}">
-	                        	<f:setPropertyActionListener value="#{item}" target="#{atendimentoConsultaControl.chamadoDetalhar}" />                         	
+	                         			   action="#{chamadoConsultaControl.detalhar()}">
+	                        	<f:setPropertyActionListener value="#{item}" target="#{chamadoConsultaControl.chamadoDetalhar}" />                         	
 	                        </p:commandLink>                           
                      	</p:column>								  
 								 
@@ -152,57 +152,57 @@
                 </p:panel>  
                 
                 <p:panel style="min-height: 1000px; min-width: 270px;"
-                		 rendered="#{atendimentoConsultaControl.chamadoDetalhar != null 
-                		 			 and atendimentoConsultaControl.chamadoDetalhar.nrChamado != null 
-                		 			 and atendimentoConsultaControl.chamadoDetalhar.nrChamado > 0}">	                	 
+                		 rendered="#{chamadoConsultaControl.chamadoDetalhar != null 
+                		 			 and chamadoConsultaControl.chamadoDetalhar.nrChamado != null 
+                		 			 and chamadoConsultaControl.chamadoDetalhar.nrChamado > 0}">	                	 
 			          	
                 		<p:commandButton value="Voltar" update="@form" 
 									     id="bVoltar" styleClass="signin-btn"
 									     style="font-weight: bold;"
-										 action="#{atendimentoConsultaControl.voltar()}" 
+										 action="#{chamadoConsultaControl.voltar()}" 
 										 onstart="PF('dialogProcessando').show();" 
 										 oncomplete="PF('dialogProcessando').hide();"									
 									     onsuccess="PF('dialogProcessando').hide();"
 								 		 onerror="PF('dialogProcessando').hide();"/>
 								 		 
-						<p:spacer height="15"/>		
+						<p:spacer height="50"/>		
 						
-						<p:panel header="Chamado #{atendimentoConsultaControl.chamadoDetalhar.nrChamado}"
+						<p:panel header="Chamado #{chamadoConsultaControl.chamadoDetalhar.nrChamado}"
                 				 toggleable="true" >
                 			 
 	               			 <h:panelGrid columns="2" columnClasses="coluna1,coluna2">
 	               			                			 
 	               			 	<h:outputText value="Descrição do Chamado: " style="font-weight: bold !important;"/>	                				
-								<p:editor value="#{atendimentoConsultaControl.chamadoDetalhar.descricao}" 
+								<p:editor value="#{chamadoConsultaControl.chamadoDetalhar.descricao}" 
 										  onkeyup="maiuscula(this)" height="200" width="500" readonly="true"/>    
 												    		
 	               			 	<h:outputText value="Requisitante: " style="font-weight: bold !important;"/>	                				
-								<h:inputText value="#{atendimentoConsultaControl.chamadoDetalhar.requisitante}" 
+								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.requisitante}" 
 											 size="50" onkeyup="maiuscula(this)" readonly="true"/>     
 											 
 								<h:outputText value="Departamento: " style="font-weight: bold !important;"/>	                				
-								<h:inputText value="#{atendimentoConsultaControl.chamadoDetalhar.departamento}" 
+								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.departamento}" 
 											 size="50" onkeyup="maiuscula(this)" readonly="true"/> 
 											 
 								<h:outputText value="Data de Abertura: " style="font-weight: bold !important;"/>
-								<p:calendar value="#{atendimentoConsultaControl.chamadoDetalhar.dataAbertura}" locale="pt_BR" 
+								<p:calendar value="#{chamadoConsultaControl.chamadoDetalhar.dataAbertura}" locale="pt_BR" 
 											onkeypress="formatar(this, '##/##/####', event);" maxlength="10"
 											size="9" pattern="dd/MM/yyyy" converter="data" readonly="true"/>
 											
 								<h:outputText value="Sistema / Módulo: " style="font-weight: bold !important;"/>	                		
-								<h:inputText value="#{atendimentoConsultaControl.chamadoDetalhar.sistemaModulo}" 
+								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.sistemaModulo}" 
 										     size="30" onkeyup="maiuscula(this)" readonly="true"/>	
 										     
 								<h:outputText value="Ambiente: " style="font-weight: bold !important;"/>	                		
-								<h:inputText value="#{atendimentoConsultaControl.chamadoDetalhar.ambiente}" 
+								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.ambiente}" 
 										     size="20" onkeyup="maiuscula(this)" readonly="true" />
 										     
 								<h:outputText value="Classificação: " style="font-weight: bold !important;"/>	                		
-								<h:inputText value="#{atendimentoConsultaControl.chamadoDetalhar.classificacao}" 
+								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.classificacao}" 
 										     size="30" onkeyup="maiuscula(this)" readonly="true"/>	
 										     
 								<h:outputText value="Impacto: " style="font-weight: bold !important;"/>	 									     
-								<h:selectOneMenu value="#{atendimentoConsultaControl.chamadoDetalhar.impacto}" disabled="true">
+								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.impacto}" disabled="true">
 									<f:selectItem itemValue="" itemLabel="Selecione..." />
 									<f:selectItem itemValue="Departamento" itemLabel="Departamento" />
 									<f:selectItem itemValue="Empresa" itemLabel="Empresa" />
@@ -211,7 +211,7 @@
 										     
 										     
 								<h:outputText value="Urgência: " style="font-weight: bold !important;"/>	
-								<h:selectOneMenu value="#{atendimentoConsultaControl.chamadoDetalhar.urgencia}" disabled="true">
+								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.urgencia}" disabled="true">
 									<f:selectItem itemValue="" itemLabel="Selecione..." />
 									<f:selectItem itemValue="Baixo" itemLabel="Baixo" />
 									<f:selectItem itemValue="Médio" itemLabel="Médio" />
@@ -219,7 +219,7 @@
 								</h:selectOneMenu>	               		
 																	     		     
 								<h:outputText value="Prioridade: " style="font-weight: bold !important;"/>	  
-								<h:selectOneMenu value="#{atendimentoConsultaControl.chamadoDetalhar.prioridade}" disabled="true">
+								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.prioridade}" disabled="true">
 									<f:selectItem itemValue="" itemLabel="Selecione..." />
 									<f:selectItem itemValue="1" itemLabel="1" />
 									<f:selectItem itemValue="2" itemLabel="2" />
@@ -229,11 +229,11 @@
 								</h:selectOneMenu>	 									     
 										     
 								<h:outputText value="Funcionalidade: " style="font-weight: bold !important;"/>	                		
-								<h:inputText value="#{atendimentoConsultaControl.chamadoDetalhar.funcionalidade}" 
+								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.funcionalidade}" 
 										     size="35" onkeyup="maiuscula(this)" readonly="true"/>	
 										     
 								<h:outputText value="Tipo: " style="font-weight: bold !important;"/>									
-								<h:inputText value="#{atendimentoConsultaControl.chamadoDetalhar.tipo}" 
+								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.tipo}" 
 										     size="30" onkeyup="maiuscula(this)" readonly="true"/>							
 	               			                			 	               			 
 	               			 </h:panelGrid>      
@@ -242,10 +242,10 @@
 						
 						<p:spacer height="15"/>			
 						
-						<p:dataTable var="item" value="#{atendimentoConsultaControl.chamadoDetalhar.listaAtendimentos}">
+						<p:dataTable var="item" value="#{chamadoConsultaControl.chamadoDetalhar.listaAtendimentos}">
 						 		
 						 	<f:facet name="header">
-					           Atendimentos realizados no chamado #{atendimentoConsultaControl.chamadoDetalhar.nrChamado}
+					           Atendimentos realizados no chamado #{chamadoConsultaControl.chamadoDetalhar.nrChamado}
 					        </f:facet>	
 						 										
 						 	<p:column style="width:40px">

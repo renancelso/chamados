@@ -17,9 +17,9 @@ import br.com.chamadosweb.service.model.Chamado;
 *
 * @author Renan Celso
 */
-@ManagedBean(name = "atendimentoConsultaControl")
+@ManagedBean(name = "chamadoConsultaControl")
 @ViewScoped
-public class AtendimentoConsultaControl extends BaseControl {
+public class ChamadoConsultaControl extends BaseControl {
 	
 	private static final long serialVersionUID = 4639964089872253615L;
 

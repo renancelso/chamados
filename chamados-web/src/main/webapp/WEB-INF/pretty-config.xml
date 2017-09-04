@@ -39,9 +39,9 @@
         <view-id value="/sistema/atendimentos.jsf" />
     </url-mapping>
     
-    <url-mapping id="consulta_atendimentos">
-        <pattern value="/consulta_atendimentos" />
-        <view-id value="/sistema/consulta_atendimentos.jsf" />
+    <url-mapping id="consulta_chamados">
+        <pattern value="/consulta_chamados" />
+        <view-id value="/sistema/consulta_chamados.jsf" />
     </url-mapping>
     
      <url-mapping id="alterar_atendimentos">
