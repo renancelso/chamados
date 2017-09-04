@@ -114,10 +114,12 @@
 									     size="35" onkeyup="maiuscula(this)"/>	
 									     
 							<h:outputText value="Tipo: " style="font-weight: bold !important;"/>	
-							<h:panelGrid columns="3" columnClasses="coluna2,coluna2,coluna1">                 		
-								
-								<h:inputText value="#{atendimentoControl.chamado.tipo}" 
-										     size="30" onkeyup="maiuscula(this)"/>
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna2,coluna1"> 								
+								<h:selectOneMenu  value="#{atendimentoControl.chamado.tipo}" >
+									<f:selectItem itemValue="INCIDENTE" itemLabel="INCIDENTE" />
+									<f:selectItem itemValue="PROBLEMA" itemLabel="PROBLEMA" />
+									<f:selectItem itemValue="REQUISICAO" itemLabel="REQUISIÇÃO" />									
+								</h:selectOneMenu>	
 								
 								<p:spacer width="5"/>
 								

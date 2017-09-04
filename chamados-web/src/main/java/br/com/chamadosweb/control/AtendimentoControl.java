@@ -142,10 +142,9 @@ public class AtendimentoControl extends BaseControl {
     		atendimento.setChamado(chamado);    		
 			
     		atendimentoService.atualizar(chamado);
-			atendimentoService.atualizar(atendimento);
-			
+			atendimentoService.atualizar(atendimento);			
 			addInfoMessage("Atendimento "+atendimento.getNrSq()+" incluído com sucesso no chamado "+chamado.getNrChamado());	
-			
+			limpar();
 		} catch(Exception e){
 			addErrorMessage("Erro ao atualizar chamado."+e.getMessage());
 		}

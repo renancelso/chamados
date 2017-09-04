@@ -1,6 +1,8 @@
 package br.com.chamadosweb.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -63,6 +65,47 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			return null;
 		}
 		
+		
+	}
+	
+	
+	@Override
+	public List<Atendimento> consultarAtendimentosPorFiltros(Date dataRespostaClienteInicial, 
+												             Date dataRespostaClienteFinal) {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			List<Atendimento> listaAtendimento = new ArrayList<Atendimento>();
+					
+			StringBuilder sql = new StringBuilder();
+			sql.append("select o from ").append(Atendimento.class.getSimpleName()).append(" o where 1=1");	
+			
+			if(dataRespostaClienteInicial != null && dataRespostaClienteFinal != null){
+				sql.append(" and ((o.dhRespostaCliente >= '").append(sdf.format(dataRespostaClienteInicial)).append("'");
+				sql.append(" and o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("')");	
+				sql.append(" or (o.dhRespostaCliente is null))");
+			}
+			
+			if(dataRespostaClienteInicial != null && dataRespostaClienteFinal == null){
+				sql.append(" and (o.dhRespostaCliente >= '").append(sdf.format(dataRespostaClienteInicial)).append("'");	
+				sql.append(" or o.dhRespostaCliente is null)");
+			}
+			
+			if(dataRespostaClienteInicial == null && dataRespostaClienteFinal != null){				
+				sql.append(" and (o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("'");	
+				sql.append(" or o.dhRespostaCliente is null)");	
+			}
+					
+			sql.append(" order by o.chamado.nrChamado desc, o.nrSq desc");
+						
+			listaAtendimento = (List<Atendimento>) consultarPorQuery(sql.toString(), 0, 0);
+								
+			return listaAtendimento;
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}		
 		
 	}
 

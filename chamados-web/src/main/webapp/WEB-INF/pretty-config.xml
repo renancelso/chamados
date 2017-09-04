@@ -28,24 +28,26 @@
         <pattern value="/minha_conta" />
         <view-id value="/sistema/minha_conta.jsf" />
     </url-mapping>
-    
-    
+        
     <url-mapping id="atendimentos">
         <pattern value="/atendimentos" />
         <view-id value="/sistema/atendimento/atendimentos.jsf" />
+    </url-mapping> 
+    
+    <url-mapping id="alterar_atendimentos">
+        <pattern value="/alterar_atendimentos" />
+        <view-id value="/sistema/atendimento/alterar_atendimentos.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="consulta_atendimentos">
+        <pattern value="/consulta_atendimentos" />
+        <view-id value="/sistema/atendimento/consulta_atendimentos.jsf" />
     </url-mapping>
     
     <url-mapping id="consulta_chamados">
         <pattern value="/consulta_chamados" />
         <view-id value="/sistema/chamado/consulta_chamados.jsf" />
-    </url-mapping>
-    
-     <url-mapping id="alterar_atendimentos">
-        <pattern value="/alterar_atendimentos" />
-        <view-id value="/sistema/atendimento/alterar_atendimentos.jsf" />
-    </url-mapping>
-    
-    
+    </url-mapping>    
              
    	<url-mapping id="logoff">
 	  	<pattern value="/logoff" />
