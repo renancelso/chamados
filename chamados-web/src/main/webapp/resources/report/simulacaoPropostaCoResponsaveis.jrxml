@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="simulacaoPropostaCoResponsaveis" pageWidth="595" pageHeight="802" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4bca1016-af3a-4b1f-a67e-8a2ac535ac55">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="codigoCliente" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[codigoCliente]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[cpf]]></fieldDescription>
+	</field>
+	<field name="data" class="java.util.Date">
+		<fieldDescription><![CDATA[data]]></fieldDescription>
+	</field>
+	<field name="endereco" class="java.lang.String">
+		<fieldDescription><![CDATA[endereco]]></fieldDescription>
+	</field>
+	<field name="enderecoBairro" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoBairro]]></fieldDescription>
+	</field>
+	<field name="enderecoCep" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoCep]]></fieldDescription>
+	</field>
+	<field name="enderecoCidade" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoCidade]]></fieldDescription>
+	</field>
+	<field name="enderecoNumero" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoNumero]]></fieldDescription>
+	</field>
+	<field name="enderecoTelefone" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoTelefone]]></fieldDescription>
+	</field>
+	<field name="enderecoUf" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoUf]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="percentual" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[percentual]]></fieldDescription>
+	</field>
+	<field name="tipoResponsabilidade" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoResponsabilidade]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="52" y="2" width="59" height="11" uuid="cf3ecab9-5218-40b6-990c-a4ffc2841adf"/>
+				<textElement>
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoResponsabilidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="2" width="48" height="11" uuid="4cb56f95-2746-4e39-844f-06f6ba6648e9"/>
+				<textElement>
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="2" width="76" height="11" uuid="5b4611e7-06fe-4015-bff0-041373856f8c"/>
+				<textElement>
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="2" width="209" height="11" uuid="65a83afb-9615-4c4d-882f-26aadc028603"/>
+				<textElement>
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="2" width="25" height="11" uuid="315c0473-6cfa-4e04-91dc-147fc7b9bba1"/>
+				<textElement>
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{tipoResponsabilidade} == "Conveniado") ? "---" :$F{percentual}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="423" y="2" width="75" height="11" uuid="55fa6c38-12ea-494e-a7d6-d874e8e267ed"/>
+				<textElement>
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{tipoResponsabilidade} == "Conveniado") ? "---------" : $F{valor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="498" y="2" width="56" height="11" uuid="7a749f9e-60f9-4f6b-be84-16bf8694142f"/>
+				<textElement>
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:pt="http://java.sun.com/jsf/passthrough"
+	  xmlns:c="http://java.sun.com/jstl/core" class="gt-ie8 gt-ie9 not-ie">
+      
+<h:body>
+    <ui:composition template="template/padrao.xhtml">
+
+        <ui:define name="conteudo">
+            <h:form>   	
+            	
+                <p:panel style="min-height: 1000px; min-width: 270px;">
+                
+               		<p:messages id="messages1" closable="true" showDetail="false"/>       
+               		
+               		<p:growl id="growl1" closable="true" showDetail="false"/>
+               		
+                	<h:panelGrid columns="7">
+                	                	
+                		<h:outputText value="Chamado: " style="font-weight: bold !important; "/>
+                		<p:spacer width="10"/>			
+						<h:inputText value="#{atendimentoControl.chamado.nrChamado}" onkeypress="mascara(this, soNumeros)"/>
+						<p:spacer width="20"/>			
+						<p:commandButton value="Buscar" update="@form" id="btBuscar" styleClass="signin-btn"
+										 style="font-weight: bold;"
+										 action="#{atendimentoControl.buscarChamado()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>   
+								 		 
+						<p:spacer width="20"/>			
+						<p:commandButton value="Limpar" update="@form" 
+									     id="btLimpar" styleClass="signin-btn"
+									     style="font-weight: bold;"
+										 action="#{atendimentoControl.limpar()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>   
+                	
+                	</h:panelGrid>               
+                	
+                	<p:spacer height="10"/>
+                	
+                	<p:panel header="Chamado #{atendimentoControl.chamado.nrChamado}"
+                			 rendered="#{atendimentoControl.chamado.nrChamado != null}"
+                			 toggleable="true" >
+                			 
+               			 <h:panelGrid columns="2" columnClasses="coluna1,coluna2">
+               			                			 
+               			 	<h:outputText value="Descrição do Chamado: " style="font-weight: bold !important;"/>	                				
+							<p:editor value="#{atendimentoControl.chamado.descricao}" 
+									  onkeyup="maiuscula(this)" height="200" width="500"/>    
+											    		
+               			 	<h:outputText value="Requisitante: " style="font-weight: bold !important;"/>	                				
+							<h:inputText value="#{atendimentoControl.chamado.requisitante}" 
+										 size="50" onkeyup="maiuscula(this)"/>     
+										 
+							<h:outputText value="Departamento: " style="font-weight: bold !important;"/>	                				
+							<h:inputText value="#{atendimentoControl.chamado.departamento}" 
+										 size="50" onkeyup="maiuscula(this)"/> 
+										 
+							<h:outputText value="Data de Abertura: " style="font-weight: bold !important;"/>
+							<p:calendar value="#{atendimentoControl.chamado.dataAbertura}" locale="pt_BR" 
+										onkeypress="formatar(this, '##/##/####', event);" maxlength="10"
+										size="9" pattern="dd/MM/yyyy" converter="data" />
+										
+							<h:outputText value="Sistema / Módulo: " style="font-weight: bold !important;"/>	                		
+							<h:inputText value="#{atendimentoControl.chamado.sistemaModulo}" 
+									     size="30" onkeyup="maiuscula(this)" />	
+									     
+							<h:outputText value="Ambiente: " style="font-weight: bold !important;"/>	                		
+							<h:inputText value="#{atendimentoControl.chamado.ambiente}" 
+									     size="20" onkeyup="maiuscula(this)" />
+									     
+							<h:outputText value="Classificação: " style="font-weight: bold !important;"/>	                		
+							<h:inputText value="#{atendimentoControl.chamado.classificacao}" 
+									     size="30" onkeyup="maiuscula(this)" />	
+									     
+							<h:outputText value="Impacto: " style="font-weight: bold !important;"/>	 									     
+							<h:selectOneMenu value="#{atendimentoControl.chamado.impacto}">
+								<f:selectItem itemValue="" itemLabel="Selecione..." />
+								<f:selectItem itemValue="Departamento" itemLabel="Departamento" />
+								<f:selectItem itemValue="Empresa" itemLabel="Empresa" />
+								<f:selectItem itemValue="Individual" itemLabel="Individual" />
+							</h:selectOneMenu>		
+									     
+									     
+							<h:outputText value="Urgência: " style="font-weight: bold !important;"/>	
+							<h:selectOneMenu value="#{atendimentoControl.chamado.urgencia}">
+								<f:selectItem itemValue="" itemLabel="Selecione..." />
+								<f:selectItem itemValue="Baixo" itemLabel="Baixo" />
+								<f:selectItem itemValue="Médio" itemLabel="Médio" />
+								<f:selectItem itemValue="Alto" itemLabel="Alto" />
+							</h:selectOneMenu>	               		
+																     		     
+							<h:outputText value="Prioridade: " style="font-weight: bold !important;"/>	  
+							<h:selectOneMenu value="#{atendimentoControl.chamado.prioridade}">
+								<f:selectItem itemValue="" itemLabel="Selecione..." />
+								<f:selectItem itemValue="1" itemLabel="1" />
+								<f:selectItem itemValue="2" itemLabel="2" />
+								<f:selectItem itemValue="3" itemLabel="3" />
+								<f:selectItem itemValue="4" itemLabel="4" />
+								<f:selectItem itemValue="5" itemLabel="5" />
+							</h:selectOneMenu>	 									     
+									     
+							<h:outputText value="Funcionalidade: " style="font-weight: bold !important;"/>	                		
+							<h:inputText value="#{atendimentoControl.chamado.funcionalidade}" 
+									     size="35" onkeyup="maiuscula(this)"/>	
+									     
+							<h:outputText value="Tipo: " style="font-weight: bold !important;"/>	
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna2,coluna1">                 		
+								
+								<h:inputText value="#{atendimentoControl.chamado.tipo}" 
+										     size="30" onkeyup="maiuscula(this)"/>
+								
+								<p:spacer width="5"/>
+								
+								<p:commandButton value="Atualizar apenas dados do chamado" update="@form" 
+               			 				 id="btDadosChamado" styleClass="signin-btn"
+										 action="#{atendimentoControl.atualizarDadosApenasChamado()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide(); "/>
+										 
+							</h:panelGrid>
+               			                			 	               			 
+               			 </h:panelGrid>      
+               			                 	
+                	</p:panel>
+                	                	
+                	<p:panel header="Novo atendimento do chamado #{atendimentoControl.chamado.nrChamado}"                 			
+                			 rendered="#{atendimentoControl.chamado.nrChamado != null}">
+                	
+                		 <h:panelGrid columns="2" columnClasses="coluna1,coluna2">               			                			 
+               			 	               			 
+               			 	<h:outputText value="Atendimento: " style="font-weight: bold !important;"/>	                			
+							<h:inputText value="#{atendimentoControl.atendimento.nrSq}" onkeypress="mascara(this, soNumeros)"
+									     size="4" readonly="true" style="font-weight: bold !important; color: red !important;"/>		
+																     
+							<h:outputText value="Encaminhado para a equipe por: " style="font-weight: bold !important;"/>	                		
+							<h:inputText value="#{atendimentoControl.atendimento.encaminhador}" 
+									     size="40" onkeyup="maiuscula(this)"/>										     
+									     
+							<h:outputText value="Cliente transferiu para equipe em: " style="font-weight: bold !important;"/>
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">															
+								<h:inputText value="#{atendimentoControl.dataAtendimentoTransferidoEquipe}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9"/>								
+								<h:outputText value="às" style="font-weight: bold !important;"/>								
+								<h:inputText value="#{atendimentoControl.horaAtendimentoTransferidoEquipe}" 
+											 onkeypress="formatar(this, '##:##', event);"
+											 maxlength="5" size="6" />								
+						    </h:panelGrid>
+						    
+						    <h:outputText value="Resposta para o cliente em: " style="font-weight: bold !important;"/>
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">								
+								<h:inputText value="#{atendimentoControl.dataAtendimentoRespostaCliente}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9"/>								
+								<h:outputText value="às" style="font-weight: bold !important;"/>								
+								<h:inputText value="#{atendimentoControl.horaAtendimentoRespostaCliente}" 
+											 onkeypress="formatar(this, '##:##', event);"
+											 maxlength="5" size="6" />								
+						    </h:panelGrid>	
+						    
+						    <h:outputText value="Analista: " style="font-weight: bold !important;"/>	                		
+							<h:inputText value="#{atendimentoControl.atendimento.nomeAnalista.toUpperCase()}" 
+									     size="35" readonly="true" onkeyup="maiuscula(this)" 
+									     style="font-weight: bold !important; color: red !important;"/>			
+									     
+							<h:outputText value="Descrição Atendimento: " style="font-weight: bold !important;"/>	                		
+							<p:editor value="#{atendimentoControl.atendimento.descricaoAtendimento}" 
+								      onkeyup="maiuscula(this)" height="200" width="500"/>   			
+               			 
+               			 </h:panelGrid>	 
+               			 <p:spacer height="15"/>
+               			 <center>
+               			 	<p:commandButton value="Incluir Atendimento" update="@form" 
+               			 				 id="btIncluirAtendimento" styleClass="signin-btn"
+										 action="#{atendimentoControl.incluirAtendimento()}" 
+										 style="font-weight: bold;"
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide(); "/>
+               			 
+               			 </center>
+                	
+              	 	</p:panel>
+              	 	
+            	</p:panel>
+            	
+            	<p:dialog widgetVar="dialogProcessando" modal="true" 
+						  height="50" width="350" resizable="false;"
+						  header="Processando Informações" draggable="false"
+					      closable="false" id="dialogProcessando" 
+					      style="z-index: 9999; font-size: 14px;">					
+					<center>
+						<h:outputText value="Por favor, aguarde..." style="font-weight: bold; font-size: 14px;" />
+						<br/>
+						<img src="resources/imagens/ajax-loader-green-white.gif"/> 
+					</center>
+					
+				</p:dialog>
+            	
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+
+</html>

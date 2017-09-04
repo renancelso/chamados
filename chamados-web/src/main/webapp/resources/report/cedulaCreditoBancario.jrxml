@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cedulaCreditoBancarioComAvalista" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="307462bf-69b0-4fbd-a2ed-e8e4e243603b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="522"/>
+	<property name="ireport.callouts" value="##Fri Aug 21 11:31:37 GMT-03:00 2015"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select * from t400pess where rownum = 1]]>
+	</queryString>
+	<group name="Pagina2">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupFooter>
+			<band height="147">
+				<textField>
+					<reportElement x="2" y="40" width="231" height="13" uuid="5626c536-4cc0-4600-9c29-a41dd3e84ddf"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeCliente" )]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement x="2" y="53" width="147" height="13" uuid="f0ad235c-7d13-4c4a-b9e9-2d8b50e1a557"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cpfCliente" )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="3" y="39" width="230" height="1" uuid="0f2d8dd8-ad71-447e-8f14-f07dea4ec438"/>
+				</line>
+				<textField>
+					<reportElement x="3" y="88" width="231" height="13" uuid="db4f2247-f812-481a-99d9-de8466d9b0ec"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeAvalista" )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="3" y="101" width="147" height="13" uuid="5d9eaf60-ac45-4dfe-a7b6-a228eee63097"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cpfAvalista" )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="4" y="87" width="230" height="1" uuid="661929ca-eb8b-46fa-929f-fb14eb8c5b91"/>
+				</line>
+				<staticText>
+					<reportElement x="2" y="3" width="100" height="20" uuid="960d87ad-68e1-4898-8ece-d34c901fba33"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[(Local e Data)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="114" width="229" height="15" uuid="bcb49381-2907-4f39-9abe-3f449073c1fe"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[(Avalista)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="321" y="114" width="229" height="15" uuid="8bbd05e9-85fd-4457-9a9c-f225b274416c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[(Conjuge do Avalista)]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="320" y="101" width="147" height="13" uuid="3feeedba-a78a-495b-b021-129981bd9c4d"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cpfConjugeAvalista" )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="320" y="88" width="231" height="13" uuid="b9b06f95-cb3e-4627-94c6-8e6df503dd04"/>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeConjugeAvalista" )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="321" y="87" width="230" height="1" uuid="952c6c09-a89d-46ac-ba32-6b049a959568"/>
+				</line>
+				<frame>
+					<reportElement x="0" y="76" width="555" height="66" uuid="10142484-7513-4cea-bfde-5300dc58cd16">
+						<printWhenExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "possuiAvalista" )]]></printWhenExpression>
+					</reportElement>
+				</frame>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="DadosContrato">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupFooter>
+			<band height="22">
+				<textField isStretchWithOverflow="true">
+					<reportElement stretchType="RelativeToBandHeight" x="1" y="1" width="553" height="20" forecolor="#52514F" uuid="1d2effe5-6e51-44da-9835-27ec29e17eb4"/>
+					<textElement markup="html">
+						<font fontName="Times New Roman" size="12"/>
+						<paragraph lineSpacing="1_1_2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "texto" )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="40">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="37" forecolor="#52514F" uuid="d2b13fe2-4c3c-4d91-a954-d9f9e2f87f90"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÉDULA DE CRÉDITO BANCÁRIO Nº
+AMAZÔNIA CONSIGNAÇÃO INSS
+]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="618">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement x="1" y="166" width="555" height="25" forecolor="#52514F" uuid="b6d63a5c-627b-4322-a516-323875c9a1d3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="141" width="555" height="25" forecolor="#52514F" uuid="117db84a-eb67-4151-82d5-30e190892921"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="323" width="555" height="25" forecolor="#52514F" uuid="c750a551-3b35-44c7-9450-2b1aee7f23ac"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="227" width="555" height="25" forecolor="#52514F" uuid="d4b17efa-63a7-4573-a51f-33fcf5ec3b20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="393" width="555" height="25" forecolor="#52514F" uuid="0be44613-8eaa-4792-8788-3dea33e886c5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="368" width="555" height="25" forecolor="#52514F" backcolor="#FFFFFF" uuid="dbfa27ad-34da-4183-a041-1e6364081cd5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="252" width="555" height="25" forecolor="#52514F" uuid="24ff28f0-f780-4d90-9464-e21cb7784246"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="116" width="555" height="25" forecolor="#52514F" uuid="f6284789-51b0-4493-b400-1d8f23404b70"/>
+			</rectangle>
+			<textField>
+				<reportElement x="3" y="177" width="137" height="13" uuid="2381a94c-6c85-4f08-973e-c848d71b08c6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoBairro" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="436" y="166" width="41" height="12" forecolor="#52514F" uuid="b96a61cd-4492-4131-8b81-6a3c8e33bd26"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="252" width="78" height="12" forecolor="#52514F" uuid="734b15f5-253b-4786-a1f9-3b2022fd5a43"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Data da Emissão]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="149" y="177" width="137" height="13" uuid="6857130c-0800-494e-9534-4e439ed17834"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoCidade" ) + " / " + $P{REPORT_PARAMETERS_MAP}.get( "enderecoEstado" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="177" width="99" height="13" uuid="b5a227bc-1446-4278-b1e4-c2a5a2095ddd"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoCep" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="398" y="116" width="21" height="12" forecolor="#52514F" uuid="a314498e-49d0-4e64-9f00-85a91bf1079a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="466" y="152" width="79" height="13" uuid="d6b8f91f-33cb-4b6c-b14e-9dab324e6e6a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoNumero" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="365" y="394" width="86" height="12" forecolor="#52514F" uuid="606892dc-3486-46a3-8ca9-f90ff93c1167"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[UltimoVencimento]]></text>
+			</staticText>
+			<line>
+				<reportElement x="464" y="141" width="1" height="25" forecolor="#52514F" uuid="974f38a2-047b-4a9a-9f82-1e0404005ea5"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="277" width="555" height="21" forecolor="#52514F" uuid="8c4b8848-1529-4c0d-9c00-bedfe220d963"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Quadro 2 – Especificações do Empréstimo]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="398" y="127" width="147" height="13" uuid="d4c55920-1989-4e0d-b74c-14acf7f959eb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cpfCliente" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="433" width="555" height="174" forecolor="#52514F" uuid="3bf5ae78-0e74-43ec-b97e-a23e26529069"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[O EMITENTE autoriza de forma irrevogável e irretratável o BANCO a fornecer ao BANCO CENTRAL DO BRASIL (BACEN), a qualquer tempo, mesmo após a extinção desta CÉDULA DE CRÉDITO BANCÁRIO, as informações sobre o montante, a vencer e vencido, desta dívida, bem como o valor das coobrigações e garantias prestadas por mim, se for o caso, para integrar o Sistema de Informações de Créditos (SCR) e a consultá-lo sobre as minhas informações ali constantes. O EMITENTE está ciente de que:
+I- o SCR tem como finalidade prover o BACEN de informações sobre operações de crédito para fins de supervisão do risco de crédito e intercâmbio de informações entre instituições financeiras; e
+II- as informações ora autorizadas pelo EMITENTE  a serem prestadas ao BACEN são decorrentes da Resolução nº 3.658/08 do Conselho Monetário Nacional (CMN).
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="369" width="33" height="12" forecolor="#52514F" uuid="0ac22787-f599-4bc3-8a14-b5f137c9971e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="382" y="227" width="1" height="25" forecolor="#52514F" uuid="3369ac0c-04f8-443c-882a-3aafc8261a8b"/>
+			</line>
+			<staticText>
+				<reportElement x="472" y="227" width="81" height="12" forecolor="#52514F" uuid="cfbb4246-83b7-4946-b721-414d9e7e1f35"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nº Conta Corrente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="323" width="78" height="12" forecolor="#52514F" uuid="bb7e2593-429e-4096-af31-82d7558766d4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Multa por Atraso]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="298" width="555" height="25" forecolor="#52514F" backcolor="#FFFFFF" uuid="ca41213f-0198-4cd9-9f3a-d05c8cd77d5f"/>
+			</rectangle>
+			<line>
+				<reportElement x="361" y="298" width="1" height="25" forecolor="#52514F" uuid="72f8cdf1-9fad-4788-aa59-ec80aafc249c"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="227" width="47" height="12" forecolor="#52514F" uuid="aedce43a-c7d9-4b35-bbd6-62ff33a40226"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Agencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="17" width="555" height="74" forecolor="#52514F" uuid="b8b5dac9-de71-4289-822a-ca4f3098fe7d"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Pagarei ao BANCO DA AMAZÔNIA S.A., instituição financeira inscrita no CNPJ sob o nº 04.902.979/0001-44, com sede em Belém (PA), na Avenida Presidente Vargas, nº 800, CEP 66017-901, ou à sua ordem, na praça de emissão desta Cédula de Crédito Bancário, as quantias, em dinheiro abaixo indicadas, certas, líquidas e exigíveis em seus vencimentos.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="191" width="555" height="36" forecolor="#52514F" uuid="519a8e9b-5f24-4ab5-b9a7-38a879eb81a9"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[II – DADOS DA OPERAÇÃO
+Quadro 1 – Especificações Gerais]]></text>
+			</staticText>
+			<line>
+				<reportElement x="148" y="166" width="1" height="25" forecolor="#52514F" uuid="d5bd165a-5f19-495c-8d4e-f56e13df71f7"/>
+			</line>
+			<staticText>
+				<reportElement x="279" y="369" width="55" height="12" forecolor="#52514F" uuid="066a8e69-c436-442f-9bf7-145fc299ea09"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<line>
+				<reportElement x="184" y="393" width="1" height="25" forecolor="#52514F" uuid="e098894a-c80f-458e-b642-4070307d2812"/>
+			</line>
+			<textField>
+				<reportElement x="436" y="177" width="109" height="13" uuid="da7e5106-e13b-4c2c-8cdd-7dc5d4ebc502"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoTelefone" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="186" y="394" width="93" height="12" forecolor="#52514F" uuid="30521858-d93e-4b59-99ab-8e547ae67ddb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Primeiro Vencimento]]></text>
+			</staticText>
+			<line>
+				<reportElement x="362" y="393" width="1" height="25" forecolor="#52514F" uuid="a51e61ba-046f-49c0-bd8e-bc86fb79c22e"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="116" width="33" height="12" forecolor="#52514F" uuid="2bcfb4cc-ea29-4f60-bb9f-04ebfe844b16"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<line>
+				<reportElement x="471" y="227" width="1" height="25" forecolor="#52514F" uuid="ab23844b-0828-4a7f-ae5f-8b54756c3dbf"/>
+			</line>
+			<staticText>
+				<reportElement x="278" y="252" width="141" height="12" forecolor="#52514F" uuid="c442fd5a-4e8b-40e7-9be9-b7058479ec13"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Local de emissão (Cidade/UF)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="227" width="56" height="12" forecolor="#52514F" uuid="6a65c827-d90a-4497-bf97-1b29296583b5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nº Agencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="166" width="51" height="12" forecolor="#52514F" uuid="e1af371b-caaa-4526-866f-24ab24513fa9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Cidade/UF]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="3" y="127" width="384" height="13" uuid="342f6752-e3f8-42a0-956a-2a8b7fbf70a6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeCliente" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="348" width="555" height="21" forecolor="#52514F" uuid="04fe3166-8689-41ac-bd40-54e728e9aa35"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Quadro 2 – Especificações das Prestações do Empréstimo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="435" y="166" width="1" height="25" forecolor="#52514F" uuid="b27e9970-8832-4ea8-acb8-65c9ff2b969c"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="298" width="68" height="12" forecolor="#52514F" uuid="8f544a53-9168-4f36-977d-abbc4ee28125"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Valor Principal]]></text>
+			</staticText>
+			<line>
+				<reportElement x="296" y="166" width="1" height="25" forecolor="#52514F" uuid="f2b36f44-e576-4e53-bf12-2124b0ca04ee"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="166" width="33" height="12" forecolor="#52514F" uuid="cf1f6d25-7c76-4f81-aec8-8301d5434d93"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<line>
+				<reportElement x="266" y="227" width="1" height="25" forecolor="#52514F" uuid="27b920c2-5974-405c-a441-7d17ce7616c1"/>
+			</line>
+			<staticText>
+				<reportElement x="361" y="298" width="90" height="12" forecolor="#52514F" uuid="9d644739-3c04-4bdf-83d6-83fd9643ff51"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Taxa Anual de Juros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="298" width="92" height="12" forecolor="#52514F" uuid="658c9ba0-d66f-4abc-add1-f670e69442e6"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Taxa Mensal de Juros]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="3" y="152" width="448" height="13" uuid="f8ec0a7c-0f56-49a9-91de-13b4eb159cc1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "endereco" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="465" y="141" width="23" height="12" forecolor="#52514F" uuid="7beb808b-b20f-4de7-9370-fa3c0fe8c58e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<line>
+				<reportElement x="397" y="116" width="1" height="25" forecolor="#52514F" uuid="6dd0bdcb-fe00-437f-aa92-978e5f3bcab3"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="394" width="118" height="12" forecolor="#52514F" uuid="fa90251d-cd13-4c4e-81a8-2d33ee4ccc81"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Data de Cada Vencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="227" width="33" height="12" forecolor="#52514F" uuid="3e06a901-70e1-4fa0-841b-e097dd6dd901"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="141" width="47" height="12" forecolor="#52514F" uuid="604225eb-ea74-433a-bf84-849e3fa20e2f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="323" width="113" height="12" forecolor="#52514F" uuid="f89eb36b-828d-466b-b321-ea85dccb29aa"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CET - Custo Efetivo Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="185" y="298" width="1" height="50" forecolor="#52514F" uuid="de26a59e-4f90-44fc-98c5-3eaaf0e2ddfc"/>
+			</line>
+			<line>
+				<reportElement x="277" y="369" width="1" height="25" forecolor="#52514F" uuid="b1870820-6a53-4b8c-80ab-8b17aa71b55e"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="91" width="555" height="25" forecolor="#52514F" uuid="f4e0e300-b73b-4cb9-9f19-a82c0b390c9a"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[I – DADOS DO EMITENTE]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="611" width="554" height="1" uuid="3a6cbdbc-872a-443d-8981-0939156adfbb"/>
+			</break>
+			<textField>
+				<reportElement x="3" y="239" width="251" height="13" uuid="22e90888-62cc-4f85-9370-a58c13df7552"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeAgencia" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="238" width="114" height="13" uuid="d7bcbe01-0f2b-4606-9875-01267dd1b0e8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cnpjAgencia" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="238" width="85" height="13" uuid="771fd682-56dc-49d1-b950-f342c2dce063"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroAgencia" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="238" width="81" height="13" uuid="e8b37ea5-55d2-40df-a17a-07036bfb28d1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroContaCorrente" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="263" width="169" height="13" uuid="82f6fe95-8f49-46f1-88cc-1fa34bbed0a4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "dataEmissao" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="263" width="169" height="13" uuid="21c8a854-89c3-46e7-8942-a71aedc69a2c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cidadeEmissao" )+ "/"+$P{REPORT_PARAMETERS_MAP}.get( "estadoEmissao" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="3" y="309" width="169" height="13" uuid="2d59f271-5fee-40c1-90be-13a78cf24de9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valorPrincipal" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="186" y="309" width="169" height="13" uuid="2a664092-dddb-4040-a327-e289082fff24"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "taxaMensalJuros" )+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="363" y="309" width="169" height="13" uuid="a4790b8f-1ccf-4ddc-8ae2-e156b4160fd1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "taxaAnualJuros" )+"%"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="334" width="169" height="13" uuid="c7de8342-b4e3-415d-a80b-a82ca33463a6"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[2,00%]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="187" y="334" width="169" height="13" uuid="bb1c0b72-4b1e-4905-8103-ecc68390ee3b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "custoEfetivoTotal" )+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="3" y="379" width="169" height="13" uuid="09b93e21-bd2f-4e3b-97cd-ab666610643b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valorParcela" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="379" width="169" height="13" uuid="e149c001-23da-430c-8ec8-dbbc9480fb11"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "quantidadeParcela" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd">
+				<reportElement x="3" y="404" width="169" height="13" uuid="1e422efb-80b2-4eff-97a3-b714f64a1c91"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "dataVencimentoParcela" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="186" y="404" width="169" height="13" uuid="1ed69cd2-c6e5-44b7-a1b7-c10c3d36f0ae"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "primeiroVencimentoParcela" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="365" y="404" width="169" height="13" uuid="abaee07d-32b7-44a1-b6fe-c324a7d4178a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "ultimoVencimentoParcela" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="298" y="168" width="41" height="12" forecolor="#52514F" uuid="98b26481-cd51-40c8-8750-fc40a3e96d52"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[C E P]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

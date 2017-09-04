@@ -1,0 +1,216 @@
+/*
+ * GERAL 
+ */
+
+/*
+ * 11.1. Fonte do HTML
+ *	Fonte: Tahoma
+ *	Estilo: Regular
+ *	Tamanho: 10 pixels
+ *	Cor: #52514F
+ */
+html {
+	font-family: Tahoma;
+	font-weight: normal;
+	font-size: 10px;
+	color: #52514F;
+}
+
+/************************* 
+ * CABEÇALHO 
+ *************************/
+
+/*
+ * 11.2. Saudação
+ * Fonte: Tahoma
+ * Estilo: Regular
+ * Tamanho: 10 pixels
+ * Cor: #ffffff
+ */
+.saudacao {
+	color: #FFFFFF;
+}
+
+/*
+ * 11.3. Título do Sistema (imagem)
+ * Fonte: Frutiger
+ * Estilo: 67 Bold Condensed
+ * Tamanho: 6 pontos
+ */
+.titulo-sistema {
+	font-family: Frutiger, "Frutiger Linotype", 'Myriad Pro', Myriad, 'Segoe UI', Tahoma, Verdana, Geneva, sans-serif;
+	font-weight: bold; /* 67 Bold Condensed*/
+	font-size: 20pt;
+	color: #FFFFFF;
+	padding-right: 10px;
+}
+
+/*
+ * 11.4. Nome do Sistema (imagem)
+ * Fonte: Frutiger
+ * Estilo: 47 Light Condensed
+ * Tamanho: 3,95 pontos
+ * Cor: #ffffff
+ */
+.nome-sistema {
+	font-family: Frutiger, "Frutiger Linotype", 'Myriad Pro', Myriad, 'Segoe UI', Tahoma, Verdana, Geneva, sans-serif;
+	font-weight: lighter; /* 67 Bold Condensed*/
+	font-size: 14pt;
+	color: #FFFFFF;
+}
+
+
+/*
+ * 11.5. Aba Ativa
+ * Fonte: Tahoma
+ * Estilo: Bold
+ * Tamanho: 10 pixels
+ * Cor: #777777
+ */
+.aba-ativa {
+	font-weight: bold;
+	color: #777777;
+}
+
+/* 
+ * 11.6. Aba Inativa
+ * Fonte: Tahoma
+ * Estilo: Bold
+ * Tamanho: 11 pixels
+ * Cor: #009933 
+ */
+.aba-inativa {
+	font-size: 11px;
+	color: #009933;
+}
+
+/* 
+ * 11.7 . Navegabilidade
+ * Este recurso deve ser implementado utilizando link nos títulos para facilitar a navegação ao sistema.
+ * Você está aqui: 
+ */
+.voce {
+	font-family: Tahoma;
+	font-size: 9px;
+	color: #666666;
+}
+
+/* Consulta Registro: */
+.consulta {
+	font-family: Tahoma;
+	font-size: 9px;
+	color: #989797;
+}
+
+/* Relatório: */
+.relatorio {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #026A37;
+}
+
+
+/***************************
+ * MENU
+ ***************************/
+
+
+/*
+ * 11.8. Links
+ * 9.8.1. Menu (Título)
+ * Fonte: Tahoma
+ * Estilo: Bold
+ * Tamanho: 10 pixels
+ * Cor: #685551
+ */
+.menu-titulo > a > span {
+	font-weight: bold;
+	color: #52514F;/* color: #685551; */
+	font-size: 20px;
+	margin-right: 8px;
+}
+
+/*
+ * 9.8.1. Menu (Título)
+ * On mouse over:
+ * Fonte: Tahoma
+ * Estilo: Bold
+ * Tamanho: 10 pixels
+ * Cor: #009933
+ * Background-color: #EFEFF1
+ */
+.menu-titulo > li > a:hover {
+	font-weight: bold;
+	color: #009933;
+	background-color: #EFEFF1;
+}
+
+/*
+ * 9.8.2. Menu (Sub-Título)
+ * Fonte: Tahoma
+ * Estilo: Regular
+ * Tamanho: 10 pixels
+ * Cor: #685551
+ */
+.menu-subtitulo > li > a {
+	font-weight: normal;
+	color: #685551;
+}
+
+/*
+ * 9.8.2. Menu (Sub-Título)
+ * On mouse over:
+ * Fonte: Tahoma
+ * Estilo: Bold
+ * Tamanho: 10 pixels
+ * Cor: #009933
+ * Background-color: #EFEFF1
+ */
+ .menu-subtitulo > li > a:hover {
+	font-weight: bold;
+	color: #009933;
+	background-color: #EFEFF1;
+}
+
+
+/* 
+9.8.3. Texto
+*/
+a:link {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #009933;
+	text-decoration: none;
+}
+
+a:hover {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #666666;
+}
+
+a:active {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #666666;
+}
+
+a:visited {
+	font-family: Tahoma;
+	font-size: 11px;
+	/*color: #009933;*/
+	color: #000000;
+	text-decoration: none;
+}
+
+
+
+/*************************
+ * RODAPE
+ *************************/
+ /* 11.13. Rodapé */
+.rodape {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #666666;
+}

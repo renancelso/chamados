@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="simulacaoEmprestimo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6728f74c-0873-4cc9-bdba-a0c79c380b5e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="114"/>
+	<property name="ireport.callouts" value="##Wed Aug 12 16:46:20 GMT-03:00 2015"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="nexd_cf"/>
+	<queryString language="SQL">
+		<![CDATA[select * from t400pess where rownum = 1]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="75" splitType="Stretch">
+			<textField>
+				<reportElement x="464" y="13" width="91" height="15" forecolor="#52514F" uuid="eeba3ac8-9f71-4e5f-a6ab-ac218b8adc0f"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Hora: " + new java.text.SimpleDateFormat("HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="464" y="0" width="91" height="14" forecolor="#52514F" uuid="b518e06b-d23d-4556-a8ee-b65ceacf7604"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Data: " + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize" hAlign="Left" vAlign="Top" isUsingCache="false">
+				<reportElement key="image-1" mode="Opaque" x="0" y="0" width="185" height="28" forecolor="#000000" backcolor="#FFFFFF" uuid="7715e33f-6e19-492e-84d0-fa653780c1fc"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "path_image_0" )]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="28" width="295" height="20" forecolor="#52514F" uuid="5d940e6c-040c-4bbe-a1c4-2f95def2f521"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $P{REPORT_PARAMETERS_MAP}.get( "nomeUnidade" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="52" width="555" height="20" forecolor="#52514F" uuid="e6768ba8-7634-41dd-a018-5c40e87b93c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Simulação de Empréstimo]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="12" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="681" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="15" forecolor="#52514F" uuid="a0e408fb-cbde-48ee-9d64-d5a88e62131d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resultado da Simulação de Empréstimo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="19" width="226" height="20" forecolor="#52514F" uuid="ce335f0a-8d6b-47ae-8044-8ebed701ac6c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Modalidade:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="39" width="226" height="20" forecolor="#52514F" uuid="a8d9dd0e-86f1-4dee-bec4-adac126368fa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Valor Solicitado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="226" height="20" forecolor="#52514F" uuid="f38bf774-6c0e-4d33-9026-e986f9e73f08"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Quantidade de Parcelas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="79" width="226" height="20" forecolor="#52514F" uuid="82c75954-03d7-4cdb-9c61-1b97c7bb6dc0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Valor das Parcelas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="157" width="226" height="20" forecolor="#52514F" uuid="c0373d0a-7686-4601-be96-924764f80c41"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Tributos IOF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="117" width="226" height="20" forecolor="#52514F" uuid="50989347-9c7b-4e90-a427-670582c47e51"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Taxa Mensal de Juros:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="97" width="226" height="20" forecolor="#52514F" uuid="9a5247ac-bd40-4f18-ae77-678f59b7b81f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Data da Primeira Parcela]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="137" width="226" height="20" forecolor="#52514F" uuid="6123a3e0-dc99-428b-b6bb-9908476b0186"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Taxa Anual de Juros:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="177" width="226" height="20" forecolor="#52514F" uuid="5736ca8b-5fa0-44d5-afe9-a365639ea7a8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Seguros:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="195" width="226" height="20" forecolor="#52514F" uuid="976661f1-3743-4f9d-a935-922ee04c747f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Outras Despesas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="215" width="226" height="20" forecolor="#52514F" uuid="356811e0-3e2f-42cb-8a5a-b6996b80fc10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Juros:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="235" width="226" height="20" forecolor="#52514F" uuid="adba29a8-4d20-4d75-9093-ba862a70b14b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Registro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="255" width="226" height="20" forecolor="#52514F" uuid="ed21adc5-6fa2-49e6-9ad2-aebfb2a21c48"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Valor Base para o CET:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="275" width="226" height="20" forecolor="#52514F" uuid="7a2c0900-ae33-42fc-8799-6a4d7bf7d5a0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[CET Anual:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="226" y="19" width="329" height="20" uuid="522586ca-5552-4f16-b4ed-f4890a2653a9"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "modalidade" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="39" width="329" height="20" uuid="60b32b9e-4599-43ab-8495-5f0c576dbfbe"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valorSolicitado" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="59" width="329" height="20" uuid="f1ca78f1-4970-4f20-850c-5455534874f6"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "quantidadeParcelas" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="79" width="329" height="20" uuid="6dfc60b1-a8ad-4184-a870-485d4c9b42f4"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valorParcelas" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="226" y="99" width="329" height="20" uuid="a36b193b-bbd3-46dd-a2a9-9dd7610d0256"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "dataPrimeiraParcela" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="119" width="329" height="20" uuid="3815e05d-38ed-4edd-96a6-18f393e4e25b"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "taxaJurosMensal" )+ "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="137" width="329" height="20" uuid="006e621e-779e-4510-be3e-7b91b7f2b5d2"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "taxaJurosAnual" )+ "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="157" width="329" height="20" uuid="3e66591f-b492-4c7a-994b-05af26a6ebf4"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "iof" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="177" width="329" height="20" uuid="d7821205-d6c8-44a9-b97b-65a01490d02a"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "seguros" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="195" width="329" height="20" uuid="d6ebb198-14a0-4a39-9f08-eeaa038db780"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "outrasDespesas" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="215" width="329" height="20" uuid="9c77ae7f-64d8-4c53-9f9a-4c5509aaea22"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "outrosJuros" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="235" width="329" height="20" uuid="7a3379d0-36d0-4074-8a4c-253e6b860c46"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "registro" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="255" width="329" height="20" uuid="cd346dbe-f252-4c60-8fb0-f4c685bcd229"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valorBaseCet" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="275" width="329" height="20" uuid="47532024-cd44-47bb-84fd-b7dc581fa374"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cetAnual" ) + "%"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="314" width="555" height="15" forecolor="#52514F" uuid="145d18eb-8493-48ce-8f3e-e6705a90a4db"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informações Adicionais]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="333" width="226" height="20" forecolor="#52514F" uuid="a31b12ae-1790-4d7a-a666-1d385cdade20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Valor Total do Emprétimo:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="333" width="329" height="20" uuid="c8576a0a-a734-4ffe-b78d-85cdcf5e131d"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valorTotalEmprestimo" )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="353" width="226" height="20" forecolor="#52514F" uuid="a9d90964-09e5-4b5c-a9b2-4695f03dc603"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Valor Liberado ao Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="373" width="226" height="20" forecolor="#52514F" uuid="d8525efc-a8ca-46d0-9951-e58e93d11704"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Percentual de Valor Liberado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="393" width="226" height="20" forecolor="#52514F" uuid="c8fdb3db-11e7-476f-b0e5-6599e342fefb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Despesas Vinculadas ao Crédito:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="433" width="226" height="20" forecolor="#52514F" uuid="bd177515-cb71-444c-ad97-1a484592cc3a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Tarifas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="413" width="226" height="20" forecolor="#52514F" uuid="38ce2eb9-cba9-40e1-a4c6-a3567a70ec01"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Percentual de Despesas Vinculadas ao Crédito:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="453" width="226" height="20" forecolor="#52514F" uuid="2b9c148f-7ea1-4ccf-94a2-6ff883cd0f90"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Percentual de Tarifas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="473" width="226" height="20" forecolor="#52514F" uuid="621b7e1d-0f7c-491d-893a-902480fe78b8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Tributos IOF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="493" width="226" height="20" forecolor="#52514F" uuid="79f5b2dc-5f80-45cc-9783-56d50b8d43c5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Percentual de Tributos IOF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="513" width="226" height="20" forecolor="#52514F" uuid="2d40b9c9-04f4-4715-b935-e2aad611c10d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Seguro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="533" width="226" height="20" forecolor="#52514F" uuid="e0b0a725-8001-4fee-9e85-fdd7c1894c2e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Percentual de Seguro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="553" width="226" height="20" forecolor="#52514F" uuid="f5cace43-0439-4ce9-ad3f-b3284e58cf8f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Outras Despesas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="573" width="226" height="20" forecolor="#52514F" uuid="1c15923e-46a4-4633-962b-05843c836221"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Percentual de Outras Despesas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="593" width="226" height="20" forecolor="#52514F" uuid="48e16813-2ba2-43a9-8fe7-d2828ae2909f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Juros:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="613" width="226" height="20" forecolor="#52514F" uuid="479ce2ed-ba61-44e9-93d5-7b571bc06fb0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Percentual de Outros Juros:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="353" width="329" height="20" uuid="e0024eea-a12a-453f-a526-337c3f9291e6"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valorLiberadoCliente" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="373" width="329" height="20" uuid="ac4f217e-b2aa-43a1-9da7-a9dbc429f017"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "percentualValorLiberado" ) + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="393" width="329" height="20" uuid="610eb9d2-533e-4aac-8468-719029be54a5"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "despesasVinculadas" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="413" width="329" height="20" uuid="c60a7d76-2a10-446a-8f5e-17d7fa2904e4"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "percentualDespesasVinculadas" ) + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="433" width="329" height="20" uuid="13544d53-0824-4c65-a8b0-909c86b18f5b"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "tarifas" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="453" width="329" height="20" uuid="5acbc168-542d-49dd-877f-2e55c65d66d3"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "percentualTarifas" ) + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="473" width="329" height="20" uuid="e3bdf999-520e-4527-83c9-b789b7884d75"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "iof" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="493" width="329" height="20" uuid="c6e17bd5-0d8d-4643-b274-9a0aa25f06b1"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "percentualIof" ) + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="513" width="329" height="20" uuid="9c95cdb5-ce2b-4cdd-b427-a7cbdd3ae3ad"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "seguro" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="533" width="329" height="20" uuid="5b23142b-aa88-4e7b-9efc-85c691a21a46"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "percentualSeguro" ) + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="553" width="329" height="20" uuid="5c93d4ae-59b1-4da5-9e36-dc8af3cd45ad"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "outrasDespesasAdicionais" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="573" width="329" height="20" uuid="a123caff-37d6-4db8-b647-b220f0fb7fcf"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "percentualOutrasDespesasAdicionais" ) + "%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="226" y="593" width="329" height="20" uuid="22614de5-1cec-47f0-87e2-546e53d40a2a"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "outrosJurosAdicionais" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="226" y="613" width="329" height="20" uuid="8bea5105-4b4f-45ff-9709-c75c68a0d767"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "percentualOutrosJurosAdicionais" ) + "%"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="658" width="555" height="23" forecolor="#52514F" uuid="c1cfcacf-258c-43de-9c8b-08852684dd48"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<text><![CDATA[* As opções apresentadas são apenas uma simulação para subsidiar a sua decisão. Até a contratação da operação, os valores, as taxas de juros e demais condições poderão ser alteradas sem prévio aviso.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="32" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

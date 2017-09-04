@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioLiberacaoCreditoSinteticoDados" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ed9cb703-a1d7-4dd1-87f8-875ef3a352d5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nomeUnidade" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeUnidade]]></fieldDescription>
+	</field>
+	<field name="qtContratos" class="java.lang.Integer">
+		<fieldDescription><![CDATA[qtContratos]]></fieldDescription>
+	</field>
+	<field name="vlTotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[vlTotal]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="330" height="20" uuid="739445f2-bad0-42ca-bfff-3fdb2f63124d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeUnidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="1" width="124" height="20" uuid="051e2c03-3d1e-49cd-ae27-1a6255c65fee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtContratos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="454" y="0" width="100" height="20" uuid="c7e7e108-639a-4ddb-86d4-baa8e3a30478"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vlTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="14" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

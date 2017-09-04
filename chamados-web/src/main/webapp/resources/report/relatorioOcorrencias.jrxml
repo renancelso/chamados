@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioOcorrencias" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69e8317c-6eb5-4282-bada-c82e2491787e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DSV2"/>
+	<property name="ireport.x" value="2"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Wed Aug 12 16:46:20 GMT-03:00 2015"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#228B22">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFFFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFFFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="81d58ca7-bbf1-4787-8f9e-f23ed85fb3b4">
+		<parameter name="parcelas" class="java.util.Collection"/>
+	</subDataset>
+	<parameter name="path_image_0" class="java.lang.String">
+		<defaultValueExpression><![CDATA["D:\\projetos\\consigINSS\\consig-inss\\web\\src\\main\\webapp\\resources\\imagens\\logo_relatorio.jpg.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sql" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\workspace-totvs\\consig-inss\\web\\src\\main\\webapp\\resources\\report\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select d.CD_REM_RET,
+       d.CD_BANCO,
+       d.LT_SERVICO,
+       d.TP_REGISTRO,
+       d.NR_SQ_LOTE,
+       d.CD_SEGMENTO,
+       d.TP_MOVIMENTO,
+       d.NM_MUTUARIO,
+       d.CD_AG_ADM,
+      DECODE(d.CPF_MUTUARIO, NULL, NULL, Translate(To_Char(d.CPF_MUTUARIO/100, '000,000,000.00'),',.','.-')) AS CPF_MUTUARIO,
+       d.ID_MUTUARIO,
+       d.ST_MUTUARIO,
+       d.RE_CONTRATACAO,
+       d.ID_VERBA_RECISORIA,
+       d.VLR_MARGEM,
+       d.ID_SINDICATO,
+       d.ID_CENTRAL_SINDICAL,
+       d.TP_OPERACAO,
+       d.DIA_VENCIMENTO,
+       d.MES_VENCIMENTO,
+       d.ANO_VENCIMENTO,
+       d.NR_PARCELA,
+       d.QTD_PARCELA,
+       d.DT_INICIO,
+       d.DT_FIM,
+       d.VLR_LIBERADO,
+       d.VLR_OPERACAO,
+       d.VLR_PARCELA,
+       d.VLR_SALDO_DEV,
+       d.QTD_CONTRATO,
+       d.VLR_CONTRAPRESTACAO,
+       d.VLR_RESIDUAL,
+       d.TP_VRG,
+       d.CD_AG_MANTENEDORA,
+       d.DG_AG_MANTENEDORA,
+       d.NR_CONTA_CORRENTE,
+       d.DG_CONTA_CORRENTE,
+       d.EXCLUSIVO_BANCO,
+       d.USO_FEB_3,
+       d.CD_SEG_OCORRENCIA,
+       d.CD_SQ_OP,
+       d.CD_SEQ_ARQ,
+       d.CD_SEQ_SEG,
+       d.ST_SINDICAL,
+       d.SG_MDL,
+       d.CD_EMP,
+       d.DT_SML,
+       d.DH_PRC AS DH_PRC,
+       d.NR_SEQ,
+       d.CD_CLI,
+       d.ID_CONTRATO,
+       d.NR_ADLIB,
+       d.SITUACAO,
+       d.ds_ocorrencias
+  from consig_inss_ocorrencias d
+  WHERE 1 = 1 $P!{sql}]]>
+	</queryString>
+	<field name="CD_REM_RET" class="java.math.BigDecimal"/>
+	<field name="CD_BANCO" class="java.math.BigDecimal"/>
+	<field name="LT_SERVICO" class="java.math.BigDecimal"/>
+	<field name="TP_REGISTRO" class="java.math.BigDecimal"/>
+	<field name="NR_SQ_LOTE" class="java.math.BigDecimal"/>
+	<field name="CD_SEGMENTO" class="java.lang.String"/>
+	<field name="TP_MOVIMENTO" class="java.math.BigDecimal"/>
+	<field name="NM_MUTUARIO" class="java.lang.String"/>
+	<field name="CD_AG_ADM" class="java.lang.String"/>
+	<field name="CPF_MUTUARIO" class="java.lang.String"/>
+	<field name="ID_MUTUARIO" class="java.lang.String"/>
+	<field name="ST_MUTUARIO" class="java.math.BigDecimal"/>
+	<field name="RE_CONTRATACAO" class="java.lang.String"/>
+	<field name="ID_VERBA_RECISORIA" class="java.lang.String"/>
+	<field name="VLR_MARGEM" class="java.math.BigDecimal"/>
+	<field name="ID_SINDICATO" class="java.math.BigDecimal"/>
+	<field name="ID_CENTRAL_SINDICAL" class="java.lang.String"/>
+	<field name="TP_OPERACAO" class="java.lang.String"/>
+	<field name="DIA_VENCIMENTO" class="java.math.BigDecimal"/>
+	<field name="MES_VENCIMENTO" class="java.math.BigDecimal"/>
+	<field name="ANO_VENCIMENTO" class="java.math.BigDecimal"/>
+	<field name="NR_PARCELA" class="java.math.BigDecimal"/>
+	<field name="QTD_PARCELA" class="java.math.BigDecimal"/>
+	<field name="DT_INICIO" class="java.math.BigDecimal"/>
+	<field name="DT_FIM" class="java.math.BigDecimal"/>
+	<field name="VLR_LIBERADO" class="java.math.BigDecimal"/>
+	<field name="VLR_OPERACAO" class="java.math.BigDecimal"/>
+	<field name="VLR_PARCELA" class="java.math.BigDecimal"/>
+	<field name="VLR_SALDO_DEV" class="java.math.BigDecimal"/>
+	<field name="QTD_CONTRATO" class="java.math.BigDecimal"/>
+	<field name="VLR_CONTRAPRESTACAO" class="java.math.BigDecimal"/>
+	<field name="VLR_RESIDUAL" class="java.math.BigDecimal"/>
+	<field name="TP_VRG" class="java.lang.String"/>
+	<field name="CD_AG_MANTENEDORA" class="java.math.BigDecimal"/>
+	<field name="DG_AG_MANTENEDORA" class="java.lang.String"/>
+	<field name="NR_CONTA_CORRENTE" class="java.math.BigDecimal"/>
+	<field name="DG_CONTA_CORRENTE" class="java.lang.String"/>
+	<field name="EXCLUSIVO_BANCO" class="java.lang.String"/>
+	<field name="USO_FEB_3" class="java.lang.String"/>
+	<field name="CD_SEG_OCORRENCIA" class="java.lang.String"/>
+	<field name="CD_SQ_OP" class="java.math.BigDecimal"/>
+	<field name="CD_SEQ_ARQ" class="java.math.BigDecimal"/>
+	<field name="CD_SEQ_SEG" class="java.math.BigDecimal"/>
+	<field name="ST_SINDICAL" class="java.lang.String"/>
+	<field name="SG_MDL" class="java.lang.String"/>
+	<field name="CD_EMP" class="java.math.BigDecimal"/>
+	<field name="DT_SML" class="java.sql.Timestamp"/>
+	<field name="NR_SEQ" class="java.math.BigDecimal"/>
+	<field name="CD_CLI" class="java.math.BigDecimal"/>
+	<field name="NR_ADLIB" class="java.math.BigDecimal"/>
+	<field name="SITUACAO" class="java.lang.String"/>
+	<field name="DS_OCORRENCIAS" class="java.lang.String"/>
+	<field name="DH_PRC" class="java.sql.Timestamp"/>
+	<field name="ID_CONTRATO" class="java.lang.String"/>
+	<group name="gp_cpf_mutuario" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{CPF_MUTUARIO}]]></groupExpression>
+		<groupHeader>
+			<band height="59">
+				<staticText>
+					<reportElement x="466" y="37" width="334" height="19" printWhenGroupChanges="gp_cpf_mutuario" forecolor="#52514F" uuid="57678258-a4af-4b9c-9a8c-b3597441ca72"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ocorrência]]></text>
+				</staticText>
+				<line>
+					<reportElement x="466" y="57" width="334" height="1" uuid="50160dbd-bdc1-4375-b5b2-a793f534e857"/>
+				</line>
+				<staticText>
+					<reportElement x="4" y="38" width="73" height="20" printWhenGroupChanges="gp_cpf_mutuario" forecolor="#52514F" uuid="49d1f916-541b-4d63-b63b-b75fd46afda2"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data Proc.]]></text>
+				</staticText>
+				<line>
+					<reportElement x="4" y="57" width="73" height="1" uuid="d7297fe8-fb00-4c05-9425-ece5ba043aa3"/>
+				</line>
+				<staticText>
+					<reportElement x="4" y="13" width="46" height="20" printWhenGroupChanges="gp_cpf_mutuario" forecolor="#52514F" uuid="d9822a41-5e2c-4810-99de-ee0c71978b8c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cliente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="160" y="37" width="67" height="20" printWhenGroupChanges="gp_cpf_mutuario" forecolor="#52514F" uuid="708d7274-a76a-4f8c-b58a-5394f9339246"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Modalidade]]></text>
+				</staticText>
+				<line>
+					<reportElement x="160" y="57" width="66" height="1" uuid="25d0939c-d4c1-4554-8704-d64acc7db420"/>
+				</line>
+				<staticText>
+					<reportElement x="238" y="37" width="79" height="20" printWhenGroupChanges="gp_cpf_mutuario" forecolor="#52514F" uuid="0bceff83-f34c-4257-b4de-270bd77ff4fd"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Contrato/Adlib]]></text>
+				</staticText>
+				<line>
+					<reportElement x="238" y="57" width="79" height="1" uuid="3031ca4d-ecd3-461e-8f91-0a2d3dec79d3"/>
+				</line>
+				<staticText>
+					<reportElement x="329" y="37" width="127" height="20" printWhenGroupChanges="gp_cpf_mutuario" forecolor="#52514F" uuid="7ad0a43d-2475-4d55-b41a-32dd1cd9880b"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Situação]]></text>
+				</staticText>
+				<line>
+					<reportElement x="328" y="57" width="128" height="1" uuid="946990f9-3800-4fd3-bd2a-43b10a37bb7c"/>
+				</line>
+				<textField>
+					<reportElement x="135" y="13" width="306" height="20" printWhenGroupChanges="gp_cpf_mutuario" uuid="be5001f4-e0c7-4bb0-bcf4-a5e47acab521"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[" - "+$F{NM_MUTUARIO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="50" y="13" width="85" height="20" printWhenGroupChanges="gp_cpf_mutuario" uuid="8bb3052a-86d3-40da-be20-d53bbe8bde64"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{CPF_MUTUARIO}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="84" y="57" width="67" height="1" uuid="17b919c7-6272-467e-bab2-0b8a4bcba8fd"/>
+				</line>
+				<staticText>
+					<reportElement x="84" y="37" width="67" height="20" printWhenGroupChanges="gp_cpf_mutuario" forecolor="#52514F" uuid="ba96635b-dbc4-4947-9c52-80c237fcbcc9"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font fontName="SansSerif" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Envio/
+Resposta]]></text>
+				</staticText>
+				<line>
+					<reportElement x="1" y="0" width="801" height="1" uuid="5b0f160d-e2f0-4731-89f7-39db13cb5bcd"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="54" width="800" height="20" forecolor="#52514F" uuid="1a9838e6-9d89-4d26-8909-e1d898c5e720"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Ocorrências - Crédito Consignado do INSS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="710" y="0" width="91" height="14" forecolor="#52514F" uuid="bea84d57-e370-42e3-9ec2-c022a728d5b0"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Data: " + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="710" y="13" width="91" height="15" forecolor="#52514F" uuid="b5e2ea3f-250f-4bad-b561-20bf7f018c12"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Hora: " + new java.text.SimpleDateFormat("HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="29" width="317" height="20" forecolor="#52514F" uuid="c6bb17b3-1e6a-48c7-bc0e-8041f0060871"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $P{REPORT_PARAMETERS_MAP}.get( "nomeUnidade" )]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="2" y="0" width="197" height="27" uuid="8db04396-8d05-4eb3-afff-4d066fa899fb"/>
+				<imageExpression><![CDATA[$P{path_image_0}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="21">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="466" y="0" width="334" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="ed95006a-0ab7-40c7-9ffe-b82991ee5ce5"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+					<font isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DS_OCORRENCIAS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="4" y="1" width="73" height="20" uuid="f93b9ffc-4a5a-419d-9ce0-e1132325ec46"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DH_PRC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="1" width="67" height="20" uuid="8327f028-7dac-464e-b4be-4a651cf82197"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{CD_REM_RET}.equals( new BigDecimal(1) )) ? "Resposta" :
+($F{CD_REM_RET}.equals( new BigDecimal(2) )) ? "Envio" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="0" width="127" height="20" uuid="741a9f52-0e2a-4f6f-ad04-f40749958938"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["PE".equals($F{SITUACAO}) ? "Pendente de Envio" :
+"PR".equals($F{SITUACAO}) ? "Pendente de Retorno" :
+"RJ".equals($F{SITUACAO}) ? "Rejeitado" :
+"AP".equals($F{SITUACAO}) ? "Aprovado"  :
+"GL".equals($F{SITUACAO}) ? "Glosa"  :
+"PD".equals($F{SITUACAO}) ? "Parcela Descontada"  :
+"OK".equals($F{SITUACAO}) ? "Retorno Processado"  : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="0" width="75" height="20" uuid="4419245d-e57d-4fb7-b96c-dbb3c2d097ba"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ID_CONTRATO}+" / "+$F{NR_ADLIB}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="0" width="67" height="20" forecolor="#52514F" uuid="378a1524-c4ee-42bb-8858-b2c078a39e2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[AMINSS]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="687" y="10" width="115" height="14" forecolor="#52514F" uuid="f9079ed8-50e9-49e8-ad63-8498985258a9"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página: "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

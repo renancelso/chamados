@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cedulaCreditoBancarioCondicoesGeraisPagina5" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="dacb87d6-7f5b-4f87-a1bf-6db9d4e94f78">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="307" forecolor="#52514F" uuid="56a0f25e-f071-435b-8b9f-743c214555a3"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[as suas disposições, inclusive com suas condições gerais.
+
+PARÁGRAFO TERCEIRO: a presente CÉDULA obriga as partes e seus sucessores e/ou herdeiros.
+
+PARÁGRAFO QUARTO: fica eleito, como competente para conhecer e dirimir quaisquer dúvidas ou questões decorrentes desta CÉDULA, o foro da cidade de sua emissão.
+
+
+
+(Local e Data)
+
+
+
+___________________________________
+Nome do Emitente
+CPF do Emitente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+</jasperReport>

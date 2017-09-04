@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cedulaCreditoBancarioCondicoesGeraisPagina4" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e40539b9-13ae-4378-aa4e-01e55bdcf8d1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="426"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="790" forecolor="#52514F" uuid="99444d34-ddfe-4d07-801c-4cfc2db5af67"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[CLÁUSULA SEXTA – DA COMPENSAÇÃO DE CRÉDITO
+Em relação ao que dispõe o artigo 368 do Código Civil, o EMITENTE, em caráter irrevogável e irre-tratável, autoriza o BANCO a, independentemente de prévio aviso, proceder à compensação corres-pondente ao saldo devedor deste empréstimo por meio dos créditos de qualquer natureza que tenha ou venha a ter junto ao BANCO, ressalvadas as disposições legais.
+
+CLÁUSULA SÉTIMA – DA CESSÃO DE CRÉDITO
+Em consonância com as disposições do CMN, o BANCO poderá, a qualquer tempo e a seu exclusivo critério, ceder, transferir ou empenhar, total ou parcialmente, os direitos e obrigações, títulos de crédi-to, ações e garantias oriundos desta CÉDULA, independentemente de aviso ou autorização de qual-quer espécie.
+
+CLÁUSULA OITAVA – DO ÔNUS TRIBUTÁRIO
+O EMITENTE declara estar ciente de que é de sua exclusiva responsabilidade e por si será integral-mente suportado, os ônus decorrentes de todos e quaisquer tributos, impostos, taxas, contribuições sociais, fiscais, parafiscais, ou outras, bem como das respectivas majorações, mudanças de base de cálculo ou do período de apuração, reajustes e encargos moratórios, tributos e contribuições, estes já existentes ou que venham a ser criados e que sejam ou venham pelo BANCO a ser suportados em decorrência desta CÉDULA, inclusive de emolumentos de registro, se for o caso.
+
+CLÁUSULA NONA – DAS DISPOSIÇÕES GERAIS
+
+PARÁGRAFO PRIMEIRO: o EMITENTE declara que o endereço constante nesta CÉDULA é aquele onde deve receber qualquer correspondência, e que a mudança desse endereço, sem que tal fato seja informado ao BANCO, dará validade a qualquer correspondência por ele enviada para o endereço ora cadastrado.
+
+PARÁGRAFO SEGUNDO: a tolerância do BANCO em relação à inobservância ou ao descumpri-mento de quaisquer condições ou obrigações ajustadas não constituirá precedente, novação ou modi-ficação nos termos constantes desta CÉDULA, os quais permanecerão válidos para todos os fins de direito e somente poderão ser alterados por acordo escrito entre as partes.
+
+PARÁGRAFO TERCEIRO: se o BANCO tiver que recorrer a meios judiciais e extrajudiciais para receber o seu crédito, ao EMITENTE caberá o pagamento dos honorários advocatícios, nos termos da Lei nº 8.906/94. Em caso de cobrança judicial, porém, fica desde já estipulado que os honorários serão de 20% sobre o valor do débito, incluindo encargos, devidamente atualizado.
+
+CLÁUSULA DEZ – DAS DISPOSIÇÕES FINAIS
+
+PARÁGRAFO PRIMEIRO: o EMITENTE declara ter recebido uma via não negociável desta CÉ-DULA, bem como ter recebido e assinado a Planilha de Operações contendo o fluxo completo da operação em relação a valores, quantidade de parcelas, encargos em geral, inclusive o CET anual, den-tre outras informações.
+
+PARÁGRAFO SEGUNDO: o EMITENTE declara que leu prévia e integralmente esta CÉDULA e concorda com todas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+</jasperReport>

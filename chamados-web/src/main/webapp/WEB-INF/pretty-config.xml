@@ -1,0 +1,59 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+    <url-mapping id="login">
+        <pattern value="/" />
+        <view-id value="/publico/login.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="login">
+        <pattern value="/login" />
+        <view-id value="/publico/login.jsf" />
+    </url-mapping>  
+    
+    <url-mapping id="crie_sua_conta">
+        <pattern value="/crie_sua_conta" />
+        <view-id value="/publico/crie_sua_conta.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="esqueceu_sua_senha">
+        <pattern value="/esqueceu_sua_senha" />
+        <view-id value="/publico/esqueceu_sua_senha.jsf" />
+    </url-mapping>    
+    
+    <url-mapping id="inicio">
+        <pattern value="/inicio" />
+        <view-id value="/sistema/inicio.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="minha_conta">
+        <pattern value="/minha_conta" />
+        <view-id value="/sistema/minha_conta.jsf" />
+    </url-mapping>
+    
+    
+    <url-mapping id="atendimentos">
+        <pattern value="/atendimentos" />
+        <view-id value="/sistema/atendimentos.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="consulta_atendimentos">
+        <pattern value="/consulta_atendimentos" />
+        <view-id value="/sistema/consulta_atendimentos.jsf" />
+    </url-mapping>
+    
+     <url-mapping id="alterar_atendimentos">
+        <pattern value="/alterar_atendimentos" />
+        <view-id value="/sistema/alterar_atendimentos.jsf" />
+    </url-mapping>
+    
+    
+             
+   	<url-mapping id="logoff">
+	  	<pattern value="/logoff" />
+	  	<view-id value="/logoff.jsp" />
+    </url-mapping>    
+          
+</pretty-config>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cedulaCreditoBancarioDadosDoEmprestimo" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0acfd068-2882-4a74-aad2-7fa6edd6de29">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="nomeCliente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="595">
+			<rectangle>
+				<reportElement x="0" y="281" width="555" height="25" forecolor="#52514F" backcolor="#FFFFFF" uuid="87c0e198-1913-434c-9a6c-c54d557b5754"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="306" width="555" height="25" forecolor="#52514F" uuid="a4a64780-9803-45a5-a951-7412165d99af"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="235" width="555" height="25" forecolor="#52514F" uuid="1e918ca2-57d5-43d3-a9c2-4766ab7349a7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="210" width="555" height="25" forecolor="#52514F" uuid="1204cd8c-3549-466f-9fe0-9d823b3038ae"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="149" width="555" height="25" forecolor="#52514F" uuid="88ac36bc-0039-4470-946f-0a2ca416fe2e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="99" width="555" height="25" forecolor="#52514F" uuid="4b751df9-723e-489a-8c44-bf56e1fc5f87"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="260" width="555" height="21" forecolor="#52514F" uuid="3d9b3eb9-3445-4f73-a8c0-ad959f6ee6bc"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Quadro 2 – Especificações do Empréstimo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="99" width="33" height="23" forecolor="#52514F" uuid="332247e1-51ff-4649-a0fe-574ae2729845"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="281" width="68" height="12" forecolor="#52514F" uuid="3d1b6025-8829-46e1-bc39-59843b1e4e0b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Valor Principal]]></text>
+			</staticText>
+			<line>
+				<reportElement x="434" y="149" width="1" height="25" forecolor="#52514F" uuid="b02ce23f-bc99-4ed9-a89c-107f6c12e0a5"/>
+			</line>
+			<rectangle>
+				<reportElement x="0" y="376" width="555" height="25" forecolor="#52514F" uuid="482fa76c-5104-4c86-af8a-e303266853fd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="148" y="149" width="51" height="12" forecolor="#52514F" uuid="5b769d00-8e64-4f63-bf5a-76202ab1f52b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Cidade/UF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="174" width="555" height="36" forecolor="#52514F" uuid="e189d779-3883-4fc5-b821-12d8c017a4da"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[II – DADOS DA OPERAÇÃO
+Quadro 1 – Especificações Gerais]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="210" width="47" height="12" forecolor="#52514F" uuid="df7dbb1c-4502-4a0e-9c96-83792c4fe8a2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Agencia]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="124" width="555" height="25" forecolor="#52514F" uuid="d8d6ad08-570c-4074-96b9-ec4c112200a5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="185" y="377" width="93" height="12" forecolor="#52514F" uuid="4db07904-41c1-4185-80d2-54c70b5ebe96"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Primeiro Vencimento]]></text>
+			</staticText>
+			<line>
+				<reportElement x="295" y="149" width="1" height="25" forecolor="#52514F" uuid="fa2e3f66-217e-450e-9566-8b07aa91805c"/>
+			</line>
+			<staticText>
+				<reportElement x="138" y="210" width="33" height="12" forecolor="#52514F" uuid="1813c4e4-87db-4332-a550-79bd2bf6d9da"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="99" width="37" height="23" forecolor="#52514F" uuid="a2b3f7ee-95e9-4219-95cd-c3f02bd44c01"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<line>
+				<reportElement x="360" y="281" width="1" height="25" forecolor="#52514F" uuid="011fdfcf-2b13-453a-8659-2d3fc78f47f2"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="377" width="118" height="12" forecolor="#52514F" uuid="7db1c75f-ec81-45aa-a90b-3bdc55231037"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Data de Cada Vencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="210" width="81" height="12" forecolor="#52514F" uuid="ab72ec75-ea59-4bcb-b5bc-6f4119d9531e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nº Conta Corrente]]></text>
+			</staticText>
+			<line>
+				<reportElement x="184" y="281" width="1" height="50" forecolor="#52514F" uuid="0ceeac47-2dbd-43fc-abe9-c0ac6c542c0f"/>
+			</line>
+			<staticText>
+				<reportElement x="360" y="281" width="90" height="12" forecolor="#52514F" uuid="2ce8b2db-ed31-4f0e-b9e5-fd4686b58ef2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Taxa Anual de Juros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="149" width="41" height="12" forecolor="#52514F" uuid="6efa719c-e252-4c43-9c55-d90ce6e9f4a2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="149" width="33" height="12" forecolor="#52514F" uuid="161b66b3-2f71-47ff-8836-9ac016d69ccc"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="351" width="555" height="25" forecolor="#52514F" backcolor="#FFFFFF" uuid="db3e9aee-c0ab-4054-86db-17eeb0c50e55"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="74" forecolor="#52514F" uuid="92361b7c-3fc9-41c5-8cce-4c90d01f8169"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Pagarei ao BANCO DA AMAZÔNIA S.A., instituição financeira inscrita no CNPJ sob o nº 04.902.979/0001-44, com sede em Belém (PA), na Avenida Presidente Vargas, nº 800, CEP 66017-901, ou à sua ordem, na praça de emissão desta Cédula de Crédito Bancário, as quantias, em dinheiro abaixo indicadas, certas, líquidas e exigíveis em seus vencimentos.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="277" y="210" width="1" height="50" forecolor="#52514F" uuid="e0fd6f7a-0907-4d35-80a3-9ddc5c358ee8"/>
+			</line>
+			<staticText>
+				<reportElement x="184" y="306" width="113" height="12" forecolor="#52514F" uuid="e1f53095-c6c8-4498-86ce-f260e22eaf70"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CET - Custo Efetivo Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="281" width="92" height="12" forecolor="#52514F" uuid="2e2fcb83-6f49-474c-a5cd-d5893315fa14"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Taxa Mensal de Juros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="306" width="78" height="12" forecolor="#52514F" uuid="831eba4f-3867-4f7d-a2b8-978fcc4abf46"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Multa por Atraso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="464" y="124" width="23" height="12" forecolor="#52514F" uuid="25754a7b-c2e0-478b-b21f-d65a96a61678"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<line>
+				<reportElement x="396" y="99" width="1" height="25" forecolor="#52514F" uuid="e9439c08-294c-4da4-91c2-2e55fb0547f6"/>
+			</line>
+			<line>
+				<reportElement x="183" y="376" width="1" height="25" forecolor="#52514F" uuid="25314a6c-8d31-46bc-b1b0-43101f95192f"/>
+			</line>
+			<staticText>
+				<reportElement x="277" y="235" width="141" height="12" forecolor="#52514F" uuid="123a3978-ace9-4644-b8f5-68efb4cc000b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Local de emissão (Cidade/UF)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="361" y="376" width="1" height="25" forecolor="#52514F" uuid="e53fa333-e7b6-45aa-a9fb-bd81e80050a9"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="416" width="555" height="174" forecolor="#52514F" uuid="59aea524-7198-4ba4-b5c5-6c310636675e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[O EMITENTE autoriza de forma irrevogável e irretratável o BANCO a fornecer ao BANCO CEN-TRAL DO BRASIL (BACEN), a qualquer tempo, mesmo após a extinção desta CÉDULA DE CRÉDITO BANCÁRIO, as informações sobre o montante, a vencer e vencido, desta dívida, bem como o valor das coobrigações e garantias prestadas por mim, se for o caso, para integrar o Sistema de Informações de Créditos (SCR) e a consultá-lo sobre as minhas informações ali constantes. O EMI-TENTE está ciente de que:
+I- o SCR tem como finalidade prover o BACEN de informações sobre operações de crédito para fins de supervisão do risco de crédito e intercâmbio de informações entre instituições financeiras; e
+II- as informações ora autorizadas pelo EMITENTE  a serem prestadas ao BACEN são decorren-tes da Resolução nº 3.658/08 do Conselho Monetário Nacional (CMN).
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="147" y="149" width="1" height="25" forecolor="#52514F" uuid="659d6e36-8d0d-4a55-bfcd-39f0c08c48a1"/>
+			</line>
+			<staticText>
+				<reportElement x="278" y="352" width="55" height="12" forecolor="#52514F" uuid="fd2818ee-04bf-4002-aa3c-2c530909154f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<line>
+				<reportElement x="138" y="210" width="1" height="25" forecolor="#52514F" uuid="56000ee9-3a4a-494b-9524-51eb70f8f43e"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="331" width="555" height="21" forecolor="#52514F" uuid="9d34f84b-c311-4ecc-be7f-deb07f841faf"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Quadro 2 – Especificações das Prestações do Empréstimo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="235" width="78" height="12" forecolor="#52514F" uuid="699f7409-57f1-4929-991c-72459d24ee4e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Data da Emissão]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="74" width="555" height="25" forecolor="#52514F" uuid="ef82fcca-34c2-4975-b55e-6d76e3f859c0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[I – DADOS DO EMITENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="210" width="56" height="12" forecolor="#52514F" uuid="18245baf-3478-47e3-a963-03fcab259e70"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nº Agencia]]></text>
+			</staticText>
+			<line>
+				<reportElement x="276" y="352" width="1" height="25" forecolor="#52514F" uuid="d768f1cc-6471-4a53-9c54-58a09d80f398"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="124" width="58" height="24" forecolor="#52514F" uuid="4c26b9e2-8c90-49c9-aa2d-739d77ad71e1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="377" width="86" height="12" forecolor="#52514F" uuid="da3e4bb6-13e1-4466-aed7-852ad8240bd0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[UltimoVencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="352" width="33" height="12" forecolor="#52514F" uuid="cf5a20c0-3518-4ffb-993a-c55cd77232a8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="418" y="210" width="1" height="25" forecolor="#52514F" uuid="e50d50a5-de25-414e-aeb6-8b2c49202180"/>
+			</line>
+			<line>
+				<reportElement x="463" y="124" width="1" height="25" forecolor="#52514F" uuid="a5085484-678d-42a2-ba38-e06796056279"/>
+			</line>
+			<staticText>
+				<reportElement x="297" y="149" width="36" height="12" forecolor="#52514F" uuid="97814438-20a2-4ac2-8455-c7e127284020"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CEP]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="99" width="384" height="23" uuid="7f4ff6f8-cb4f-41cf-b79d-16f7a56f0e16"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeCliente" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="99" width="147" height="25" uuid="64c7ce03-67a6-4ab9-8585-10a7fc2d660a"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cpfCliente" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="124" width="448" height="24" uuid="63bbb7e7-9551-49ee-b338-47229765dfe7"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "endereco" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="135" width="79" height="13" uuid="77aec11b-9f0d-441c-939b-39a1bceaad86"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoNumero" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="160" width="137" height="13" uuid="196d9b49-3542-41e4-aa7e-a8d5ea8ff82c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoBairro" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="160" width="137" height="13" uuid="6088a393-9898-41f5-9790-78f4864c2b36"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoCidade" ) + " / " + $P{REPORT_PARAMETERS_MAP}.get( "enderecoEstado" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="160" width="121" height="13" uuid="65f720e2-6ac3-44cd-892f-68bf907214df"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoCep" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="160" width="109" height="13" uuid="d5a62f0e-9859-4da3-904f-bb47e8936ab3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "enderecoCep" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="79" width="100" height="20" uuid="c05f8150-c11b-4f89-86b1-e09aca81fe4a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="10"/>
+	</detail>
+</jasperReport>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioLiberacaoCreditoAnaliticoDados" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="57bcf995-b65b-4606-bc3f-95e7d97c7d4e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="agencia" class="java.lang.String">
+		<fieldDescription><![CDATA[agencia]]></fieldDescription>
+	</field>
+	<field name="cpfCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[cpfCliente]]></fieldDescription>
+	</field>
+	<field name="dtContrato" class="java.util.Date">
+		<fieldDescription><![CDATA[dtContrato]]></fieldDescription>
+	</field>
+	<field name="dtVencimento" class="java.util.Date">
+		<fieldDescription><![CDATA[dtVencimento]]></fieldDescription>
+	</field>
+	<field name="nomeCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeCliente]]></fieldDescription>
+	</field>
+	<field name="nrBeneficio" class="java.lang.String">
+		<fieldDescription><![CDATA[nrBeneficio]]></fieldDescription>
+	</field>
+	<field name="nrContaCorrente" class="java.lang.String">
+		<fieldDescription><![CDATA[nrContaCorrente]]></fieldDescription>
+	</field>
+	<field name="nrContrato" class="java.lang.Long">
+		<fieldDescription><![CDATA[nrContrato]]></fieldDescription>
+	</field>
+	<field name="qtParcelas" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[qtParcelas]]></fieldDescription>
+	</field>
+	<field name="siscad" class="java.lang.Long">
+		<fieldDescription><![CDATA[siscad]]></fieldDescription>
+	</field>
+	<field name="vlContrato" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[vlContrato]]></fieldDescription>
+	</field>
+	<field name="vlParcela" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[vlParcela]]></fieldDescription>
+	</field>
+	<variable name="vlContrato_1" class="java.math.BigDecimal" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{vlContrato}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="50" height="20" uuid="83d096d0-7db8-4635-b42b-23b6892a2fa1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{siscad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="51" y="0" width="69" height="20" uuid="d3f1466f-e727-406f-b6f0-bd5b959cda11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agencia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="120" y="0" width="162" height="20" uuid="0d22324c-25c1-4017-a048-cd96e217b3de"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="282" y="0" width="73" height="20" uuid="b1fcfb06-58ea-4f89-930b-21d771bdb689"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpfCliente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="355" y="0" width="66" height="20" uuid="80e8722f-c59a-486a-9e0c-d621a9816ceb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nrBeneficio}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="421" y="0" width="51" height="20" uuid="fc1089e8-d620-430a-988b-039dbb68af31"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nrContaCorrente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="472" y="0" width="51" height="20" uuid="7a555f46-660d-4a17-997a-34b403f4464f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nrContrato}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="523" y="0" width="60" height="20" uuid="b9a788d0-1f7f-4d6b-a5da-44b683849802"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtContrato}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="583" y="0" width="65" height="20" uuid="180d13b5-2a2a-4baf-bc08-3fe15d941957"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vlContrato}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="648" y="0" width="49" height="20" uuid="b6bc1fd5-635d-4d4a-93a6-94ab0b8cfa3d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtParcelas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="697" y="0" width="57" height="20" uuid="fd4931b5-0349-44be-8dd7-194dbb953861"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vlParcela}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="754" y="0" width="60" height="20" uuid="ee58327b-7a86-4a4e-80a8-03be9c0a5245"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtVencimento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="584" y="1" width="59" height="20" uuid="932a8cbc-58b0-4617-b887-21f0f5116207"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{vlContrato_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

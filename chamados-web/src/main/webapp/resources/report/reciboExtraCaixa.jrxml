@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboExtraCaixa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8dd0bd46-b992-4323-a893-3b48321db135">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="124"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="369ff97b-1f58-4965-a482-612ed24e413c"/>
+	<queryString language="SQL">
+		<![CDATA[select * from t400pess where rownum = 1]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="723" splitType="Stretch">
+			<elementGroup>
+				<staticText>
+					<reportElement x="180" y="6" width="48" height="20" forecolor="#52514F" uuid="35604ef6-b46a-4199-b4c0-e5c628d49b52"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+					</textElement>
+					<text><![CDATA[Agência:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="228" y="6" width="105" height="20" uuid="00ea03de-c00d-4391-8133-a3eb8ddf5838"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroAgencia" )]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="0" y="26" width="555" height="196" uuid="7352e96c-322d-4b98-8d42-51caed64506f"/>
+				</rectangle>
+				<textField>
+					<reportElement x="62" y="47" width="271" height="21" uuid="ac7f480d-7a0d-49f5-ac4d-ade53d474e8b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeCliente" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="182" width="91" height="20" forecolor="#52514F" uuid="1cae2846-9777-4616-b182-ba73766a8f79"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[TOTAL A PAGAR:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="334" y="68" width="76" height="18" forecolor="#52514F" uuid="35e79ff4-2d3f-4d72-8cdd-919099c259ac"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[CONTRATO:]]></text>
+				</staticText>
+				<textField pattern="999.999.999-99">
+					<reportElement x="410" y="47" width="145" height="21" uuid="05ba2995-e7ed-4644-904e-411624f6f931"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cpfCliente" )]]></textFieldExpression>
+				</textField>
+				<image scaleImage="RealSize" hAlign="Left" vAlign="Top" isUsingCache="false">
+					<reportElement key="image-1" mode="Opaque" x="1" y="0" width="160" height="23" forecolor="#000000" backcolor="#FFFFFF" uuid="3734af5c-b4de-40fd-a9a2-a373d5ee01ba"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<graphicElement fill="Solid">
+						<pen lineWidth="0.0" lineStyle="Solid"/>
+					</graphicElement>
+					<imageExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "path_image_0" )]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="0" y="124" width="333" height="20" forecolor="#52514F" uuid="75556783-b302-417c-a007-e6f430bcde01"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[referente a solicitação de Empréstimo Consignado INSS do]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="67" width="107" height="20" backcolor="#FFFFFF" uuid="a4a41d59-7cff-4322-84a8-28751e2d0cf0"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[LINHA DE CRÉDITO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="144" width="71" height="20" forecolor="#52514F" uuid="684e4b72-1e0d-4463-87ef-c57b70a00468"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[contrato Nº]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="410" y="67" width="145" height="19" uuid="9cc34d02-ec9f-4408-840e-0b436ba49ec8"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroContrato" )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="72" y="144" width="145" height="19" uuid="69fa0e62-09a1-415b-9d01-14e61f89144f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroContrato" )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="333" y="26" width="1" height="196" uuid="50b166a1-5b03-4e19-9e0b-f5472a85bddb"/>
+				</line>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="410" y="6" width="145" height="20" uuid="c82aed4b-2817-44d3-b436-3c0b03f2ea9f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "dataEmissao" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="222" width="555" height="15" uuid="d7d3e34d-50f8-4320-ad42-fd7ee261594b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+					</textElement>
+					<text><![CDATA[Via do Caixa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="201" width="334" height="21" forecolor="#52514F" uuid="39b86d63-eecc-4fb3-a5b1-1968033aa25b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[AUTENTICAÇÃO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="104" width="205" height="20" forecolor="#52514F" uuid="807f4112-d03d-482b-9047-b50bf9ffb97a"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Autorização para recebimento no valor de]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="334" y="26" width="76" height="21" forecolor="#52514F" uuid="ca313acd-cbe4-42f2-9670-49a5e37b11de"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Vencimento:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="86" width="555" height="1" uuid="0ca3b80a-9ceb-4b6d-bd41-965fb4be65f5"/>
+				</line>
+				<line>
+					<reportElement x="334" y="181" width="221" height="1" uuid="5484a4f1-e07b-4e64-926d-2ce845e8ac2b"/>
+				</line>
+				<line>
+					<reportElement x="0" y="201" width="555" height="1" uuid="defa6eb5-6d27-489a-9f64-c15760e002b7"/>
+				</line>
+				<staticText>
+					<reportElement x="333" y="6" width="77" height="20" forecolor="#52514F" uuid="371e38fb-42c8-4d1a-9a0f-6e9e95c4dec9"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Data Emissão:]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="205" y="104" width="129" height="20" uuid="80900416-00fa-4793-904d-f30d8c9f423c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valor" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="47" width="62" height="20" forecolor="#52514F" backcolor="#FFFFFF" uuid="6eeff5ad-822a-4ed8-8ac5-da4714e33742"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[DEVEDOR:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="107" y="68" width="226" height="18" uuid="5745caea-e92c-42a7-ba42-b9d668a70fd0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "linhaCredito" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="124" width="119" height="20" forecolor="#52514F" uuid="42a5b880-c9a9-4d16-803a-b38a0bb9c192"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Pagamento no Ato = R$]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="333" y="47" width="77" height="21" forecolor="#52514F" uuid="9bbc5efd-37ea-4063-8475-dd9a9e3bce7c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[CPF:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="410" y="26" width="145" height="21" uuid="f635530b-0673-42c5-9148-208901874536"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "vencimento" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="26" width="333" height="20" forecolor="#52514F" backcolor="#FFFFFF" uuid="d371b7e6-c025-4b2d-8da7-1ebf982e6434"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[RECEBIMENTO POR CAIXA]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement x="0" y="46" width="555" height="1" uuid="dfb71353-b37a-4b3e-949a-ff2fab98d6ac"/>
+				</line>
+				<line>
+					<reportElement x="0" y="67" width="555" height="1" uuid="45952848-6bf4-4b27-9e4e-0e8af0280cfa"/>
+				</line>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="425" y="181" width="130" height="20" uuid="42050915-1626-4b92-9fe3-24ea2cc8de2d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valor" )]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<rectangle>
+					<reportElement x="0" y="266" width="555" height="196" uuid="2c162fa6-2616-4b8f-bdff-ff6be4716fb9"/>
+				</rectangle>
+				<line>
+					<reportElement x="333" y="266" width="1" height="196" uuid="655997ef-d65a-4353-801d-4aadd6bf8100"/>
+				</line>
+				<textField>
+					<reportElement x="62" y="287" width="271" height="21" uuid="3b3052ca-1395-4e75-be6b-bc8a8c1bac78"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeCliente" )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="307" width="555" height="1" uuid="e08c1eee-89cc-45bb-a117-6bfb4caf78e0"/>
+				</line>
+				<textField>
+					<reportElement x="72" y="384" width="145" height="19" uuid="9d6e218d-579b-4559-ae5c-06928aaecc06"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroContrato" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="333" y="246" width="77" height="20" forecolor="#52514F" uuid="6c825d44-1ddf-47c7-bbd5-0f956db73180"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Data Emissão:]]></text>
+				</staticText>
+				<image scaleImage="RealSize" hAlign="Left" vAlign="Top" isUsingCache="false">
+					<reportElement key="image-1" mode="Opaque" x="1" y="240" width="160" height="23" forecolor="#000000" backcolor="#FFFFFF" uuid="ce03546d-3304-433c-8259-3871c0a3fa70"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<graphicElement fill="Solid">
+						<pen lineWidth="0.0" lineStyle="Solid"/>
+					</graphicElement>
+					<imageExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "path_image_0" )]]></imageExpression>
+				</image>
+				<textField pattern="999.999.999-99">
+					<reportElement x="410" y="287" width="145" height="21" uuid="92ef7eb8-0ae7-40a9-8773-6ce403a2848f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cpfCliente" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="266" width="333" height="20" forecolor="#52514F" backcolor="#FFFFFF" uuid="1d332148-cc8c-4f8a-8a3b-4ab822e0578b"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[RECEBIMENTO POR CAIXA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="180" y="246" width="48" height="20" forecolor="#52514F" uuid="fbe9ddb1-d792-4e16-80fe-f4231ef46936"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+					</textElement>
+					<text><![CDATA[Agência:]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="205" y="344" width="129" height="20" uuid="be2b7241-7e07-4108-90e9-1b49bdc3c273"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valor" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="364" width="119" height="20" forecolor="#52514F" uuid="9f1da179-a12b-4458-8590-65d76e29ca02"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Pagamento no Ato = R$]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="462" width="555" height="15" uuid="03a959d8-9546-4cb0-af26-a011f8510214"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+					</textElement>
+					<text><![CDATA[Via do Cliente]]></text>
+				</staticText>
+				<line>
+					<reportElement x="334" y="421" width="221" height="1" uuid="390df1ad-ddb2-4f48-9485-46c5f0ba375e"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="344" width="205" height="20" forecolor="#52514F" uuid="11751790-77df-490d-b072-94e77da3815c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Autorização para recebimento no valor de]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="384" width="71" height="20" forecolor="#52514F" uuid="05db6e94-76ae-483e-921b-69496a007cd3"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[contrato Nº]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="307" width="107" height="20" backcolor="#FFFFFF" uuid="92640f81-af4c-4ce9-b5dc-7634b94c98a7"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[LINHA DE CRÉDITO:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="410" y="307" width="145" height="19" uuid="f6ebf689-4535-42c2-86ad-2c2d87e4f7e5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroContrato" )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="228" y="246" width="105" height="20" uuid="972e36c8-5cb7-489c-b04e-a56aab8fb0ec"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroAgencia" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="266" width="76" height="21" forecolor="#52514F" uuid="33718d96-b666-47b8-8efd-7052e117fe94"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Vencimento:]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement x="0" y="286" width="555" height="1" uuid="9a307075-e4f3-4602-a7b9-bce5b226be02"/>
+				</line>
+				<line>
+					<reportElement x="0" y="326" width="555" height="1" uuid="d6b4701c-31fa-4f31-991f-8055231c2369"/>
+				</line>
+				<staticText>
+					<reportElement x="333" y="287" width="77" height="21" forecolor="#52514F" uuid="76024212-2618-4aab-aaca-07f877bb992b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[CPF:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="441" width="334" height="21" forecolor="#52514F" uuid="cdbc65a3-7281-4794-817a-b6005d3ab041"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[AUTENTICAÇÃO:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="410" y="266" width="145" height="21" uuid="5a3a1579-1fa5-4614-a594-f05ed8726efa"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "vencimento" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="422" width="91" height="20" forecolor="#52514F" uuid="ff90a1d0-84c0-437b-a1e1-2931bcc7da85"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[TOTAL A PAGAR:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="364" width="333" height="20" forecolor="#52514F" uuid="321e7829-c5e9-4c75-ade1-cd3993fd46ad"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[referente a solicitação de Empréstimo Consignado INSS do]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="334" y="308" width="76" height="18" forecolor="#52514F" uuid="ba07a1eb-2476-4ae0-a95f-894a7093d780"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[CONTRATO:]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="425" y="421" width="130" height="20" uuid="80845519-2b91-4dee-87ef-44dcc8e27fee"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valor" )]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="410" y="246" width="145" height="20" uuid="472ad2ad-f77b-4d65-b747-33ce1aa6bbe3"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "dataEmissao" )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="441" width="555" height="1" uuid="e3215ecb-f619-44d2-aabb-acfb9c913a67"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="287" width="62" height="20" forecolor="#52514F" backcolor="#FFFFFF" uuid="9e4899ea-37dc-4451-9c33-e27583820982"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[DEVEDOR:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="107" y="308" width="226" height="18" uuid="1e4957f4-bf57-4084-97df-a080da4ace16"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "linhaCredito" )]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<rectangle>
+					<reportElement x="0" y="507" width="555" height="196" uuid="a36f75a7-1e2e-454e-a2ed-6e39e6df096b"/>
+				</rectangle>
+				<textField>
+					<reportElement x="62" y="528" width="271" height="21" uuid="13b94bd7-c5ed-435c-9bda-17650fa0fe7a"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "nomeCliente" )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="548" width="555" height="1" uuid="e706bcc0-e710-4fd7-b9d7-0f18bc839b19"/>
+				</line>
+				<textField>
+					<reportElement x="72" y="625" width="145" height="19" uuid="20716c1f-3251-480d-ac9a-c182e17a660f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroContrato" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="333" y="487" width="77" height="20" forecolor="#52514F" uuid="75d163ed-c64e-47d8-8b0e-0d4da777b265"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Data Emissão:]]></text>
+				</staticText>
+				<image scaleImage="RealSize" hAlign="Left" vAlign="Top" isUsingCache="false">
+					<reportElement key="image-1" mode="Opaque" x="1" y="481" width="160" height="23" forecolor="#000000" backcolor="#FFFFFF" uuid="331be1a0-29f8-4de7-b59d-8c6ed4db89e4"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<graphicElement fill="Solid">
+						<pen lineWidth="0.0" lineStyle="Solid"/>
+					</graphicElement>
+					<imageExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "path_image_0" )]]></imageExpression>
+				</image>
+				<textField pattern="999.999.999-99">
+					<reportElement x="410" y="528" width="145" height="21" uuid="4b6d85d8-4fac-4779-b3fb-bd63a69fc417"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "cpfCliente" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="507" width="333" height="20" forecolor="#52514F" backcolor="#FFFFFF" uuid="30744ca5-3621-42ef-afd3-1b7cf79ad996"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[RECEBIMENTO POR CAIXA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="180" y="487" width="48" height="20" forecolor="#52514F" uuid="54e7480e-1d85-40b1-92f0-9292bff87201"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+					</textElement>
+					<text><![CDATA[Agência:]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="205" y="585" width="129" height="20" uuid="06e0408e-3b25-4a28-bda9-82a349e3c405"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valor" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="605" width="119" height="20" forecolor="#52514F" uuid="2fc3712d-ab3f-4dcc-a53c-f67eae2b8d96"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Pagamento no Ato = R$]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="703" width="555" height="15" uuid="75c840de-c0c4-4ab2-9228-396440c7dca6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+					</textElement>
+					<text><![CDATA[Via da Agência]]></text>
+				</staticText>
+				<line>
+					<reportElement x="334" y="662" width="221" height="1" uuid="2d6b654a-bf73-4bc5-b750-1fa22a8a590f"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="585" width="205" height="20" forecolor="#52514F" uuid="6335ae12-1c9f-46f2-9084-071ad9010182"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Autorização para recebimento no valor de]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="625" width="71" height="20" forecolor="#52514F" uuid="2271aca6-2aa4-4650-8ba7-4a579182c0ab"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[contrato Nº]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="548" width="107" height="20" backcolor="#FFFFFF" uuid="03851ad7-464f-4a4b-9315-64ae4cd8f6e0"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[LINHA DE CRÉDITO:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="410" y="548" width="145" height="19" uuid="6a7c59c0-5b6d-4c88-a657-508e84615976"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroContrato" )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="228" y="487" width="105" height="20" uuid="d2ee35e4-4d40-40ae-bd31-83c71931e19f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "numeroAgencia" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="507" width="76" height="21" forecolor="#52514F" uuid="baf677e8-04a5-4126-9767-ff78973d328b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Vencimento:]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement x="0" y="527" width="555" height="1" uuid="48f48e14-12fa-4ec9-8525-4850cab15c58"/>
+				</line>
+				<line>
+					<reportElement x="0" y="567" width="555" height="1" uuid="8d642636-e435-42dd-8238-e10fc5329f88"/>
+				</line>
+				<staticText>
+					<reportElement x="333" y="528" width="77" height="21" forecolor="#52514F" uuid="5b0981c4-8f99-4e6e-a942-3ebd2cb81a4d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[CPF:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="682" width="334" height="21" forecolor="#52514F" uuid="878a908a-2110-4d0b-9648-cd1d93b4754c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[AUTENTICAÇÃO:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="410" y="507" width="145" height="21" uuid="b1cf18ce-1df3-4d7e-9723-d0c8ada34775"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "vencimento" )]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="663" width="91" height="20" forecolor="#52514F" uuid="2f3f2e33-133a-4d05-8e8d-3d389bd76a19"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[TOTAL A PAGAR:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="605" width="333" height="20" forecolor="#52514F" uuid="c119ed9c-8cbe-4e05-bf91-6abd0380d0a1"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[referente a solicitação de Empréstimo Consignado INSS do]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="334" y="549" width="76" height="18" forecolor="#52514F" uuid="f21e22c9-4d47-423b-8bfe-4534b0d866f0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[CONTRATO:]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00">
+					<reportElement x="425" y="662" width="130" height="20" uuid="d2e6ed0c-c39a-4594-afb1-99ec47f474e1"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "valor" )]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="410" y="487" width="145" height="20" uuid="38e700e3-0025-4029-9b7b-142ef47510c4"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "dataEmissao" )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="682" width="555" height="1" uuid="6f91f5a9-6817-4224-88e9-0b4e6815836d"/>
+				</line>
+				<line>
+					<reportElement x="333" y="507" width="1" height="196" uuid="d44d37cb-e347-41bc-91d7-52ddd3605a5e"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="528" width="62" height="20" forecolor="#52514F" backcolor="#FFFFFF" uuid="368e50f4-7244-4fad-9455-3157ebb7baa8"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[DEVEDOR:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="107" y="549" width="226" height="18" uuid="915392f6-edb3-47ec-b38e-82d3ae70974c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get( "linhaCredito" )]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<line>
+				<reportElement x="-21" y="237" width="594" height="1" uuid="6705a8ad-7341-4b7b-baff-6e2ece19e192"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="-21" y="476" width="594" height="1" uuid="76edaf94-89fd-4242-a364-56f70937ae1f"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

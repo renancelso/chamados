@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:pt="http://java.sun.com/jsf/passthrough"
+	  xmlns:c="http://java.sun.com/jstl/core" class="gt-ie8 gt-ie9 not-ie">
+      
+<h:body>
+    <ui:composition template="template/padrao.xhtml">
+
+        <ui:define name="conteudo">
+            <h:form>   	
+            
+            	<p:messages id="messages1" closable="true" showDetail="false"/>       
+               		
+               	<p:growl id="growl1" closable="true" showDetail="false"/>
+            	
+                <p:panel style="min-height: 1000px; min-width: 270px;"
+                		 rendered="#{atendimentoAlteracaoControl.atendimentoDetalhar == null or atendimentoAlteracaoControl.atendimentoDetalhar.id == null}">
+                               		
+                	<h:panelGrid columns="7">
+                	                	
+                		<h:outputText value="Buscar Atendimentos do Chamado Nº: " style="font-weight: bold !important; "/>
+                		<p:spacer width="10"/>			
+						<h:inputText value="#{atendimentoAlteracaoControl.chamadoBuscar.nrChamado}" 
+									 onkeypress="mascara(this, soNumeros)"/>
+						<p:spacer width="20"/>			
+						<p:commandButton value="Buscar" update="@form" id="btBuscarAtendimentos" 
+										 styleClass="signin-btn"
+										 style="font-weight: bold;"
+										 action="#{atendimentoAlteracaoControl.buscarAtendimentosPorChamado()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>   
+								 		 
+						<p:spacer width="20"/>			
+						<p:commandButton value="Limpar" update="@form" 
+									     id="btLimpar" styleClass="signin-btn"
+									     style="font-weight: bold;"
+										 action="#{atendimentoAlteracaoControl.limpar()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>   
+                	
+                	</h:panelGrid>               
+                	
+                	<p:spacer height="10"/>    
+                	                	
+                	<p:dataTable value="#{atendimentoAlteracaoControl.listaAtendimentos}" id="tabelaAtendimentos"
+								 rendered="#{atendimentoAlteracaoControl.listaAtendimentos != null and atendimentoAlteracaoControl.listaAtendimentos.size() > 0}"
+								 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
+	                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+	                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
+	                             emptyMessage="Nenhum registro a ser exibido"
+	                             rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 
+	                             rowsPerPageTemplate="10,20,30,40,50" selection="#{atendimentoAlteracaoControl.atendimentoDetalhar}"
+	                             selectionMode="single" rowKey="#{item.id}">								  
+						
+						<p:column style="text-align: center; width: 90px;">
+							<f:facet name="header">
+								<h:outputText value="Chamado" />
+							</f:facet>
+							<h:outputText value="#{item.chamado.nrChamado}" />
+						</p:column>
+						
+						<p:column style="text-align: center; width: 110px;">
+							<f:facet name="header">
+								<h:outputText value="Atendimento" />
+							</f:facet>
+							<h:outputText value="#{item.nrSq}" />
+						</p:column>							
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Encaminhador por" />
+							</f:facet>
+							<h:outputText value="#{item.encaminhador}"/>
+						</p:column>	
+						
+						<p:column style="text-align: center; width: 200px;">
+							<f:facet name="header">
+								<h:outputText value="Transf. para a equipe em:" />
+							</f:facet>
+							<h:outputText value="#{item.dhTransferidoEquipe}" converter="data"/>
+							<h:outputText value=" "/>
+							<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>
+						</p:column>	
+												
+						<p:column style="text-align: center; width: 210px;">
+							<f:facet name="header">
+								<h:outputText value="Retorno para o cliente em:" />
+							</f:facet>
+							<h:outputText value="#{item.dhRespostaCliente}" converter="data"/>
+							<h:outputText value=" "/>
+							<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
+						</p:column>				
+						
+						<p:column style="width: 8%; text-align: center;">                               
+	                        <p:commandLink title="Detalhar" update="@form" value="Detalhar"
+	                         			   action="#{atendimentoAlteracaoControl.detalhar()}"
+	                         			   style="font-weight: bold;">
+	                        	<f:setPropertyActionListener value="#{item}" target="#{atendimentoAlteracaoControl.atendimentoDetalhar}" />                         	
+	                        </p:commandLink>                           
+                     	</p:column>								  
+								 
+					</p:dataTable>              	
+                	              	 	
+            	</p:panel>
+            	
+            	
+            	<p:panel style="min-height: 1000px; min-width: 270px;"
+                		 rendered="#{atendimentoAlteracaoControl.atendimentoDetalhar != null 
+                		 			 and atendimentoAlteracaoControl.atendimentoDetalhar.id != null 
+                		 			 and atendimentoAlteracaoControl.atendimentoDetalhar.id > 0}"> 
+                		 			 
+         		 		<p:commandButton value="Voltar" update="@form" 
+									     id="bVoltar" styleClass="signin-btn"
+									     style="font-weight: bold;"
+										 action="#{atendimentoAlteracaoControl.voltar()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>    
+								 		            		 			 
+						<p:spacer height="15"/>
+						 
+						<h:panelGrid columns="2" columnClasses="coluna1,coluna2">   
+						
+							<h:outputText value="Chamado " style="font-weight: bold !important;"/>	                			
+							<h:inputText value="#{atendimentoAlteracaoControl.atendimentoDetalhar.chamado.nrChamado}" 
+										 onkeypress="mascara(this, soNumeros)" size="8" readonly="true"
+									     style="font-weight: bold !important; color: red !important;"/>            			                			 
+               			 	               			 
+               			 	<h:outputText value="Atendimento: " style="font-weight: bold !important;"/>	                			
+							<h:inputText value="#{atendimentoAlteracaoControl.atendimentoDetalhar.nrSq}" onkeypress="mascara(this, soNumeros)"
+									     size="4" readonly="true" style="font-weight: bold !important; color: red !important;"/>		
+																     
+							<h:outputText value="Encaminhado para a equipe por: " style="font-weight: bold !important;"/>	                		
+							<h:inputText value="#{atendimentoAlteracaoControl.atendimentoDetalhar.encaminhador}" 
+									     size="40" onkeyup="maiuscula(this)"/>										     
+									     
+							<h:outputText value="Cliente transferiu para equipe em: " style="font-weight: bold !important;"/>
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">															
+								<h:inputText value="#{atendimentoAlteracaoControl.dataAtendimentoTransferidoEquipe}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9"/>								
+								<h:outputText value="às" style="font-weight: bold !important;"/>								
+								<h:inputText value="#{atendimentoAlteracaoControl.horaAtendimentoTransferidoEquipe}" 
+											 onkeypress="formatar(this, '##:##', event);"
+											 maxlength="5" size="6" />								
+						    </h:panelGrid>
+						    
+						    <h:outputText value="Resposta para o cliente em: " style="font-weight: bold !important;"/>
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">								
+								<h:inputText value="#{atendimentoAlteracaoControl.dataAtendimentoRespostaCliente}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9"/>								
+								<h:outputText value="às" style="font-weight: bold !important;"/>								
+								<h:inputText value="#{atendimentoAlteracaoControl.horaAtendimentoRespostaCliente}" 
+											 onkeypress="formatar(this, '##:##', event);"
+											 maxlength="5" size="6" />								
+						    </h:panelGrid>	
+						    
+						    <h:outputText value="Analista: " style="font-weight: bold !important;"/>	                		
+							<h:inputText value="#{atendimentoAlteracaoControl.atendimentoDetalhar.nomeAnalista.toUpperCase()}" 
+									     size="35" readonly="true" onkeyup="maiuscula(this)" 
+									     style="font-weight: bold !important; color: red !important;"/>			
+									     
+							<h:outputText value="Descrição Atendimento: " style="font-weight: bold !important;"/>	                		
+							<p:editor value="#{atendimentoAlteracaoControl.atendimentoDetalhar.descricaoAtendimento}" 
+								      onkeyup="maiuscula(this)" height="200" width="500"/>   			
+               			 
+               			 </h:panelGrid>	        
+               			 
+               			 <p:spacer height="15"/>
+               			 
+               			 <center>
+               				 <h:panelGrid columns="1">       
+               			 
+	               			 	<p:commandButton value="Alterar Atendimento" update="@form" 
+		               			 				 id="btAlterarAtendimento" styleClass="signin-btn"
+												 action="#{atendimentoAlteracaoControl.alterarAtendimento()}" 
+												 style="font-weight: bold;"
+												 onstart="PF('dialogProcessando').show();" 
+												 oncomplete="PF('dialogProcessando').hide();"									
+											     onsuccess="PF('dialogProcessando').hide();"
+										 		 onerror="PF('dialogProcessando').hide(); "/>								
+               				 </h:panelGrid>
+               			 </center>                            		
+                		 			 
+                </p:panel>
+            	
+            	<p:dialog widgetVar="dialogProcessando" modal="true" 
+						  height="50" width="350" resizable="false;"
+						  header="Processando Informações" draggable="false"
+					      closable="false" id="dialogProcessando" 
+					      style="z-index: 9999; font-size: 14px;">					
+					<center>
+						<h:outputText value="Por favor, aguarde..." style="font-weight: bold; font-size: 14px;" />
+						<br/>
+						<img src="resources/imagens/ajax-loader-green-white.gif"/> 
+					</center>
+					
+				</p:dialog>
+            	
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cedulaCreditoBancarioCondicoesGeraisPagina2" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ef1692d4-e43e-481f-a413-00abe023fe55">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="347"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="802" forecolor="#52514F" uuid="7d78b94b-cde0-434b-8814-11b55d642962"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[PARÁGRAFO SEXTO: O EMITENTE declara ter assinado formulário próprio de Autorização para Consignação em Benefício na forma estabelecida pelo INSS, que é parte integrante desta CÉDULA.
+
+PARÁGRAFO SÉTIMO: o EMITENTE declara conhecer que a liberação do empréstimo, uma vez confirmada a margem consignável pelo INSS, será realizada por um dos seguintes modos, na data da confirmação da operação pelo BANCO:
+I - mediante crédito em conta corrente mantida pelo EMITENTE junto ao BANCO, sempre que o recebimento do benefício previdenciário ocorrer por meio de crédito na referida conta;
+II - para os beneficiários que recebem seus benefícios através de cartão magnético, o crédito deverá ser feito em conta corrente ou poupança, expressamente designada pelo titular do benefício e que ele seja o responsável, preferencialmente na agência/banco onde ele recebe o seu benefício mensalmente.
+
+PARÁGRAFO OITAVO: o EMITENTE autoriza o BANCO a debitar, em quaisquer de suas contas correntes nele mantidas, os valores previstos no item II desta CÉDULA, bem como tarifas de servi-ços, IOF e despesas relativas à manutenção, segurança, regularização e conservação do crédito.
+
+PARÁGRAFO NONO: para cobertura parcial ou total de saldo devedor decorrente do empréstimo ora identificado, o EMITENTE autoriza o BANCO, independentemente de aviso prévio, a debitar em sua(s) conta(s) corrente(s), quaisquer importâncias levadas a seu crédito.
+
+PARÁGRAFO DÉCIMO: o EMITENTE declara que por ter contratado operação de crédito baseada no recebimento de benefício previdenciário, por intermédio do BANCO, fica proibido de efetuar ou solicitar ao INSS a transferência do pagamento dos seus proventos (aposentadoria ou pensão) para outra instituição financeira, a qualquer pretexto, enquanto não forem liquidadas todas as obrigações oriundas desta CÉDULA.
+
+CLÁUSULA TERCEIRA – DA LIQUIDAÇÃO ANTECIPADA
+O EMITENTE declara conhecer que poderá amortizar ou liquidar antecipadamente a sua dívida resul-tante desta CÉDULA. O valor presente dos pagamentos para fins de amortização ou de liquidação antecipada dessa CÉDULA será calculado mediante a aplicação da taxa de juros pactuada no mo-mento da contratação da operação de crédito, conforme determinado pela Resolução CMN 4.320, de 27 de março de 2014.
+
+CLÁUSULA QUARTA – DO INADIMPLEMENTO
+Em caso de atraso, sobre os valores vencidos até o efetivo pagamento, além dos juros compensatórios (remuneratórios) à taxa contratada nesta CÉDULA, incidirão:
+I - juros moratórios de 1% ao mês até o 30º dia, inclusive, e, a partir do 31º dia, juros de mora equiva-lentes à taxa Selic; e
+II – multa de 2%.
+
+PARÁGRAFO PRIMEIRO: os juros previstos acima serão calculados e debitados no último dia útil de cada mês ou na liquidação da dívida, sendo exigidos junta e proporcionalmente com os valores principais.
+
+PARÁGRAFO SEGUNDO: a multa a que se refere o inciso II acima será calculada, nas datas das amortizações,]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+</jasperReport>

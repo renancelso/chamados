@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cedulaCreditoBancarioCondicoesGeraisPagina3" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="736e62de-0094-4aa2-8626-1d148d913775">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="347"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="792" forecolor="#52514F" uuid="8b59e129-b8ec-49b4-a6cf-3dc63aaa9221"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[sobre os valores amortizados; e, na liquidação da operação, sobre o saldo devedor da operação, sendo debitada e exigida juntamente com as amortizações ou liquidação da operação. A aplicação da penalidade dar-se-á ainda que o BANCO não tenha recorrido a meios judiciais para ha-ver o pagamento do que lhe for devido e independe de notificação ou aviso judicial ou extrajudicial, configurando-se direito líquido e certo da infração ou atraso por parte do EMITENTE.
+
+PARÁGRAFO TERCEIRO: o EMITENTE se declara plenamente ciente de que, na hipótese de ina-dimplemento de qualquer das obrigações ora assumidas, o BANCO poderá:
+I – levar a presente CÉDULA a protesto;
+II – inscrever o seu nome nos órgãos de proteção ao crédito mediante prévio aviso com antecedência mínima de 15 dias; e
+III – encaminhar a empresas de cobrança e/ou a advogados documentos e informações, inclusive ca-dastrais, referentes ao presente empréstimo, para efeito de cobrança judicial ou extrajudicial.
+
+PARÁGRAFO QUARTO: havendo inadimplemento das obrigações ora assumidas, o EMITENTE ressarcirá todas as despesas que o BANCO despender para reaver o crédito, além de responder pelos encargos previstos anteriormente.
+
+CLÁUSULA QUINTA – DO VENCIMENTO ANTECIPADO DA CÉDULA
+Operar-se-á de pleno direito, independentemente de interpelação judicial ou extrajudicial, para os efeitos do artigo 397 do Código Civil, o vencimento antecipado da totalidade da dívida do EMI-TENTE, determinando o imediato encerramento do crédito concedido, tornando-se, desde logo, ven-cido e exigível o total do débito em aberto, acrescido dos encargos de inadimplemento, honorários advocatícios e outras despesas decorrentes do atraso, nos seguintes casos:
+I – não pagamento, no respectivo vencimento, de qualquer das prestações referidas no quadro 3 do item II do preâmbulo; e
+II – inadimplemento, em geral, de qualquer obrigação assumida pelo EMITENTE na presente CÉ-DULA.
+
+PARÁGRAFO ÚNICO: além das hipóteses acima, o BANCO poderá considerar vencida integral-mente esta CÉDULA e exigir a dívida quando o EMITENTE se enquadrar em qualquer situação abaixo:
+I – ocorrer uma das causas cogitadas nos artigos 333 e 1.425 do Código Civil;
+II – descumprir a legislação que rege a Cédula de Crédito Bancário ou qualquer condição prevista nesta CÉDULA;
+III – tiver contra si qualquer título protestado;
+IV – sofrer ação judicial ou procedimento fiscal capaz de colocar em risco as obrigações assumidas nesta CÉDULA;
+V – for apurada a falsidade de qualquer declaração, informação ou documento que houver sido, res-pectivamente, firmada, prestada ou entregue ao BANCO diretamente ou por meio de prepostos ou mandatários em seu nome;
+VI – requerer ou tiver a sua insolvência requerida ou decretada;
+VII – vier a falecer; ou
+VIII – der causa ao encerramento de sua(s) conta(s) corrente(s) em qualquer estabelecimento bancário por força de instruções do CMN e/ou do BACEN.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

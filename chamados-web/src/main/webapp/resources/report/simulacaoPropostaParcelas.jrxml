@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="simulacaoPropostaParcelas" pageWidth="595" pageHeight="802" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="451ae29d-42f5-4bc9-acce-81a2f230097c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parcela" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nrParcelaVp" class="java.lang.Long"/>
+	<field name="principalVp" class="java.lang.Double">
+		<fieldDescription><![CDATA[principalVp]]></fieldDescription>
+	</field>
+	<field name="jurosVp" class="java.lang.Double">
+		<fieldDescription><![CDATA[jurosVp]]></fieldDescription>
+	</field>
+	<field name="parcelaVp" class="java.lang.Double">
+		<fieldDescription><![CDATA[parcelaVp]]></fieldDescription>
+	</field>
+	<field name="dataVencimentoVp" class="java.lang.String">
+		<fieldDescription><![CDATA[dataVencimentoVp]]></fieldDescription>
+	</field>
+	<field name="saldoDevedorVp" class="java.lang.Double">
+		<fieldDescription><![CDATA[saldoDevedorVp]]></fieldDescription>
+	</field>
+	<field name="prazoVp" class="java.lang.Long">
+		<fieldDescription><![CDATA[prazoVp]]></fieldDescription>
+	</field>
+	<field name="iofTotalVp" class="java.lang.Double">
+		<fieldDescription><![CDATA[iofTotalVp]]></fieldDescription>
+	</field>
+	<field name="iofVp" class="java.lang.Double">
+		<fieldDescription><![CDATA[iofVp]]></fieldDescription>
+	</field>
+	<field name="totalVp" class="java.lang.Double">
+		<fieldDescription><![CDATA[totalVp]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="20" height="16" uuid="a8e915ee-73ae-47f1-9d1e-f060d9f36880"/>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nrParcelaVp}.toString()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="20" y="0" width="60" height="16" uuid="fafd4e6b-84b3-496c-9b72-1d4f6b322f7b"/>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataVencimentoVp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="20" height="16" uuid="d5abb464-1691-40d1-8570-119a44fcc403"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prazoVp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="100" y="0" width="86" height="16" uuid="6603bd8f-4b16-4eaf-ad66-ddc1dcd89c3d"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoDevedorVp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="190" y="0" width="92" height="16" uuid="3c2ec749-34fb-4389-8b69-6351a0b94549"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{principalVp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="288" y="0" width="55" height="16" uuid="c396ac59-a4b6-42fc-86ed-b07cba561822"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jurosVp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="344" y="0" width="100" height="16" uuid="349abb00-d200-4c0c-a95d-b4307b72d2af"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parcelaVp}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="10">
+			<line>
+				<reportElement isPrintRepeatedValues="false" x="0" y="5" width="555" height="1" uuid="232476d1-4585-4cb5-b9ac-51906d493cb0"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</lastPageFooter>
+</jasperReport>
