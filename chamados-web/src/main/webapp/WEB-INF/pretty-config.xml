@@ -6,6 +6,11 @@
     <url-mapping id="login">
         <pattern value="/" />
         <view-id value="/publico/login.jsf" />
+    </url-mapping>   
+    
+     <url-mapping id="login">
+        <pattern value="/login" />
+        <view-id value="/publico/login.jsf" />
     </url-mapping>    
  
     
