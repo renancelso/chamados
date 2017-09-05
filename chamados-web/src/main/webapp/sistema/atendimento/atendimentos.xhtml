@@ -65,10 +65,10 @@
 							<h:inputText value="#{atendimentoControl.chamado.departamento}" 
 										 size="50" onkeyup="maiuscula(this)"/> 
 										 
-							<h:outputText value="Data de Abertura: " style="font-weight: bold !important;"/>
-							<p:calendar value="#{atendimentoControl.chamado.dataAbertura}" locale="pt_BR" 
-										onkeypress="formatar(this, '##/##/####', event);" maxlength="10"
-										size="9" pattern="dd/MM/yyyy" converter="data" />
+							<h:outputText value="Data de Abertura: " style="font-weight: bold !important;"/>							
+							<h:inputText value="#{atendimentoControl.chamado.dataAbertura}"
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9" converter="data"/>									
 										
 							<h:outputText value="Sistema / Módulo: " style="font-weight: bold !important;"/>	                		
 							<h:inputText value="#{atendimentoControl.chamado.sistemaModulo}" 
