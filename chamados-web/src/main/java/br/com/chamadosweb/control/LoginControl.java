@@ -69,7 +69,7 @@ public class LoginControl extends BaseControl {
 						
 			
 			if(!novoUsuario.getSenha().equals(Md5.getMd5Digest(senhaConfirmacao))){			
-				addErrorMessage("Senha e confirmação se senha não conferem.");
+				addErrorMessage("Senha e confirmação de senha não conferem.");
 				novoUsuario.setSenha("");
 				senhaConfirmacao = "";
 				return null;

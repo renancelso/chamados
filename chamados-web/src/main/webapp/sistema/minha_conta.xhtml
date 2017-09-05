@@ -12,22 +12,64 @@
 
         <ui:define name="conteudo">
             <h:form>
-                <p:panel style="min-height: 1000px; min-width: 270px;">
-                	<center>   
-	                	<br/>
-	                	<br/>
-	                	<br/>
-	                	<br/>
-	                	<br/>
-	                	<br/>   
-	                	<br/> 
-	                	<br/>           	
-                		<font style="font-weight: bold; font-size: 30px; color: red;">
-                		EM DESENVOLVIMENTO... AGUARDE.
-                		</font>                		
+            	
+            	<p:messages id="messages1" closable="true" showDetail="false"/>
+                <p:growl id="growl1" closable="true" showDetail="false"/>  
+                          
+                <p:panel style="min-height: 1000px; min-width: 270px;" header="Minha Conta">
+                	
+                	<h:panelGrid columns="2" columnClasses="coluna1,coluna2">
+                	
+                		<h:outputText value="Nome: " style="font-weight: bold !important; "/>  
+						<h:inputText value="#{minhaContaControl.usuarioLogado.nomeCompleto}"
+									 size="50" onkeyup="maiuscula(this)"/>
+									 
+						<h:outputText value="E-mail: " style="font-weight: bold !important; "/>  
+						<h:inputText value="#{minhaContaControl.usuarioLogado.email}"
+									 size="30"/>
+									 
+						<h:outputText value="Login: " style="font-weight: bold !important; "/>  
+						<h:inputText value="#{minhaContaControl.usuarioLogado.login}"
+									 size="30" readonly="true"/>						
+									 
+						<h:outputText value="Senha: " style="font-weight: bold !important; "/>  
+						<h:inputSecret value="#{minhaContaControl.usuarioLogado.senha}"
+									   size="30"/>
+									 
+						<h:outputText value="Confirme sua senha: " style="font-weight: bold !important; "/>  
+						<h:inputSecret value="#{minhaContaControl.senhaConfirmacao}"
+									   size="30"/>
+                	
+                	</h:panelGrid>
+                	
+                	<center>                	
+                		<p:commandButton value="Alterar Dados" 
+                						 styleClass="signin-btn" update="@form"
+										 style="font-weight: bold;"
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"
+										 action="#{minhaContaControl.alterarMinhaConta()}" />
                 	</center>
+                	
                 </p:panel>
+                
+                <p:dialog widgetVar="dialogProcessando" modal="true" 
+						  height="50" width="350" resizable="false;"
+						  header="Processando Informações" draggable="false"
+					      closable="false" id="dialogProcessando" 
+					      style="z-index: 9999; font-size: 14px;">					
+					<center>
+						<h:outputText value="Por favor, aguarde..." style="font-weight: bold; font-size: 14px;" />
+						<br/>
+						<img src="resources/imagens/ajax-loader-green-white.gif"/> 
+					</center>
+					
+				</p:dialog>
+                
             </h:form>
+            
         </ui:define>
 
     </ui:composition>
