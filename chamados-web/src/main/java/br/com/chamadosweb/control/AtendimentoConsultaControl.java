@@ -45,10 +45,14 @@ public class AtendimentoConsultaControl extends BaseControl {
 		
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
-		c.add(Calendar.DAY_OF_MONTH, -93);	
-		
+		c.add(Calendar.DAY_OF_MONTH, -7);			
 		dataRespostaClienteInicial = c.getTime();
+		
 		dataRespostaClienteFinal = new Date();
+		Calendar cf = Calendar.getInstance();
+		cf.setTime(dataRespostaClienteFinal);
+		cf.add(Calendar.DAY_OF_MONTH, 1);
+		dataRespostaClienteFinal = cf.getTime();
 	}
 	
 	public String limpar(){
@@ -57,9 +61,15 @@ public class AtendimentoConsultaControl extends BaseControl {
 		atendimentoDetalhar = new Atendimento();
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
-		c.add(Calendar.DAY_OF_MONTH, -93);	
+		c.add(Calendar.DAY_OF_MONTH, -7);	
 		dataRespostaClienteInicial = c.getTime();
+		
 		dataRespostaClienteFinal = new Date();
+		Calendar cf = Calendar.getInstance();
+		cf.setTime(dataRespostaClienteFinal);
+		cf.add(Calendar.DAY_OF_MONTH, 1);
+		dataRespostaClienteFinal = cf.getTime();
+		
 		return null;
 	}
 	

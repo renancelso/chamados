@@ -83,17 +83,17 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			if(dataRespostaClienteInicial != null && dataRespostaClienteFinal != null){
 				sql.append(" and ((o.dhRespostaCliente >= '").append(sdf.format(dataRespostaClienteInicial)).append("'");
 				sql.append(" and o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("')");	
-				sql.append(" or (o.dhRespostaCliente is null))");
+				sql.append(")");
 			}
 			
 			if(dataRespostaClienteInicial != null && dataRespostaClienteFinal == null){
 				sql.append(" and (o.dhRespostaCliente >= '").append(sdf.format(dataRespostaClienteInicial)).append("'");	
-				sql.append(" or o.dhRespostaCliente is null)");
+				sql.append(")");
 			}
 			
 			if(dataRespostaClienteInicial == null && dataRespostaClienteFinal != null){				
 				sql.append(" and (o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("'");	
-				sql.append(" or o.dhRespostaCliente is null)");	
+				sql.append(")");	
 			}
 					
 			sql.append(" order by o.chamado.nrChamado desc, o.nrSq desc");
