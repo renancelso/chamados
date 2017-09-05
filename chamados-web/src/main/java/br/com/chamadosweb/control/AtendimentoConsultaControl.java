@@ -13,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
+import br.com.chamadosweb.service.model.Chamado;
 
 /**
 *
@@ -36,16 +37,24 @@ public class AtendimentoConsultaControl extends BaseControl {
 	private Date dataRespostaClienteInicial;
 	
 	private Date dataRespostaClienteFinal;
+	
+	private List<String> listaNomesAnalistas;
 		
+	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void init() {		
 		atendimentoFiltroConsulta = new Atendimento();
+		atendimentoFiltroConsulta.setChamado(new Chamado());		
+		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
+				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
+			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		}
 		listaAtendimentosConsulta = new ArrayList<Atendimento>();
 		atendimentoDetalhar = new Atendimento();
 		
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
-		c.add(Calendar.DAY_OF_MONTH, -7);			
+		c.add(Calendar.DAY_OF_MONTH, -1);			
 		dataRespostaClienteInicial = c.getTime();
 		
 		dataRespostaClienteFinal = new Date();
@@ -53,15 +62,33 @@ public class AtendimentoConsultaControl extends BaseControl {
 		cf.setTime(dataRespostaClienteFinal);
 		cf.add(Calendar.DAY_OF_MONTH, 1);
 		dataRespostaClienteFinal = cf.getTime();
+		
+		listaNomesAnalistas = new ArrayList<String>();		
+		listaNomesAnalistas = (List<String>) atendimentoService.consultarPorQuery
+											("SELECT distinct(o.nomeAnalista) FROM Atendimento o "
+											+"where o.nomeAnalista is not null and o.nomeAnalista <> '' "
+											+"and o.nomeAnalista in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
+											+"order by o.nomeAnalista", 0, 0);		
+		
+		listaNomesAnalistas.addAll((List<String>) atendimentoService.consultarPorQuery
+											("SELECT distinct(o.nomeAnalista) FROM Atendimento o "
+											+"where o.nomeAnalista is not null and o.nomeAnalista <> '' "
+											+"and o.nomeAnalista not in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
+											+"order by o.nomeAnalista", 0, 0));		
 	}
 	
 	public String limpar(){
 		atendimentoFiltroConsulta = new Atendimento();
+		atendimentoFiltroConsulta.setChamado(new Chamado());
+		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
+				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
+			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		}
 		listaAtendimentosConsulta = new ArrayList<Atendimento>();
 		atendimentoDetalhar = new Atendimento();
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
-		c.add(Calendar.DAY_OF_MONTH, -7);	
+		c.add(Calendar.DAY_OF_MONTH, -1);	
 		dataRespostaClienteInicial = c.getTime();
 		
 		dataRespostaClienteFinal = new Date();
@@ -80,7 +107,15 @@ public class AtendimentoConsultaControl extends BaseControl {
 		
 		listaAtendimentosConsulta = new ArrayList<Atendimento>();
 				
-		listaAtendimentosConsulta = atendimentoService.consultarAtendimentosPorFiltros(dataRespostaClienteInicial, dataRespostaClienteFinal);
+		listaAtendimentosConsulta = atendimentoService.consultarAtendimentosPorFiltros(dataRespostaClienteInicial, 
+																					   dataRespostaClienteFinal, 
+																					   atendimentoFiltroConsulta);
+		
+		
+		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
+				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
+			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		}
 		
 		if(listaAtendimentosConsulta == null || listaAtendimentosConsulta.isEmpty()){
 			addErrorMessage("Não existem atendimentos cadastrados com os filtros informados.");
@@ -143,5 +178,13 @@ public class AtendimentoConsultaControl extends BaseControl {
 
 	public void setDataRespostaClienteFinal(Date dataRespostaClienteFinal) {
 		this.dataRespostaClienteFinal = dataRespostaClienteFinal;
+	}
+
+	public List<String> getListaNomesAnalistas() {
+		return listaNomesAnalistas;
+	}
+
+	public void setListaNomesAnalistas(List<String> listaNomesAnalistas) {
+		this.listaNomesAnalistas = listaNomesAnalistas;
 	}				
 }

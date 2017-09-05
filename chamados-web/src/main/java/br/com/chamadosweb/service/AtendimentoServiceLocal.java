@@ -20,7 +20,7 @@ public interface AtendimentoServiceLocal extends GenericServiceInterface{
 	public List<Atendimento> consultarAtendimentosPorChamado(Chamado chamado);
 
 	public List<Atendimento> consultarAtendimentosPorFiltros(
-			Date dataRespostaClienteInicial, Date dataRespostaClienteFinal);	
+			Date dataRespostaClienteInicial, Date dataRespostaClienteFinal, Atendimento atendimentoFiltroConsulta);	
 
 	
 

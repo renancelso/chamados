@@ -34,8 +34,19 @@
 								<h:outputText value="à" style="font-weight: bold !important;"/>									
 								<h:inputText value="#{atendimentoConsultaControl.dataRespostaClienteFinal}" 
 											 onkeypress="formatar(this, '##/##/####', event);"
-											 maxlength="10" size="9" converter="data"/>																		
-						    </h:panelGrid>
+											 maxlength="10" size="9" converter="data"/>																										
+						    </h:panelGrid>						    						    
+						        				
+	          				<h:outputText value="Analista: " style="font-weight: bold !important; "/>  	
+							<h:selectOneMenu value="#{atendimentoConsultaControl.atendimentoFiltroConsulta.nomeAnalista}">
+								<f:selectItem itemValue="" itemLabel="SELECIONE..." />
+								<f:selectItems value="#{atendimentoConsultaControl.listaNomesAnalistas}"										
+											   var="nomeAnalista" itemLabel="#{nomeAnalista}" />								
+							</h:selectOneMenu>		
+							
+							<h:outputText value="Chamado: " style="font-weight: bold !important; "/>  	
+							<h:inputText value="#{atendimentoConsultaControl.atendimentoFiltroConsulta.chamado.nrChamado}" 
+									 	onkeypress="mascara(this, soNumeros)" size="9"/>						
 	          				         			 
 	          			</h:panelGrid>  
           			</p:panel>
@@ -77,21 +88,21 @@
 	                             rowsPerPageTemplate="10,20,30,40,50" selection="#{atendimentoConsultaControl.atendimentoDetalhar}"
 	                             selectionMode="single" rowKey="#{item.id}">								  
 						
-							<p:column style="text-align: center; width: 100px;">
+							<p:column style="text-align: center; width: 80px;font-size: 11px;">
 								<f:facet name="header">
 									<h:outputText value="Chamado" />
 								</f:facet>
 								<h:outputText value="#{item.chamado.nrChamado}" />
 							</p:column>							
 							
-							<p:column style="text-align: center; width: 120px;">
+							<p:column style="text-align: center; width: 90px;font-size: 11px;">
 								<f:facet name="header">
 									<h:outputText value="Atendimento" />
 								</f:facet>
 								<h:outputText value="#{item.nrSq}" />
 							</p:column>
 							
-							<p:column style="text-align: center; width: 210px;">
+							<p:column style="text-align: center; width: 180px;font-size: 11px;">
 								<f:facet name="header">
 									<h:outputText value="Retorno para o cliente em:" />
 								</f:facet>

@@ -71,7 +71,8 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 	
 	@Override
 	public List<Atendimento> consultarAtendimentosPorFiltros(Date dataRespostaClienteInicial, 
-												             Date dataRespostaClienteFinal) {
+												             Date dataRespostaClienteFinal,
+												             Atendimento atendimentoFiltroConsulta) {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			
@@ -94,6 +95,17 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			if(dataRespostaClienteInicial == null && dataRespostaClienteFinal != null){				
 				sql.append(" and (o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("'");	
 				sql.append(")");	
+			}
+			
+			if(atendimentoFiltroConsulta.getNomeAnalista() != null 
+					&& !"".equalsIgnoreCase(atendimentoFiltroConsulta.getNomeAnalista())) {
+				sql.append(" and o.nomeAnalista = '").append(atendimentoFiltroConsulta.getNomeAnalista()).append("'");
+			}
+			
+			if(atendimentoFiltroConsulta.getChamado() != null 
+					&& atendimentoFiltroConsulta.getChamado().getNrChamado() != null
+					&& atendimentoFiltroConsulta.getChamado().getNrChamado() > 0) {
+				sql.append(" and o.chamado.nrChamado = ").append(atendimentoFiltroConsulta.getChamado().getNrChamado());
 			}
 					
 			sql.append(" order by o.chamado.nrChamado desc, o.nrSq desc");
