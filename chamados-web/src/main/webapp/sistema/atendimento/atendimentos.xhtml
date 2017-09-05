@@ -172,10 +172,13 @@
 											 maxlength="5" size="6" />								
 						    </h:panelGrid>	
 						    
-						    <h:outputText value="Analista: " style="font-weight: bold !important;"/>	                		
-							<h:inputText value="#{atendimentoControl.atendimento.nomeAnalista.toUpperCase()}" 
-									     size="35" readonly="true" onkeyup="maiuscula(this)" 
-									     style="font-weight: bold !important; color: red !important;"/>			
+						    <h:outputText value="Analista: " style="font-weight: bold !important;"/>	
+						    <h:selectOneMenu value="#{atendimentoControl.atendimento.nomeAnalista}"
+						    				 style="font-weight: bold !important; color: red !important;">
+								<f:selectItem itemValue="" itemLabel="SELECIONE..." />
+								<f:selectItems value="#{atendimentoControl.listaNomesAnalistas}"										
+											   var="nomeAnalista" itemLabel="#{nomeAnalista}" />								
+							</h:selectOneMenu>								
 									     
 							<h:outputText value="Descrição Atendimento: " style="font-weight: bold !important;"/>	                		
 							<p:editor value="#{atendimentoControl.atendimento.descricaoAtendimento}" 

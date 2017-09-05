@@ -41,9 +41,10 @@ public class AtendimentoControl extends BaseControl {
 	private String dataAtendimentoRespostaCliente;
 	
 	private String horaAtendimentoRespostaCliente;
-			
 	
+	private List<String> listaNomesAnalistas;	
 			
+	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void init() {
 		chamado = new Chamado();
@@ -53,6 +54,12 @@ public class AtendimentoControl extends BaseControl {
 		dataAtendimentoRespostaCliente = "";		
 		horaAtendimentoRespostaCliente = "";
 		
+		listaNomesAnalistas = new ArrayList<String>();		
+		listaNomesAnalistas = (List<String>) atendimentoService.consultarPorQuery
+											("SELECT distinct(o.nomeAnalista) FROM Atendimento o "
+											+"where o.nomeAnalista is not null and o.nomeAnalista <> '' "
+											+"and o.nomeAnalista in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
+											+"order by o.nomeAnalista", 0, 0);		
 	}
 	
 	public String limpar(){
@@ -381,5 +388,13 @@ public class AtendimentoControl extends BaseControl {
 	public void setHoraAtendimentoRespostaCliente(
 			String horaAtendimentoRespostaCliente) {
 		this.horaAtendimentoRespostaCliente = horaAtendimentoRespostaCliente;
+	}
+
+	public List<String> getListaNomesAnalistas() {
+		return listaNomesAnalistas;
+	}
+
+	public void setListaNomesAnalistas(List<String> listaNomesAnalistas) {
+		this.listaNomesAnalistas = listaNomesAnalistas;
 	}		
 }

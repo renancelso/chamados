@@ -32,17 +32,22 @@ public class ChamadoConsultaControl extends BaseControl {
 	
 	private Chamado chamadoDetalhar; 	
 	
+	private List<Atendimento> listaAtendimentosDetalhes;
+	
 	@PostConstruct
 	public void init() {		
 		chamadoFiltroConsulta = new Chamado();
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		chamadoDetalhar = new Chamado();
+		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());
 	}
 	
 	public String limpar(){
 		chamadoFiltroConsulta = new Chamado();
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		chamadoDetalhar = new Chamado();
+		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());
+		listaAtendimentosDetalhes = new ArrayList<Atendimento>();
 		return null;
 	}
 	
@@ -67,20 +72,24 @@ public class ChamadoConsultaControl extends BaseControl {
 	
 	public String detalhar(){
 		
-		chamadoDetalhar.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamadoDetalhar));
+		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());				
+		chamadoDetalhar.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamadoDetalhar));		
+		listaAtendimentosDetalhes = chamadoDetalhar.getListaAtendimentos();
 		
 		if(chamadoDetalhar.getListaAtendimentos() == null 
 				|| chamadoDetalhar.getListaAtendimentos().isEmpty()) {			
-			chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());			
+			chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());		
+			listaAtendimentosDetalhes = new ArrayList<Atendimento>();
 		}
 		
 		return null;
-	}
-	
+	}	
 	
 	public String voltar() {
 		
 		chamadoDetalhar = new Chamado();
+		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());
+		listaAtendimentosDetalhes = new ArrayList<Atendimento>();
 		if(chamadoFiltroConsulta.getNrChamado() == null || chamadoFiltroConsulta.getNrChamado() == 0){
 			chamadoFiltroConsulta = new Chamado();
 		}	
@@ -110,6 +119,15 @@ public class ChamadoConsultaControl extends BaseControl {
 
 	public void setChamadoDetalhar(Chamado chamadoDetalhar) {
 		this.chamadoDetalhar = chamadoDetalhar;
+	}
+
+	public List<Atendimento> getListaAtendimentosDetalhes() {
+		return listaAtendimentosDetalhes;
+	}
+
+	public void setListaAtendimentosDetalhes(
+			List<Atendimento> listaAtendimentosDetalhes) {
+		this.listaAtendimentosDetalhes = listaAtendimentosDetalhes;
 	}
 	
 	

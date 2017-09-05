@@ -164,11 +164,14 @@
 											 onkeypress="formatar(this, '##:##', event);"
 											 maxlength="5" size="6" />								
 						    </h:panelGrid>	
-						    
-						    <h:outputText value="Analista: " style="font-weight: bold !important;"/>	                		
-							<h:inputText value="#{atendimentoAlteracaoControl.atendimentoDetalhar.nomeAnalista.toUpperCase()}" 
-									     size="35" readonly="true" onkeyup="maiuscula(this)" 
-									     style="font-weight: bold !important; color: red !important;"/>			
+									     
+							<h:outputText value="Analista: " style="font-weight: bold !important;"/>  	
+							<h:selectOneMenu value="#{atendimentoAlteracaoControl.atendimentoDetalhar.nomeAnalista}"
+											 style="font-weight: bold !important; color: red !important;">
+								<f:selectItem itemValue="" itemLabel="SELECIONE..." />
+								<f:selectItems value="#{atendimentoAlteracaoControl.listaNomesAnalistas}"										
+											   var="nomeAnalista" itemLabel="#{nomeAnalista}"/>								
+							</h:selectOneMenu>	
 									     
 							<h:outputText value="Descrição Atendimento: " style="font-weight: bold !important;"/>	                		
 							<p:editor value="#{atendimentoAlteracaoControl.atendimentoDetalhar.descricaoAtendimento}" 

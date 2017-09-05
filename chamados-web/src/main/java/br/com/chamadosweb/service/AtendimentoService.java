@@ -62,7 +62,7 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			
 		} catch(Exception e){
 			e.printStackTrace();
-			return null;
+			return new ArrayList<Atendimento>();
 		}
 		
 		
