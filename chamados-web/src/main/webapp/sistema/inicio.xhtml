@@ -15,17 +15,22 @@
                 <p:panel style="min-height: 1000px; min-width: 270px;">                	
 	               
 	                <h:panelGrid columns="2">		                
-	                	<h:outputText style="font-weight: bold; color: red;" value="#{sessionScope['usuarioLogado'].nomeCompleto.split(' ')[0]}"/><font style="font-weight: bold;">, seja bem vindo ao sistema de gerenciamento de chamados.</font> 
+	                	<h:outputText style="font-weight: bold; color: red;" value="Olá #{sessionScope['usuarioLogado'].nomeCompleto.split(' ')[0]}"/><font style="font-weight: bold;">, seja bem vindo ao sistema de gerenciamento de chamados.</font> 
 	             	</h:panelGrid>	
 	             	
 	             	<p:spacer height="15"/>
 	             	
-	             	<p:panel toggleable="true" header="">	
+	             	<p:panel toggleable="true">	
 	             	
-	             		<f:facet name="header">	             		
+	             		<f:facet name="header">	   
+	             			
+	             			<h:outputText value="HOJE (" style="font-weight: bold; color: navy;" />
+		             		<h:outputText value="#{inicioControl.hoje.time}" converter="data" style="font-weight: bold; color: red;" />
+		             		<h:outputText value="), " style="font-weight: bold; color: navy;" />
+	             		          		
 	             			<h:outputText style="font-weight: bold; color: navy;" 
 		                				  rendered="#{inicioControl.listaAtendimentosHoje.size() > 0}"
-		                				  value="HOJE, foram realizados #{inicioControl.listaAtendimentosHoje.size()} atendimentos de #{inicioControl.listaChamadosHoje.size()} chamados."/>
+		                				  value=" foram realizados #{inicioControl.listaAtendimentosHoje.size()} atendimentos de #{inicioControl.listaChamadosHoje.size()} chamados."/>
 	                				  
 	                		<h:outputText style="font-weight: bold; color: navy;" 
 		                				  rendered="#{inicioControl.listaAtendimentosHoje.size() == 0}"
@@ -71,15 +76,18 @@
 								<h:outputText value="#{item.nomeAnalista.toUpperCase()}"/>								
 							</p:column>	
 							
-							<p:column style="font-size: 11px;">
+							<p:column style="font-size: 11px; width: 200px;">
 								<f:facet name="header">
-									<h:outputText value="Encaminhado por:" />
+									<h:outputText value="Sistema/Módulo" />
 								</f:facet>
-								<h:outputText value="#{item.encaminhador} "/>
-								<h:outputText value="em "/>
-								<h:outputText value="#{item.dhTransferidoEquipe}" converter="data"/>
-								<h:outputText value=" "/>
-								<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>								
+								<h:outputText value="#{item.chamado.sistemaModulo} "/>														
+							</p:column>	
+							
+							<p:column style="font-size: 11px; width: 120px; text-align: center;">
+								<f:facet name="header">
+									<h:outputText value="Ambiente" />
+								</f:facet>
+								<h:outputText value="#{item.chamado.ambiente} "/>														
 							</p:column>		
 		                             
 		                </p:dataTable>	             		
@@ -88,12 +96,17 @@
 	             		
 	             	<p:spacer height="15"/>	
 	             		             	
-	             	<p:panel toggleable="true" >	
+	             	<p:panel toggleable="true">	
 	             	
             			<f:facet name="header">
+            			
+            				<h:outputText value="ONTEM (" style="font-weight: bold; color: green;" />
+		             		<h:outputText value="#{inicioControl.ontem.time}" converter="data" style="font-weight: bold; color: red;" />
+		             		<h:outputText value="), " style="font-weight: bold; color: green;" />
+            			
 							<h:outputText style="font-weight: bold; color: green;" 
 		                				  rendered="#{inicioControl.listaAtendimentosOntem.size() > 0}"
-		                				  value="ONTEM, foram realizados #{inicioControl.listaAtendimentosOntem.size()} atendimentos de #{inicioControl.listaChamadosOntem.size()} chamados."/>
+		                				  value=" foram realizados #{inicioControl.listaAtendimentosOntem.size()} atendimentos de #{inicioControl.listaChamadosOntem.size()} chamados."/>
 	                				  
 	                		<h:outputText style="font-weight: bold; color: green;" 
 		                				  rendered="#{inicioControl.listaAtendimentosOntem.size() == 0}"
@@ -139,16 +152,19 @@
 								<h:outputText value="#{item.nomeAnalista.toUpperCase()}"/>								
 							</p:column>	
 							
-							<p:column style="font-size: 11px;">
+							<p:column style="font-size: 11px; width: 200px;">
 								<f:facet name="header">
-									<h:outputText value="Encaminhado por:" />
+									<h:outputText value="Sistema/Módulo" />
 								</f:facet>
-								<h:outputText value="#{item.encaminhador} "/>
-								<h:outputText value="em "/>
-								<h:outputText value="#{item.dhTransferidoEquipe}" converter="data"/>
-								<h:outputText value=" "/>
-								<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>								
+								<h:outputText value="#{item.chamado.sistemaModulo} "/>														
 							</p:column>		
+							
+							<p:column style="font-size: 11px; width: 120px; text-align: center;">
+								<f:facet name="header">
+									<h:outputText value="Ambiente" />
+								</f:facet>
+								<h:outputText value="#{item.chamado.ambiente} "/>														
+							</p:column>	
 		                             
 		                </p:dataTable>	             		
 	             		
