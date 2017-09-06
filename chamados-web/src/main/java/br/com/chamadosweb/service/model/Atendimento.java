@@ -62,6 +62,13 @@ public class Atendimento implements Serializable {
 	@Lob
 	@Column(name = "descricaoAtendimento")
 	private String descricaoAtendimento; 
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dhAtu")
+	private Date dhAtu; 
+	
+	@Column(name = "loginUsuAtu")
+	private String loginUsuAtu; 
 
 	public Long getId() {
 		return id;
@@ -125,8 +132,24 @@ public class Atendimento implements Serializable {
 
 	public void setDescricaoAtendimento(String descricaoAtendimento) {
 		this.descricaoAtendimento = descricaoAtendimento;
+	}	
+		
+	public Date getDhAtu() {
+		return dhAtu;
+	}
+
+	public void setDhAtu(Date dhAtu) {
+		this.dhAtu = dhAtu;
 	}
 		
+	public String getLoginUsuAtu() {
+		return loginUsuAtu;
+	}
+
+	public void setLoginUsuAtu(String loginUsuAtu) {
+		this.loginUsuAtu = loginUsuAtu;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

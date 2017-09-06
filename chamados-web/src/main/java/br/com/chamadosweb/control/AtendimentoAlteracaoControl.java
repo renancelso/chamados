@@ -9,11 +9,14 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.Usuario;
 
 /**
 *
@@ -147,9 +150,17 @@ public class AtendimentoAlteracaoControl extends BaseControl {
 	    		Date dhAtendimentoRespostaCliente = 
 	    				(Date) formatter.parse(dataAtendimentoRespostaCliente + " "+horaAtendimentoRespostaCliente);	
 	    		atendimentoDetalhar.setDhRespostaCliente(dhAtendimentoRespostaCliente);    	
-    		}			
+    		}
+    		    		
+    		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
+			Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado"); 
+			
+			atendimentoDetalhar.setLoginUsuAtu(usuarioLogado.getLogin());
+			atendimentoDetalhar.getChamado().setDhAtu(new Date());
+			atendimentoDetalhar.getChamado().setLoginUsuAtu(usuarioLogado.getLogin());
+    		atendimentoDetalhar.setDhAtu(new Date());
     		
-			atendimentoService.atualizar(atendimentoDetalhar);
+			atendimentoService.atualizar(atendimentoDetalhar);	
 			
 			addInfoMessage("Atendimento "+atendimentoDetalhar.getNrSq()+" alterado com sucesso no chamado "+atendimentoDetalhar.getChamado().getNrChamado());	
 			

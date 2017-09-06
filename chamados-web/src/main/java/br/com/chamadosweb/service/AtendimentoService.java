@@ -108,7 +108,7 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 				sql.append(" and o.chamado.nrChamado = ").append(atendimentoFiltroConsulta.getChamado().getNrChamado());
 			}
 					
-			sql.append(" order by o.chamado.nrChamado desc, o.nrSq desc");
+			sql.append(" order by o.dhRespostaCliente desc, o.chamado.nrChamado desc, o.nrSq desc");
 						
 			listaAtendimento = (List<Atendimento>) consultarPorQuery(sql.toString(), 0, 0);
 								

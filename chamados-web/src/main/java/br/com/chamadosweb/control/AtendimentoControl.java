@@ -113,7 +113,15 @@ public class AtendimentoControl extends BaseControl {
 	public String atualizarDadosApenasChamado(){
 		
 		try {
+			
+			HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
+			Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado");
+			
+			chamado.setLoginUsuAtu(usuarioLogado.getLogin());			
+			chamado.setDhAtu(new Date());	
+			
 			atendimentoService.atualizar(chamado);
+			
 			addInfoMessage("Chamado "+chamado.getNrChamado()+" atualizado com sucesso.");			 
 		} catch(Exception e){
 			addErrorMessage("Erro ao atualizar chamado."+e.getMessage());
@@ -145,11 +153,22 @@ public class AtendimentoControl extends BaseControl {
 	    				(Date) formatter.parse(dataAtendimentoRespostaCliente + " "+horaAtendimentoRespostaCliente);	
 	    		atendimento.setDhRespostaCliente(dhAtendimentoRespostaCliente);    	
     		}
+    		    		    		
     		
-    		atendimento.setChamado(chamado);    		
+    		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
+			Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado"); 
 			
-    		atendimentoService.atualizar(chamado);
-			atendimentoService.atualizar(atendimento);			
+			chamado.setLoginUsuAtu(usuarioLogado.getLogin());
+			chamado.setDhAtu(new Date());
+			
+			atendimento.setDhAtu(new Date());
+			atendimento.setLoginUsuAtu(usuarioLogado.getLogin());		
+			
+			atendimento.setChamado(chamado);
+			
+    		atendimentoService.atualizar(chamado);    		
+			atendimentoService.atualizar(atendimento);
+			
 			addInfoMessage("Atendimento "+atendimento.getNrSq()+" incluído com sucesso no chamado "+chamado.getNrChamado());	
 			limpar();
 		} catch(Exception e){

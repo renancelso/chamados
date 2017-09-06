@@ -60,28 +60,28 @@
 	                             rowsPerPageTemplate="10,20,30,40,50" selection="#{atendimentoAlteracaoControl.atendimentoDetalhar}"
 	                             selectionMode="single" rowKey="#{item.id}">								  
 						
-						<p:column style="text-align: center; width: 90px;">
+						<p:column style="text-align: center; width: 80px;font-size: 11px;">
 							<f:facet name="header">
 								<h:outputText value="Chamado" />
 							</f:facet>
 							<h:outputText value="#{item.chamado.nrChamado}" />
 						</p:column>
 						
-						<p:column style="text-align: center; width: 110px;">
+						<p:column style="text-align: center; width: 90px;font-size: 11px;">
 							<f:facet name="header">
 								<h:outputText value="Atendimento" />
 							</f:facet>
 							<h:outputText value="#{item.nrSq}" />
 						</p:column>							
 						
-						<p:column>
+						<p:column style="font-size: 11px;">
 							<f:facet name="header">
 								<h:outputText value="Encaminhador por" />
 							</f:facet>
 							<h:outputText value="#{item.encaminhador}"/>
 						</p:column>	
 						
-						<p:column style="text-align: center; width: 200px;">
+						<p:column style="text-align: center; width: 180px;font-size: 11px;">
 							<f:facet name="header">
 								<h:outputText value="Transf. para a equipe em:" />
 							</f:facet>
@@ -90,7 +90,7 @@
 							<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>
 						</p:column>	
 												
-						<p:column style="text-align: center; width: 210px;">
+						<p:column style="text-align: center; width: 190px;font-size: 11px;">
 							<f:facet name="header">
 								<h:outputText value="Retorno para o cliente em:" />
 							</f:facet>
@@ -99,7 +99,7 @@
 							<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
 						</p:column>				
 						
-						<p:column style="width: 8%; text-align: center;">                               
+						<p:column style="width: 8%; text-align: center;font-size: 11px;">                               
 	                        <p:commandLink title="Detalhar" update="@form" value="Detalhar"
 	                         			   action="#{atendimentoAlteracaoControl.detalhar()}"
 	                         			   style="font-weight: bold;">

@@ -71,6 +71,13 @@ public class Chamado implements Serializable {
 	
 	@OneToMany(mappedBy="chamado", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Atendimento> listaAtendimentos;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dhAtu")
+	private Date dhAtu; 
+	
+	@Column(name = "loginUsuAtu")
+	private String loginUsuAtu; 
 
 	public Long getNrChamado() {
 		return nrChamado;
@@ -183,7 +190,23 @@ public class Chamado implements Serializable {
 	public void setListaAtendimentos(List<Atendimento> listaAtendimentos) {
 		this.listaAtendimentos = listaAtendimentos;
 	}	
+			
+	public Date getDhAtu() {
+		return dhAtu;
+	}
+
+	public void setDhAtu(Date dhAtu) {
+		this.dhAtu = dhAtu;
+	}
 		
+	public String getLoginUsuAtu() {
+		return loginUsuAtu;
+	}
+
+	public void setLoginUsuAtu(String loginUsuAtu) {
+		this.loginUsuAtu = loginUsuAtu;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
