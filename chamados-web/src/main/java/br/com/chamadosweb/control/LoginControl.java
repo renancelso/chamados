@@ -119,10 +119,10 @@ public class LoginControl extends BaseControl {
 		
 		try {
 			
-			for (Usuario usuario : listaUsuarios) {
-				//gerar nova senha
-				//enviar e-mail
-			}	
+//			for (Usuario usuario : listaUsuarios) {
+//				//gerar nova senha
+//				//enviar e-mail
+//			}	
 			
 			addInfoMessage("Nova senha enviada para "+emailEsqueceuSenha);	
 			
