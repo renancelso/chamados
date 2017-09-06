@@ -12,8 +12,148 @@
 
         <ui:define name="conteudo">
             <h:form>
-                <p:panel style="min-height: 1000px; min-width: 270px;">
-                	<h:outputText style="font-weight: bold; color: red;" value="#{sessionScope['usuarioLogado'].nomeCompleto.split(' ')[0]}"/><font style="font-weight: bold;">, seja bem vindo ao sistema de gerenciamento de chamados.</font> 
+                <p:panel style="min-height: 1000px; min-width: 270px;">                	
+	               
+	                <h:panelGrid columns="2">		                
+	                	<h:outputText style="font-weight: bold; color: red;" value="#{sessionScope['usuarioLogado'].nomeCompleto.split(' ')[0]}"/><font style="font-weight: bold;">, seja bem vindo ao sistema de gerenciamento de chamados.</font> 
+	             	</h:panelGrid>	
+	             	
+	             	<p:spacer height="15"/>
+	             	
+	             	<p:panel toggleable="true" header="">	
+	             	
+	             		<f:facet name="header">	             		
+	             			<h:outputText style="font-weight: bold; color: navy;" 
+		                				  rendered="#{inicioControl.listaAtendimentosHoje.size() > 0}"
+		                				  value="HOJE, foram realizados #{inicioControl.listaAtendimentosHoje.size()} atendimentos de #{inicioControl.listaChamadosHoje.size()} chamados."/>
+	                				  
+	                		<h:outputText style="font-weight: bold; color: navy;" 
+		                				  rendered="#{inicioControl.listaAtendimentosHoje.size() == 0}"
+		                				  value="Hoje não foram realizados atendimentos."/>
+	             		</f:facet>	     		
+	             		
+	             		<p:dataTable value="#{inicioControl.listaAtendimentosHoje}" id="tabelaAtendimentosHoje"									
+									 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
+		                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
+		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
+		                             rowsPerPageTemplate="10,20,30,40,50" 
+		                             selectionMode="single" rowKey="#{item.id}">	
+		                             
+		                             
+		                    <p:column style="text-align: center; width: 80px;font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Chamado" />
+								</f:facet>
+								<h:outputText value="#{item.chamado.nrChamado}" />
+							</p:column>							
+							
+							<p:column style="text-align: center; width: 90px;font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Atendimento" />
+								</f:facet>
+								<h:outputText value="#{item.nrSq}" />
+							</p:column>
+							
+							<p:column style="text-align: center; width: 180px;font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Retorno para o cliente em:" />
+								</f:facet>
+								<h:outputText value="#{item.dhRespostaCliente}" converter="data"/>
+								<h:outputText value=" "/>
+								<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
+							</p:column>					
+																					
+							<p:column style="width: 220px; font-size: 11px;">							
+								<f:facet name="header">
+									<h:outputText value="Analista" />
+								</f:facet>
+								<h:outputText value="#{item.nomeAnalista.toUpperCase()}"/>								
+							</p:column>	
+							
+							<p:column style="font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Encaminhado por:" />
+								</f:facet>
+								<h:outputText value="#{item.encaminhador} "/>
+								<h:outputText value="em "/>
+								<h:outputText value="#{item.dhTransferidoEquipe}" converter="data"/>
+								<h:outputText value=" "/>
+								<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>								
+							</p:column>		
+		                             
+		                </p:dataTable>	             		
+	             		
+	             	</p:panel>	             	
+	             		
+	             	<p:spacer height="15"/>	
+	             		             	
+	             	<p:panel toggleable="true" >	
+	             	
+            			<f:facet name="header">
+							<h:outputText style="font-weight: bold; color: green;" 
+		                				  rendered="#{inicioControl.listaAtendimentosOntem.size() > 0}"
+		                				  value="ONTEM, foram realizados #{inicioControl.listaAtendimentosOntem.size()} atendimentos de #{inicioControl.listaChamadosOntem.size()} chamados."/>
+	                				  
+	                		<h:outputText style="font-weight: bold; color: green;" 
+		                				  rendered="#{inicioControl.listaAtendimentosOntem.size() == 0}"
+		                				  value="ONTEM não foram realizados atendimentos."/>
+						</f:facet>	                		             		
+	             		
+	             		<p:dataTable value="#{inicioControl.listaAtendimentosOntem}" id="tabelaAtendimentosOntem"									
+									 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
+		                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
+		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
+		                             rowsPerPageTemplate="10,20,30,40,50" 
+		                             selectionMode="single" rowKey="#{item.id}">	
+		                             
+		                             
+		                    <p:column style="text-align: center; width: 80px;font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Chamado" />
+								</f:facet>
+								<h:outputText value="#{item.chamado.nrChamado}" />
+							</p:column>							
+							
+							<p:column style="text-align: center; width: 90px;font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Atendimento" />
+								</f:facet>
+								<h:outputText value="#{item.nrSq}" />
+							</p:column>
+							
+							<p:column style="text-align: center; width: 180px;font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Retorno para o cliente em:" />
+								</f:facet>
+								<h:outputText value="#{item.dhRespostaCliente}" converter="data"/>
+								<h:outputText value=" "/>
+								<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
+							</p:column>					
+																					
+							<p:column style="width: 220px; font-size: 11px;">							
+								<f:facet name="header">
+									<h:outputText value="Analista" />
+								</f:facet>
+								<h:outputText value="#{item.nomeAnalista.toUpperCase()}"/>								
+							</p:column>	
+							
+							<p:column style="font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Encaminhado por:" />
+								</f:facet>
+								<h:outputText value="#{item.encaminhador} "/>
+								<h:outputText value="em "/>
+								<h:outputText value="#{item.dhTransferidoEquipe}" converter="data"/>
+								<h:outputText value=" "/>
+								<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>								
+							</p:column>		
+		                             
+		                </p:dataTable>	             		
+	             		
+	             	</p:panel>    
+	             	              
                 </p:panel>
             </h:form>
         </ui:define>
