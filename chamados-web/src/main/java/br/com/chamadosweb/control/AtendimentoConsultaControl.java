@@ -1,5 +1,6 @@
 package br.com.chamadosweb.control;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -125,9 +126,9 @@ public class AtendimentoConsultaControl extends BaseControl {
 		return null;
 	}
 	
-	public String detalhar(){
-				
-		
+	public String detalhar() {
+						
+					
 		return null;
 	}
 	
@@ -135,6 +136,10 @@ public class AtendimentoConsultaControl extends BaseControl {
 	public String voltar() {		
 		
 		atendimentoDetalhar = new Atendimento();		
+		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
+				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
+			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		}
 		
 		return null;
 	}

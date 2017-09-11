@@ -43,7 +43,7 @@
 		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
 		                             rowsPerPageTemplate="10,20,30,40,50" 
-		                             selectionMode="single" rowKey="#{item.id}">	
+		                             selectionMode="multiple" rowKey="#{item.id}">	
 		                             
 		                             
 		                    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;">
@@ -100,9 +100,9 @@
 	             	
             			<f:facet name="header">
             			
-            				<h:outputText value="ONTEM (" style="font-weight: bold; color: green;" />
+            				<h:outputText value="Em " style="font-weight: bold; color: green;" />
 		             		<h:outputText value="#{inicioControl.ontem.time}" converter="data" style="font-weight: bold; color: red;" />
-		             		<h:outputText value="), " style="font-weight: bold; color: green;" />
+		             		<h:outputText value=", " style="font-weight: bold; color: green;" />
             			
 							<h:outputText style="font-weight: bold; color: green;" 
 		                				  rendered="#{inicioControl.listaAtendimentosOntem.size() > 0}"
@@ -110,7 +110,10 @@
 	                				  
 	                		<h:outputText style="font-weight: bold; color: green;" 
 		                				  rendered="#{inicioControl.listaAtendimentosOntem.size() == 0}"
-		                				  value="ONTEM não foram realizados atendimentos."/>
+		                				  value="Não foram realizados atendimentos em "/>
+		                	<h:outputText value="#{inicioControl.ontem.time}" converter="data" 
+		                	 			  rendered="#{inicioControl.listaAtendimentosOntem.size() == 0}"
+		                				  style="font-weight: bold; color: red;" />
 						</f:facet>	                		             		
 	             		
 	             		<p:dataTable value="#{inicioControl.listaAtendimentosOntem}" id="tabelaAtendimentosOntem"									
@@ -119,7 +122,7 @@
 		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
 		                             rowsPerPageTemplate="10,20,30,40,50" 
-		                             selectionMode="single" rowKey="#{item.id}">
+		                             selectionMode="multiple" rowKey="#{item.id}">
 		                             
                 		    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;">
 								<f:facet name="header">

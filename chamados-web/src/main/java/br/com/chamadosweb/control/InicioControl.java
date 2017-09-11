@@ -57,7 +57,16 @@ public class InicioControl extends BaseControl{
 		}
 		
 		ontem = Calendar.getInstance();		
-		ontem.add(Calendar.DAY_OF_MONTH, -1);	
+		
+		do {			
+			ontem.add(Calendar.DAY_OF_MONTH, -1);				
+			listaAtendimentosOntem = atendimentoService.consultarAtendimentosPorFiltros(ontem.getTime(), 
+																						hoje.getTime(), 
+																					    new Atendimento());	
+		} while ((ontem.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY 
+				 || ontem.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+				&& (listaAtendimentosOntem == null || listaAtendimentosOntem.isEmpty()));
+		
 		listaAtendimentosOntem = atendimentoService.consultarAtendimentosPorFiltros(ontem.getTime(), 
 																					hoje.getTime(), 
 																				    new Atendimento());			
@@ -70,8 +79,7 @@ public class InicioControl extends BaseControl{
 				}
 			}			
 		}
-		
-		
+			
 	}
 
 	public List<Atendimento> getListaAtendimentosHoje() {

@@ -95,23 +95,23 @@
 								<h:outputText value="#{item.chamado.nrChamado}" />
 							</p:column>							
 							
-							<p:column style="text-align: center; width: 90px;font-size: 11px;">
+							<p:column style="text-align: center; width: 50px;font-size: 11px;">
 								<f:facet name="header">
-									<h:outputText value="Atendimento" />
+									<h:outputText value="Atd" />
 								</f:facet>
 								<h:outputText value="#{item.nrSq}" />
 							</p:column>
 							
-							<p:column style="text-align: center; width: 180px;font-size: 11px;">
+							<p:column style="text-align: center; width: 150px;font-size: 11px;">
 								<f:facet name="header">
-									<h:outputText value="Retorno para o cliente em:" />
+									<h:outputText value="Ret para o cliente em:" />
 								</f:facet>
 								<h:outputText value="#{item.dhRespostaCliente}" converter="data"/>
 								<h:outputText value=" "/>
 								<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
 							</p:column>					
 																					
-							<p:column style="width: 220px; font-size: 11px;">							
+							<p:column style="width: 180px; font-size: 11px;">							
 								<f:facet name="header">
 									<h:outputText value="Analista" />
 								</f:facet>
@@ -122,35 +122,108 @@
 								<f:facet name="header">
 									<h:outputText value="Encaminhado por:" />
 								</f:facet>
-								<h:outputText value="#{item.encaminhador} "/>
+								<h:outputText value="#{item.encaminhador.split(' ')[0]} "/>	
 								<h:outputText value="em "/>
 								<h:outputText value="#{item.dhTransferidoEquipe}" converter="data"/>
 								<h:outputText value=" "/>
 								<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>								
-							</p:column>				  
+							</p:column>	
+							
+							<p:column sortBy="#{item.chamado.sistemaModulo}" style="font-size: 11px; width: 170px;">
+								<f:facet name="header">
+									<h:outputText value="Sistema/Módulo" />
+								</f:facet>
+								<h:outputText value="#{item.chamado.sistemaModulo} "/>														
+							</p:column>	
+							
+							<p:column sortBy="#{item.chamado.ambiente}" style="font-size: 11px; width: 120px; text-align: center;">
+								<f:facet name="header">
+									<h:outputText value="Ambiente" />
+								</f:facet>
+								<h:outputText value="#{item.chamado.ambiente} "/>														
+							</p:column>
+							
+							<p:column style="width: 8%; text-align: center;font-size: 11px;">                               
+		                        <p:commandLink title="Detalhar" update="@form" value="Detalhar"
+		                         			   action="#{atendimentoConsultaControl.detalhar()}"
+		                         			   style="font-weight: bold;">
+		                        	<f:setPropertyActionListener value="#{item}" target="#{atendimentoConsultaControl.atendimentoDetalhar}" />                         	
+		                        </p:commandLink>                           
+                     		</p:column>			
+                     					  
 								 
-					</p:dataTable>             			
+					</p:dataTable>  					         			
           			                 	
                 </p:panel>  
                 
                 <p:panel style="min-height: 1000px; min-width: 270px;"
                 		 rendered="#{atendimentoConsultaControl.atendimentoDetalhar != null 
                 		 			 and atendimentoConsultaControl.atendimentoDetalhar.id != null 
-                		 			 and atendimentoConsultaControl.atendimentoDetalhar.id > 0}">	                	 
-			          	
-                		<p:commandButton value="Voltar" update="@form" 
+                		 			 and atendimentoConsultaControl.atendimentoDetalhar.id > 0}"> 
+                		 			 
+         		 		<p:commandButton value="Voltar" update="@form" 
 									     id="bVoltar" styleClass="signin-btn"
 									     style="font-weight: bold;"
 										 action="#{atendimentoConsultaControl.voltar()}" 
 										 onstart="PF('dialogProcessando').show();" 
 										 oncomplete="PF('dialogProcessando').hide();"									
 									     onsuccess="PF('dialogProcessando').hide();"
-								 		 onerror="PF('dialogProcessando').hide();"/>
-								 		 
-						<p:spacer height="50"/>		
-															
+								 		 onerror="PF('dialogProcessando').hide();"/>    
+								 		            		 			 
+						<p:spacer height="50"/>
+						 
+						<h:panelGrid columns="2" columnClasses="coluna1D,coluna2">   
+						
+							<h:outputText value="Chamado: " style="font-weight: bold !important;"/>	                			
+							<h:outputText value="#{atendimentoConsultaControl.atendimentoDetalhar.chamado.nrChamado}" 
+										  style="font-weight: bold !important; color: red !important;"/> 										  
+										  
+							<h:outputText value=" " style="font-weight: bold !important;"/>	                		
+							<p:editor value="#{atendimentoConsultaControl.atendimentoDetalhar.chamado.descricao}" 
+								      onkeyup="maiuscula(this)" height="200" width="500"/>   	 
+								      
+							<p:spacer height="40"/>
+							<p:spacer height="40"/>              			                			 
+               			 	               			 
+               			 	<h:outputText value="Atendimento: " style="font-weight: bold !important;"/>	                			
+							<h:outputText value="#{atendimentoConsultaControl.atendimentoDetalhar.nrSq}" onkeypress="mascara(this, soNumeros)"
+									     size="4" readonly="true" style="font-weight: bold !important; color: red !important;"/>		
+																     
+							<h:outputText value="Encaminhado para a equipe por: " style="font-weight: bold !important;"/>	                		
+							<h:outputText value="#{atendimentoConsultaControl.atendimentoDetalhar.encaminhador}" 
+									     size="40" onkeyup="maiuscula(this)"/>										     
+									     
+							<h:outputText value="Cliente transferiu para equipe em: " style="font-weight: bold !important;"/>
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">															
+								<h:outputText value="#{atendimentoConsultaControl.atendimentoDetalhar.dhTransferidoEquipe}" converter="data"
+											  style="font-weight: bold !important;"/>										
+								<h:outputText value="às" style="font-weight: bold !important;"/>								
+								<h:outputText value="#{atendimentoConsultaControl.atendimentoDetalhar.dhTransferidoEquipe}" converter="hora"
+											  style="font-weight: bold !important;"/>										
+						    </h:panelGrid>
+						    
+						    <h:outputText value="Resposta para o cliente em: " style="font-weight: bold !important;"/>
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">								
+								<h:outputText value="#{atendimentoConsultaControl.atendimentoDetalhar.dhRespostaCliente}" converter="data"
+											  style="font-weight: bold !important;"/>									
+								<h:outputText value="às" style="font-weight: bold !important;"/>								
+								<h:outputText value="#{atendimentoConsultaControl.atendimentoDetalhar.dhRespostaCliente}" converter="hora"
+											  style="font-weight: bold !important;"/>							
+						    </h:panelGrid>	
+									     
+							<h:outputText value="Analista: " style="font-weight: bold !important;"/>  	
+							<h:outputText value="#{atendimentoConsultaControl.atendimentoDetalhar.nomeAnalista}"
+											 style="font-weight: bold !important; color: red !important;"/>							
+									     
+							<h:outputText value="Descrição Atendimento: " style="font-weight: bold !important;"/>	                		
+							<p:editor value="#{atendimentoConsultaControl.atendimentoDetalhar.descricaoAtendimento}" 
+								      onkeyup="maiuscula(this)" height="300" width="500"/>   			
+               			 
+               			 </h:panelGrid>	        
+               			 
+               			 <p:spacer height="15"/>	                        		
                 		 			 
-                </p:panel>                
+                </p:panel>  
                 
                 <p:dialog widgetVar="dialogProcessando" modal="true" 
 						  height="50" width="350" resizable="false;"
