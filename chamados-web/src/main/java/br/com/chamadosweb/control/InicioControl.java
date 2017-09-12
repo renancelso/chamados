@@ -33,14 +33,21 @@ public class InicioControl extends BaseControl{
 	private List<Atendimento> listaAtendimentosOntem;
 	
 	private List<Chamado> listaChamadosOntem;
+		
+	private List<Atendimento> listaAtendimentosAnteontem;
+	
+	private List<Chamado> listaChamadosAnteontem;
 	
 	private Calendar hoje;
 	
 	private Calendar ontem;
 	
+	private Calendar anteontem;
+	
 	@PostConstruct
 	public void init() {	
 		
+		/**Hoje**/
 		hoje = Calendar.getInstance();
 		
 		listaAtendimentosHoje = atendimentoService.consultarAtendimentosPorFiltros(hoje.getTime(), 
@@ -56,6 +63,7 @@ public class InicioControl extends BaseControl{
 			}			
 		}
 		
+		/**Ontem**/
 		ontem = Calendar.getInstance();		
 		
 		do {			
@@ -79,7 +87,31 @@ public class InicioControl extends BaseControl{
 				}
 			}			
 		}
-			
+	
+		/**Anteontem**/		
+//		anteontem = Calendar.getInstance();		
+//		anteontem.add(Calendar.DAY_OF_MONTH, -1);
+//		do {			
+//			anteontem.add(Calendar.DAY_OF_MONTH, -1);				
+//			listaAtendimentosAnteontem = atendimentoService.consultarAtendimentosPorFiltros(anteontem.getTime(), 
+//																						    ontem.getTime(), 
+//																					        new Atendimento());	
+//		} while ((anteontem.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY 
+//				 || anteontem.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+//				&& (listaAtendimentosAnteontem == null || listaAtendimentosAnteontem.isEmpty()));
+//		
+//		listaAtendimentosAnteontem = atendimentoService.consultarAtendimentosPorFiltros(anteontem.getTime(), 
+//																						ontem.getTime(), 
+//																						new Atendimento());			
+//		
+//		listaChamadosAnteontem = new ArrayList<Chamado>();
+//		if(listaAtendimentosAnteontem != null && !listaAtendimentosAnteontem.isEmpty()) {			
+//			for (Atendimento atendimentoAnteontem : listaAtendimentosAnteontem) {
+//				if(!listaChamadosAnteontem.contains(atendimentoAnteontem.getChamado())){
+//					listaChamadosAnteontem.add(atendimentoAnteontem.getChamado());
+//				}
+//			}			
+//		}			
 	}
 
 	public List<Atendimento> getListaAtendimentosHoje() {
@@ -128,5 +160,30 @@ public class InicioControl extends BaseControl{
 
 	public void setOntem(Calendar ontem) {
 		this.ontem = ontem;
+	}
+
+	public Calendar getAnteontem() {
+		return anteontem;
+	}
+
+	public void setAnteontem(Calendar anteontem) {
+		this.anteontem = anteontem;
+	}
+
+	public List<Atendimento> getListaAtendimentosAnteontem() {
+		return listaAtendimentosAnteontem;
+	}
+
+	public void setListaAtendimentosAnteoOntem(
+			List<Atendimento> listaAtendimentosAnteontem) {
+		this.listaAtendimentosAnteontem = listaAtendimentosAnteontem;
+	}
+
+	public List<Chamado> getListaChamadosAnteontem() {
+		return listaChamadosAnteontem;
+	}
+
+	public void setListaChamadosAnteontem(List<Chamado> listaChamadosAnteontem) {
+		this.listaChamadosAnteontem = listaChamadosAnteontem;
 	}
 }

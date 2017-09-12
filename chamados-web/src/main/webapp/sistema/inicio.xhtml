@@ -20,6 +20,8 @@
 	             	
 	             	<p:spacer height="15"/>
 	             	
+	             	<!-- Hoje -->	  
+	             	
 	             	<p:panel toggleable="true">	
 	             	
 	             		<f:facet name="header">	   
@@ -34,7 +36,7 @@
 	                				  
 	                		<h:outputText style="font-weight: bold; color: navy;" 
 		                				  rendered="#{inicioControl.listaAtendimentosHoje.size() == 0}"
-		                				  value="Hoje não foram realizados atendimentos."/>
+		                				  value=" não foram realizados atendimentos."/>
 	             		</f:facet>	     		
 	             		
 	             		<p:dataTable value="#{inicioControl.listaAtendimentosHoje}" id="tabelaAtendimentosHoje"									
@@ -95,6 +97,8 @@
 	             	</p:panel>	             	
 	             		
 	             	<p:spacer height="15"/>	
+	             		   
+					<!-- Ontem -->	             		   
 	             		             	
 	             	<p:panel toggleable="true">	
 	             	
@@ -110,10 +114,7 @@
 	                				  
 	                		<h:outputText style="font-weight: bold; color: green;" 
 		                				  rendered="#{inicioControl.listaAtendimentosOntem.size() == 0}"
-		                				  value="Não foram realizados atendimentos em "/>
-		                	<h:outputText value="#{inicioControl.ontem.time}" converter="data" 
-		                	 			  rendered="#{inicioControl.listaAtendimentosOntem.size() == 0}"
-		                				  style="font-weight: bold; color: red;" />
+		                				  value=" não foram realizados atendimentos."/>		                	
 						</f:facet>	                		             		
 	             		
 	             		<p:dataTable value="#{inicioControl.listaAtendimentosOntem}" id="tabelaAtendimentosOntem"									
@@ -170,7 +171,83 @@
 		                             
 		                </p:dataTable>	             		
 	             		
-	             	</p:panel>    
+	             	</p:panel>  
+	             	
+	             	
+	             	<!-- Anteontem -->
+	             	
+<!-- 	             	<p:panel toggleable="true">	 -->
+	             	
+<!--             			<f:facet name="header"> -->
+            			
+<!--             				<h:outputText value="Em " style="font-weight: bold; color: green;" /> -->
+<!-- 		             		<h:outputText value="#{inicioControl.anteontem.time}" converter="data" style="font-weight: bold; color: red;" /> -->
+<!-- 		             		<h:outputText value=", " style="font-weight: bold; color: green;" /> -->
+            			
+<!-- 							<h:outputText style="font-weight: bold; color: green;"  -->
+<!-- 		                				  rendered="#{inicioControl.listaAtendimentosAnteontem.size() > 0}" -->
+<!-- 		                				  value=" foram realizados #{inicioControl.listaAtendimentosAnteontem.size()} atendimentos de #{inicioControl.listaChamadosAnteontem.size()} chamados."/> -->
+	                				  
+<!-- 	                		<h:outputText style="font-weight: bold; color: green;"  -->
+<!-- 		                				  rendered="#{inicioControl.listaAtendimentosAnteontem.size() == 0}" -->
+<!-- 		                				  value=" não foram realizados atendimentos."/>		                	 -->
+<!-- 						</f:facet>	                		             		 -->
+	             		
+<!-- 	             		<p:dataTable value="#{inicioControl.listaAtendimentosAnteontem}" id="tabelaAtendimentosAnteontem"								 -->
+<!-- 									 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			   -->
+<!-- 		                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"   -->
+<!-- 		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}" -->
+<!-- 		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 	                              -->
+<!-- 		                             rowsPerPageTemplate="10,20,30,40,50"  -->
+<!-- 		                             selectionMode="multiple" rowKey="#{item.id}"> -->
+		                             
+<!--                 		    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;"> -->
+<!-- 								<f:facet name="header"> -->
+<!-- 									<h:outputText value="Chamado" /> -->
+<!-- 								</f:facet> -->
+<!-- 								<h:outputText value="#{item.chamado.nrChamado}" /> -->
+<!-- 							</p:column>							 -->
+							
+<!-- 							<p:column style="text-align: center; width: 90px;font-size: 11px;"> -->
+<!-- 								<f:facet name="header"> -->
+<!-- 									<h:outputText value="Atendimento" /> -->
+<!-- 								</f:facet> -->
+<!-- 								<h:outputText value="#{item.nrSq}" /> -->
+<!-- 							</p:column> -->
+							
+<!-- 							<p:column sortBy="#{item.dhRespostaCliente}" style="text-align: center; width: 180px;font-size: 11px;"> -->
+<!-- 								<f:facet name="header"> -->
+<!-- 									<h:outputText value="Retorno para o cliente em:" /> -->
+<!-- 								</f:facet> -->
+<!-- 								<h:outputText value="#{item.dhRespostaCliente}" converter="data"/> -->
+<!-- 								<h:outputText value=" "/> -->
+<!-- 								<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/> -->
+<!-- 							</p:column>					 -->
+																					
+<!-- 							<p:column sortBy="#{item.nomeAnalista}" style="width: 220px; font-size: 11px;">							 -->
+<!-- 								<f:facet name="header"> -->
+<!-- 									<h:outputText value="Analista" /> -->
+<!-- 								</f:facet> -->
+<!-- 								<h:outputText value="#{item.nomeAnalista.toUpperCase()}"/>								 -->
+<!-- 							</p:column>	 -->
+							
+<!-- 							<p:column sortBy="#{item.chamado.sistemaModulo}" style="font-size: 11px; width: 200px;"> -->
+<!-- 								<f:facet name="header"> -->
+<!-- 									<h:outputText value="Sistema/Módulo" /> -->
+<!-- 								</f:facet> -->
+<!-- 								<h:outputText value="#{item.chamado.sistemaModulo} "/>														 -->
+<!-- 							</p:column>	 -->
+							
+<!-- 							<p:column sortBy="#{item.chamado.ambiente}" style="font-size: 11px; width: 120px; text-align: center;"> -->
+<!-- 								<f:facet name="header"> -->
+<!-- 									<h:outputText value="Ambiente" /> -->
+<!-- 								</f:facet> -->
+<!-- 								<h:outputText value="#{item.chamado.ambiente} "/>														 -->
+<!-- 							</p:column> -->
+		                             
+<!-- 		                </p:dataTable>	             		 -->
+	             		
+<!-- 	             	</p:panel>     -->
 	             	              
                 </p:panel>
             </h:form>
