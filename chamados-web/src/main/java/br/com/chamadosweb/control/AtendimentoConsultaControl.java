@@ -40,6 +40,8 @@ public class AtendimentoConsultaControl extends BaseControl {
 	private Date dataRespostaClienteFinal;
 	
 	private List<String> listaNomesAnalistas;
+	
+	private List<Chamado> listaChamadosConsulta;
 		
 	@SuppressWarnings("unchecked")
 	@PostConstruct
@@ -52,6 +54,8 @@ public class AtendimentoConsultaControl extends BaseControl {
 		}
 		listaAtendimentosConsulta = new ArrayList<Atendimento>();
 		atendimentoDetalhar = new Atendimento();
+		
+		listaChamadosConsulta = new ArrayList<Chamado>();
 		
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
@@ -87,6 +91,7 @@ public class AtendimentoConsultaControl extends BaseControl {
 		}
 		listaAtendimentosConsulta = new ArrayList<Atendimento>();
 		atendimentoDetalhar = new Atendimento();
+		listaChamadosConsulta = new ArrayList<Chamado>();
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		c.add(Calendar.DAY_OF_MONTH, -1);	
@@ -106,12 +111,19 @@ public class AtendimentoConsultaControl extends BaseControl {
 		
 		atendimentoDetalhar = new Atendimento();
 		
-		listaAtendimentosConsulta = new ArrayList<Atendimento>();
-				
+		listaAtendimentosConsulta = new ArrayList<Atendimento>();		
+						
 		listaAtendimentosConsulta = atendimentoService.consultarAtendimentosPorFiltros(dataRespostaClienteInicial, 
 																					   dataRespostaClienteFinal, 
-																					   atendimentoFiltroConsulta);
-		
+																					   atendimentoFiltroConsulta);		
+		listaChamadosConsulta = new ArrayList<Chamado>();
+		if(listaAtendimentosConsulta != null && !listaAtendimentosConsulta.isEmpty()) {			
+			for (Atendimento atendimento : listaAtendimentosConsulta) {
+				if(!listaChamadosConsulta.contains(atendimento.getChamado())){
+					listaChamadosConsulta.add(atendimento.getChamado());
+				}
+			}			
+		}		
 		
 		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
 				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
@@ -119,6 +131,7 @@ public class AtendimentoConsultaControl extends BaseControl {
 		}
 		
 		if(listaAtendimentosConsulta == null || listaAtendimentosConsulta.isEmpty()){
+			listaAtendimentosConsulta = new ArrayList<Atendimento>();
 			addErrorMessage("Não existem atendimentos cadastrados com os filtros informados.");
 			return null;
 		}
@@ -191,5 +204,13 @@ public class AtendimentoConsultaControl extends BaseControl {
 
 	public void setListaNomesAnalistas(List<String> listaNomesAnalistas) {
 		this.listaNomesAnalistas = listaNomesAnalistas;
+	}
+
+	public List<Chamado> getListaChamadosConsulta() {
+		return listaChamadosConsulta;
+	}
+
+	public void setListaChamadosConsulta(List<Chamado> listaChamadosConsulta) {
+		this.listaChamadosConsulta = listaChamadosConsulta;
 	}				
 }

@@ -77,7 +77,24 @@
           			
           			</h:panelGrid>          			          						
           			
-          			<p:spacer height="20"/>  
+          			<p:spacer height="20"/> 
+          			 
+          			<p:panel rendered="#{atendimentoConsultaControl.listaAtendimentosConsulta != null and atendimentoConsultaControl.listaAtendimentosConsulta.size() > 0}">
+	          			<h:outputText value="FORAM REALIZADOS " 
+			             			  style="font-weight: bold; color: navy;"/>			             	
+			             			
+	            		<h:outputText value="#{atendimentoConsultaControl.listaAtendimentosConsulta.size()}"
+	            					  style="font-weight: bold; color: red; font-size: 16px;"/>
+	                	
+	                	<h:outputText value=" ATENDIMENTOS EM " 
+	                				  style="font-weight: bold; color: navy;"/>
+	                	
+	                	<h:outputText value="#{atendimentoConsultaControl.listaChamadosConsulta.size()}"
+	                				  style="font-weight: bold; color: red; font-size: 16px;"/>			                
+	                	
+	                	<h:outputText value=" CHAMADOS COM OS FILTROS INFORMADOS" 
+	                				  style="font-weight: bold; color: navy;"/>			             			  		    
+		          	</p:panel>	
           			
           			<p:dataTable value="#{atendimentoConsultaControl.listaAtendimentosConsulta}" id="tabelaAtendimentos"
 								 rendered="#{atendimentoConsultaControl.listaAtendimentosConsulta != null and atendimentoConsultaControl.listaAtendimentosConsulta.size() > 0}"
@@ -86,7 +103,8 @@
 	                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 	                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 	                             
 	                             rowsPerPageTemplate="10,20,30,40,50" selection="#{atendimentoConsultaControl.atendimentoDetalhar}"
-	                             selectionMode="single" rowKey="#{item.id}">								  
+	                             selectionMode="single" rowKey="#{item.id}">							  
+													             	
 						
 							<p:column style="text-align: center; width: 80px;font-size: 11px;">
 								<f:facet name="header">
