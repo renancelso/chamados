@@ -78,6 +78,9 @@ public class Chamado implements Serializable {
 	
 	@Column(name = "loginUsuAtu")
 	private String loginUsuAtu; 
+	
+	@Column(name = "qtdAtendimentos")
+	private Long qtdAtendimentos;
 
 	public Long getNrChamado() {
 		return nrChamado;
@@ -205,6 +208,14 @@ public class Chamado implements Serializable {
 
 	public void setLoginUsuAtu(String loginUsuAtu) {
 		this.loginUsuAtu = loginUsuAtu;
+	}		
+
+	public Long getQtdAtendimentos() {
+		return qtdAtendimentos;
+	}
+
+	public void setQtdAtendimentos(Long qtdAtendimentos) {
+		this.qtdAtendimentos = qtdAtendimentos;
 	}
 
 	@Override

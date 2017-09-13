@@ -1,5 +1,6 @@
 package br.com.chamadosweb.service;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +46,6 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 		
 	}
 	
-	
 	@Override
 	public List<Atendimento> consultarAtendimentosPorChamado(Chamado chamado) {
 		try {
@@ -63,9 +63,27 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 		} catch(Exception e){
 			e.printStackTrace();
 			return new ArrayList<Atendimento>();
-		}
-		
-		
+		}		
+	}
+	
+	
+	@Override
+	public Long consultarQuantidadeAtendimentosPorChamado(Chamado chamado) {
+		try {
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("select count(*) from ").append(Atendimento.class.getSimpleName()).append(" o where 1=1");	
+			sql.append(" and o.nrChamado = ").append(chamado.getNrChamado());			
+			sql.append(" order by o.nrSq desc");
+						
+			List<BigInteger> qtdAtendimentos = (List<BigInteger>) consultarPorQueryNativa(sql.toString(), 0, 0);
+						
+			return qtdAtendimentos.get(0).longValue();						
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			return new Long(0);
+		}		
 	}
 	
 	
