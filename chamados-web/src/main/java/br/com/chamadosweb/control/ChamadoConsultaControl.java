@@ -1,17 +1,21 @@
 package br.com.chamadosweb.control;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.Usuario;
 
 /**
 *
@@ -84,6 +88,27 @@ public class ChamadoConsultaControl extends BaseControl {
 		
 		return null;
 	}	
+	
+public String atualizarDadosApenasChamado(){
+		
+		try {
+			
+			HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
+			Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado");
+			
+			chamadoDetalhar.setLoginUsuAtu(usuarioLogado.getLogin());			
+			chamadoDetalhar.setDhAtu(new Date());	
+			
+			atendimentoService.atualizar(chamadoDetalhar);
+			
+			addInfoMessage("Chamado "+chamadoDetalhar.getNrChamado()+" atualizado com sucesso.");			 
+		} catch(Exception e){
+			addErrorMessage("Erro ao atualizar chamado."+e.getMessage());
+		}
+		
+		return null;
+		
+	}
 	
 	public String voltar() {
 		

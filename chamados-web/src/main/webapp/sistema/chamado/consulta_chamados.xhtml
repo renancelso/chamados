@@ -181,35 +181,35 @@
 	               			                			 
 	               			 	<h:outputText value="Descrição do Chamado: " style="font-weight: bold !important;"/>	                				
 								<p:editor value="#{chamadoConsultaControl.chamadoDetalhar.descricao}" 
-										  onkeyup="maiuscula(this)" height="200" width="500" readonly="true"/>    
+										  onkeyup="maiuscula(this)" height="200" width="500"/>    
 												    		
 	               			 	<h:outputText value="Requisitante: " style="font-weight: bold !important;"/>	                				
 								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.requisitante}" 
-											 size="50" onkeyup="maiuscula(this)" readonly="true"/>     
+											 size="50" onkeyup="maiuscula(this)"/>     
 											 
 								<h:outputText value="Departamento: " style="font-weight: bold !important;"/>	                				
 								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.departamento}" 
-											 size="50" onkeyup="maiuscula(this)" readonly="true"/> 
+											 size="50" onkeyup="maiuscula(this)"/> 
 											 
-								<h:outputText value="Data de Abertura: " style="font-weight: bold !important;"/>
-								<p:calendar value="#{chamadoConsultaControl.chamadoDetalhar.dataAbertura}" locale="pt_BR" 
-											onkeypress="formatar(this, '##/##/####', event);" maxlength="10"
-											size="9" pattern="dd/MM/yyyy" converter="data" readonly="true"/>
+								<h:outputText value="Data de Abertura: " style="font-weight: bold !important;"/>							
+								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.dataAbertura}"
+												 onkeypress="formatar(this, '##/##/####', event);"
+												 maxlength="10" size="9" converter="data"/>									
 											
 								<h:outputText value="Sistema / Módulo: " style="font-weight: bold !important;"/>	                		
 								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.sistemaModulo}" 
-										     size="30" onkeyup="maiuscula(this)" readonly="true"/>	
+										     size="30" onkeyup="maiuscula(this)" />	
 										     
 								<h:outputText value="Ambiente: " style="font-weight: bold !important;"/>	                		
 								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.ambiente}" 
-										     size="20" onkeyup="maiuscula(this)" readonly="true" />
+										     size="20" onkeyup="maiuscula(this)" />
 										     
 								<h:outputText value="Classificação: " style="font-weight: bold !important;"/>	                		
 								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.classificacao}" 
-										     size="30" onkeyup="maiuscula(this)" readonly="true"/>	
+										     size="50" onkeyup="maiuscula(this)" />	
 										     
 								<h:outputText value="Impacto: " style="font-weight: bold !important;"/>	 									     
-								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.impacto}" disabled="true">
+								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.impacto}">
 									<f:selectItem itemValue="" itemLabel="Selecione..." />
 									<f:selectItem itemValue="Departamento" itemLabel="Departamento" />
 									<f:selectItem itemValue="Empresa" itemLabel="Empresa" />
@@ -218,7 +218,7 @@
 										     
 										     
 								<h:outputText value="Urgência: " style="font-weight: bold !important;"/>	
-								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.urgencia}" disabled="true">
+								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.urgencia}">
 									<f:selectItem itemValue="" itemLabel="Selecione..." />
 									<f:selectItem itemValue="Baixo" itemLabel="Baixo" />
 									<f:selectItem itemValue="Médio" itemLabel="Médio" />
@@ -226,7 +226,7 @@
 								</h:selectOneMenu>	               		
 																	     		     
 								<h:outputText value="Prioridade: " style="font-weight: bold !important;"/>	  
-								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.prioridade}" disabled="true">
+								<h:selectOneMenu value="#{chamadoConsultaControl.chamadoDetalhar.prioridade}">
 									<f:selectItem itemValue="" itemLabel="Selecione..." />
 									<f:selectItem itemValue="1" itemLabel="1" />
 									<f:selectItem itemValue="2" itemLabel="2" />
@@ -237,14 +237,33 @@
 										     
 								<h:outputText value="Funcionalidade: " style="font-weight: bold !important;"/>	                		
 								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.funcionalidade}" 
-										     size="35" onkeyup="maiuscula(this)" readonly="true"/>	
+										     size="60" onkeyup="maiuscula(this)"/>		
 										     
-								<h:outputText value="Tipo: " style="font-weight: bold !important;"/>									
-								<h:inputText value="#{chamadoConsultaControl.chamadoDetalhar.tipo}" 
-										     size="30" onkeyup="maiuscula(this)" readonly="true"/>							
+								<h:outputText value="Tipo: " style="font-weight: bold !important;"/>
+								<h:selectOneMenu  value="#{chamadoConsultaControl.chamadoDetalhar.tipo}" >
+									<f:selectItem itemValue="INCIDENTE" itemLabel="INCIDENTE" />
+									<f:selectItem itemValue="PROBLEMA" itemLabel="PROBLEMA" />
+									<f:selectItem itemValue="REQUISICAO" itemLabel="REQUISIÇÃO" />									
+								</h:selectOneMenu>												 
+							
 	               			                			 	               			 
-	               			 </h:panelGrid>      
-	               			                 	
+	               			 </h:panelGrid>  
+	               			 
+	               			 <p:spacer height="20"/>
+	               			 
+	               			 <center>
+									<p:commandButton value="Atualizar dados do chamado" update="@form" 
+			               			 				 id="btDadosChamado" styleClass="signin-btn"
+			               			 				 style="font-weight: bold !important;"
+													 action="#{chamadoConsultaControl.atualizarDadosApenasChamado()}" 
+													 onstart="PF('dialogProcessando').show();" 
+													 oncomplete="PF('dialogProcessando').hide();"									
+												     onsuccess="PF('dialogProcessando').hide();"
+											 		 onerror="PF('dialogProcessando').hide(); "/>
+	               			 </center>
+	               			 
+	               			 <p:spacer height="20"/>
+	               			 	               			                 	
 	                	</p:panel>
 						
 						<p:spacer height="15"/>			
@@ -259,9 +278,9 @@
 					            <p:rowToggler />
 					        </p:column>
 						 															
-							<p:column style="text-align: center; width: 110px;">
+							<p:column style="text-align: center; width: 80px;">
 								<f:facet name="header">
-									<h:outputText value="Atendimento" />
+									<h:outputText value="Atend." />
 								</f:facet>
 								<h:outputText value="#{item.nrSq}" />
 							</p:column>							
@@ -271,6 +290,13 @@
 									<h:outputText value="Encaminhado por" />
 								</f:facet>
 								<h:outputText value="#{item.encaminhador}"/>
+							</p:column>	
+							
+							<p:column style="width: 180px; color: red;">
+								<f:facet name="header">
+									<h:outputText value="Analista" />
+								</f:facet>
+								<h:outputText value="#{item.nomeAnalista}"/>
 							</p:column>	
 							
 							<p:column style="text-align: center; width: 200px;">
