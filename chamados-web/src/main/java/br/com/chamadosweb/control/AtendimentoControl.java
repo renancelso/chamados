@@ -117,6 +117,17 @@ public class AtendimentoControl extends BaseControl {
 			HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
 			Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado");
 			
+			try {
+				Long qtdAtendimentos = chamado.getQtdAtendimentos();
+				chamado.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamado));
+				
+				if(qtdAtendimentos != chamado.getQtdAtendimentos()){
+					atendimentoService.atualizar(chamado);
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
 			chamado.setLoginUsuAtu(usuarioLogado.getLogin());			
 			chamado.setDhAtu(new Date());	
 			
@@ -165,12 +176,25 @@ public class AtendimentoControl extends BaseControl {
 			atendimento.setLoginUsuAtu(usuarioLogado.getLogin());		
 			
 			atendimento.setChamado(chamado);
-			
+									
     		atendimentoService.atualizar(chamado);    		
 			atendimentoService.atualizar(atendimento);
 			
+			try {
+				Long qtdAtendimentos = chamado.getQtdAtendimentos();
+				chamado.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamado));
+				
+				if(qtdAtendimentos != chamado.getQtdAtendimentos()){
+					atendimentoService.atualizar(chamado);
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
 			addInfoMessage("Atendimento "+atendimento.getNrSq()+" incluído com sucesso no chamado "+chamado.getNrChamado());	
+			
 			limpar();
+			
 		} catch(Exception e){
 			addErrorMessage("Erro ao atualizar chamado."+e.getMessage());
 		}

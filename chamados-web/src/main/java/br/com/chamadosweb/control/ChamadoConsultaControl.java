@@ -89,12 +89,23 @@ public class ChamadoConsultaControl extends BaseControl {
 		return null;
 	}	
 	
-public String atualizarDadosApenasChamado(){
+	public String atualizarDadosApenasChamado(){
 		
 		try {
 			
 			HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
 			Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado");
+			
+			try {
+				Long qtdAtendimentos = chamadoDetalhar.getQtdAtendimentos();
+				chamadoDetalhar.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamadoDetalhar));
+				
+				if(qtdAtendimentos != chamadoDetalhar.getQtdAtendimentos()){
+					atendimentoService.atualizar(chamadoDetalhar);
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+			}
 			
 			chamadoDetalhar.setLoginUsuAtu(usuarioLogado.getLogin());			
 			chamadoDetalhar.setDhAtu(new Date());	
