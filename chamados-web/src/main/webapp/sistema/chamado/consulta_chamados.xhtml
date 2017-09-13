@@ -97,7 +97,14 @@
 							<h:outputText value="#{item.dataAbertura}" converter="data"/>
 						</p:column>	
 						
-						<p:column style="font-size: 11px;">
+						<p:column style="font-size: 11px; text-align: center; width: 110px;">
+							<f:facet name="header">
+								<h:outputText value="Atendimentos" />
+							</f:facet>
+							<h:outputText value="#{item.qtdAtendimentos}" />
+						</p:column>	
+						
+						<p:column style="font-size: 11px; text-align: center;">
 							<f:facet name="header">
 								<h:outputText value="Depto." />
 							</f:facet>
@@ -125,7 +132,7 @@
 <!-- 							<h:outputText value="#{item.impacto}" /> -->
 <!-- 						</p:column>	 -->
 						
-						<p:column style="font-size: 11px;">
+						<p:column style="font-size: 11px; text-align: center;">
 							<f:facet name="header">
 								<h:outputText value="Tipo" />
 							</f:facet>
