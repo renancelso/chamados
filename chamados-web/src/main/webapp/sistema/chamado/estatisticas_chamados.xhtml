@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:pt="http://java.sun.com/jsf/passthrough"
+	  xmlns:c="http://java.sun.com/jstl/core" class="gt-ie8 gt-ie9 not-ie">
+      
+<h:body>
+    <ui:composition template="../template/padrao.xhtml">
+
+        <ui:define name="conteudo">
+            
+            <h:form>
+            
+           	   <p:messages id="messages1" closable="true" showDetail="false"/>       
+               		
+               <p:growl id="growl1" closable="true" showDetail="false"/>
+               
+               <p:panel style="min-height: 1000px; min-width: 270px;">    
+                    
+	               <p:panel header="Filtros para Consulta">
+	              		
+	          			<h:panelGrid columns="2" columnClasses="coluna1,coluna2">		          				
+	          			        				
+	          				<h:outputText value="Período: " style="font-weight: bold !important; "/>  
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">																																
+								<h:inputText value="#{chamadoEstatisticasControl.dataRespostaClienteInicial}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9" converter="data"/>														
+								<h:outputText value="à" style="font-weight: bold !important;"/>									
+								<h:inputText value="#{chamadoEstatisticasControl.dataRespostaClienteFinal}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9" converter="data"/>																										
+						    </h:panelGrid>						    						    
+						        				
+	          				<h:outputText value="Analista: " style="font-weight: bold !important; "/>  	
+							<h:selectOneMenu value="#{chamadoEstatisticasControl.atendimentoFiltroConsulta.nomeAnalista}">
+								<f:selectItem itemValue="" itemLabel="TODOS" />
+								<f:selectItems value="#{chamadoEstatisticasControl.listaNomesAnalistas}"										
+											   var="nomeAnalista" itemLabel="#{nomeAnalista}" />								
+							</h:selectOneMenu>	
+							          				         			 
+	          			</h:panelGrid>  
+	          			          			
+	        	   </p:panel>
+	        	   
+	        	   <p:spacer height="10"/>     
+	          			
+	       		   <h:panelGrid columns="3">
+	       				
+	        			<p:commandButton value="Consultar" update="@form" 
+										 id="btConsultarChamados" styleClass="signin-btn"
+										 style="font-weight: bold;"
+										 action="#{chamadoEstatisticasControl.consultar()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>  
+								 		 
+						<p:spacer width="25"/>
+								
+						<p:commandButton value="Limpar" update="@form" 
+									     id="btLimpar" styleClass="signin-btn"
+									     style="font-weight: bold;"
+										 action="#{chamadoEstatisticasControl.limpar()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>            			          			
+	        			
+	        	   </h:panelGrid>          
+	        			
+	        	   <p:spacer height="20"/> 
+	        	   
+	        	   <p:panel rendered="#{chamadoEstatisticasControl.listaChamadosConsulta != null and chamadoEstatisticasControl.listaChamadosConsulta.size() > 0}"
+	        	   			toggleable="true" header=" ">	 
+	        	   			
+	        	   		<f:facet name="header">     	   	        	   	
+		        	   		<h:outputText value="FORAM ATENDIDOS " 
+				             			  style="font-weight: bold; color: red;"/>	
+		                	<h:outputText value="#{chamadoEstatisticasControl.listaChamadosConsulta.size()}"
+		                				  style="font-weight: bold; color: red; font-size: 16px;"/>	
+		                	<h:outputText value=" CHAMADOS COM OS FILTROS INFORMADOS" 
+		                				  style="font-weight: bold; color: red;"/>		
+	                	</f:facet>	              	                				  
+	                				  
+	                	<p:dataTable value="#{chamadoEstatisticasControl.listaChamadosConsulta}" id="tabelaChamados"
+								 	 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
+	                            	 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+	                             	 currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
+	                             	 emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
+	                             	 rowsPerPageTemplate="10,20,30,40,50" 
+	                             	 selectionMode="single" rowKey="#{item.nrChamado}">	
+						
+							<p:column style="text-align: center; width: 120px; font-size: 11px;"
+									  filterMatchMode="contains" filterBy="#{item.nrChamado}"
+									  sortBy="#{item.nrChamado}">
+								<f:facet name="header">
+									<h:outputText value="Chamado" />
+								</f:facet>
+								<h:outputText value="#{item.nrChamado}" />
+							</p:column>
+							
+							<p:column style="font-size: 11px; width: 120px; text-align: center;">
+								<f:facet name="header">
+									<h:outputText value="Ambiente" />
+								</f:facet>
+								<h:outputText value="#{item.ambiente}" />
+							</p:column>	
+							
+							<p:column style="text-align: center;font-size: 11px; width: 80px;">
+								<f:facet name="header">
+									<h:outputText value="Abertura" />
+								</f:facet>
+								<h:outputText value="#{item.dataAbertura}" converter="data"/>
+							</p:column>	
+							
+							<p:column style="font-size: 11px; text-align: center; width: 130px;"
+									  sortBy="#{item.qtdAtendimentos}">
+								<f:facet name="header">
+									<h:outputText value="Atendimentos" />
+								</f:facet>
+								<h:outputText value="#{item.qtdAtendimentos}" />
+							</p:column>	
+																											
+							<p:column style="font-size: 11px; text-align: center;">
+								<f:facet name="header">
+									<h:outputText value="Sistema/Módulo" />
+								</f:facet>
+								<h:outputText value="#{item.sistemaModulo}" />
+							</p:column>
+							
+							<p:column style="font-size: 11px; text-align: center;">
+								<f:facet name="header">
+									<h:outputText value="Tipo" />
+								</f:facet>
+								<h:outputText value="#{item.tipo}" />
+							</p:column>		
+													
+						</p:dataTable>
+	        	   
+	        	   </p:panel>  
+	        	   
+	        	   <p:panel rendered="#{chamadoEstatisticasControl.listaEstatisticasAtendimentosAnalistas != null and chamadoEstatisticasControl.listaEstatisticasAtendimentosAnalistas.size() > 0}"
+	        	   			toggleable="true" header=" ">	 
+	        	   			
+	        	   		<f:facet name="header">     	   	        	   	
+		        	   		<h:outputText value="FORAM REALIZADOS " 
+				             			  style="font-weight: bold; color: red;"/>	
+		                	<h:outputText value="#{chamadoEstatisticasControl.qtdAtendimentosConsulta}"
+		                				  style="font-weight: bold; color: red; font-size: 16px;"/>	
+		                	<h:outputText value=" ATENDIMENTOS COM OS FILTROS INFORMADOS" 
+		                				  style="font-weight: bold; color: red;"/>		
+	                	</f:facet>	    
+	                	
+	                	<p:dataTable value="#{chamadoEstatisticasControl.listaEstatisticasAtendimentosAnalistas}" 
+	                				 id="tabelaEstatisticasAtendimentosAnalistas" paginator="true" 			 			  
+	                            	 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+	                             	 currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
+	                             	 emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex"  	                             
+	                             	 rowsPerPageTemplate="10,20,30,40,50" reflow="true" var="item" rows="10"
+	                             	 selectionMode="single" rowKey="#{item.nomeAnalista}">	
+						
+							<p:column style="text-align: center; width: 120px; font-size: 11px;">
+								<f:facet name="header">
+									<h:outputText value="Analista" />
+								</f:facet>
+								<h:outputText value="#{item.nomeAnalista}" />
+							</p:column>
+							
+							<p:column style="font-size: 11px; width: 110px; text-align: center;">
+								<f:facet name="header">
+									<h:outputText value="Atendimentos" />
+								</f:facet>
+								<h:outputText value="#{item.qtdAtendimentos}" />
+							</p:column>								
+							
+						</p:dataTable>
+	                	
+	                	
+	               </p:panel>       
+	              
+               </p:panel> 
+                
+               <p:dialog widgetVar="dialogProcessando" modal="true" 
+						 height="50" width="350" resizable="false;"
+						 header="Processando Informações" draggable="false"
+					     closable="false" id="dialogProcessando" 
+					     style="z-index: 9999; font-size: 14px;">					
+					<center>
+						<h:outputText value="Por favor, aguarde..." style="font-weight: bold; font-size: 14px;" />
+						<br/>
+						<img src="resources/imagens/ajax-loader-green-white.gif"/> 
+					</center>					
+				</p:dialog>
+                
+            </h:form>            
+                        
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+
+</html>
