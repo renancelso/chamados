@@ -8,6 +8,7 @@ import javax.ejb.Local;
 import br.com.chamadosweb.padrao.GenericServiceInterface;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.dto.EstatisticasAtendimentosAnalistas;
 
 /**
  * @author Renan Celso
@@ -23,5 +24,8 @@ public interface AtendimentoServiceLocal extends GenericServiceInterface{
 
 	public List<Atendimento> consultarAtendimentosPorFiltros(
 			Date dataRespostaClienteInicial, Date dataRespostaClienteFinal, Atendimento atendimentoFiltroConsulta);
+
+	public List<EstatisticasAtendimentosAnalistas> consultarEstatisticasQAtendimentosAnalistas(Date dataRespostaClienteInicial, Date dataRespostaClienteFinal,
+																							   Atendimento atendimentoFiltroConsulta);
 
 }

@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import br.com.chamadosweb.padrao.GenericService;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.dto.EstatisticasAtendimentosAnalistas;
 
 /**
  * @author Renan Celso
@@ -131,6 +132,70 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			listaAtendimento = (List<Atendimento>) consultarPorQuery(sql.toString(), 0, 0);
 								
 			return listaAtendimento;
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}		
+		
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<EstatisticasAtendimentosAnalistas> consultarEstatisticasQAtendimentosAnalistas
+															(Date dataRespostaClienteInicial, 
+												             Date dataRespostaClienteFinal,
+												             Atendimento atendimentoFiltroConsulta) {
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			List<EstatisticasAtendimentosAnalistas> listaEstatisticasAtendimentosAnalistas = new ArrayList<EstatisticasAtendimentosAnalistas>();
+					
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT o.nomeAnalista, count(*) qtdAtendimentos FROM atendimento o where 1 = 1 ");	
+			
+			if(dataRespostaClienteInicial != null && dataRespostaClienteFinal != null){
+				sql.append(" and ((o.dhRespostaCliente >= '").append(sdf.format(dataRespostaClienteInicial)).append("'");
+				sql.append(" and o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("')");	
+				sql.append(")");
+			}
+			
+			if(dataRespostaClienteInicial != null && dataRespostaClienteFinal == null){
+				sql.append(" and (o.dhRespostaCliente >= '").append(sdf.format(dataRespostaClienteInicial)).append("'");	
+				sql.append(")");
+			}
+			
+			if(dataRespostaClienteInicial == null && dataRespostaClienteFinal != null){				
+				sql.append(" and (o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("'");	
+				sql.append(")");	
+			}
+			
+			if(atendimentoFiltroConsulta.getNomeAnalista() != null 
+					&& !"".equalsIgnoreCase(atendimentoFiltroConsulta.getNomeAnalista())) {
+				sql.append(" and o.nomeAnalista = '").append(atendimentoFiltroConsulta.getNomeAnalista()).append("'");
+			}
+			
+			if(atendimentoFiltroConsulta.getChamado() != null 
+					&& atendimentoFiltroConsulta.getChamado().getNrChamado() != null
+					&& atendimentoFiltroConsulta.getChamado().getNrChamado() > 0) {
+				sql.append(" and o.chamado.nrChamado = ").append(atendimentoFiltroConsulta.getChamado().getNrChamado());
+			}
+			
+			sql.append(" and o.nomeAnalista in (SELECT distinct (u.nome_completo) FROM Usuario u)");
+					
+			sql.append(" group by o.nomeAnalista order by qtdAtendimentos desc");
+				
+			List<Object[]> listaObjetos = (List<Object[]>) consultarPorQueryNativa(sql.toString(), 0, 0);
+			
+			for (Object[] obj : listaObjetos) {
+				EstatisticasAtendimentosAnalistas estatistica = new EstatisticasAtendimentosAnalistas();
+				estatistica.setNomeAnalista(String.valueOf(obj[0]));
+				estatistica.setQtdAtendimentos(new BigInteger(String.valueOf(obj[1])).longValue());	
+				listaEstatisticasAtendimentosAnalistas.add(estatistica);
+			}
+								
+			return listaEstatisticasAtendimentosAnalistas;
 			
 		} catch(Exception e){
 			e.printStackTrace();
