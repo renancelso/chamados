@@ -16,17 +16,48 @@
             
            	   <p:messages id="messages1" closable="true" showDetail="false"/>       
                		
-               <p:growl id="growl1" closable="true" showDetail="false"/>
+
             
                <p:panel style="min-height: 1000px; min-width: 270px;"
                 		 rendered="#{chamadoConsultaControl.chamadoDetalhar == null or chamadoConsultaControl.chamadoDetalhar.nrChamado == null}">
                 	  
               		<p:panel header="Filtros para Consulta">
+              		
 	          			<h:panelGrid columns="2" columnClasses="coluna1,coluna2">	          				
+	          				
 	          				<h:outputText value="Nº do Chamado: " style="font-weight: bold !important; "/>  
-							<h:inputText value="#{chamadoConsultaControl.chamadoFiltroConsulta.nrChamado}" 
-										 onkeypress="mascara(this, soNumeros)"/>	          			 
+	          				<h:panelGrid columns="2" columnClasses="coluna2,coluna1">	
+								
+								<h:inputText value="#{chamadoConsultaControl.chamadoFiltroConsulta.nrChamado}" 
+											 onkeypress="mascara(this, soNumeros)" size="12"/>	
+											 
+								<p:commandButton value="Cadastrar Chamado #{chamadoConsultaControl.chamadoNovo.nrChamado}" update="@form" 
+												 id="btNovoChamado" styleClass="signin-btn"
+												 style="font-weight: bold; margin-left: 15px;"
+												 action="#{chamadoConsultaControl.iniciarCadastramentoChamado()}" 
+												 onstart="PF('dialogProcessando').show();" 
+												 oncomplete="PF('dialogProcessando').hide();"									
+											     onsuccess="PF('dialogProcessando').hide();"
+										 		 onerror="PF('dialogProcessando').hide();"
+										 		 rendered="#{chamadoConsultaControl.mostrarBotaoCadastrarNovoChamado}"/> 
+							</h:panelGrid>	
+										 
+										 
+							<h:outputText value="Período do Abertura " style="font-weight: bold !important; "/>  
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">	
+								<h:inputText value="#{chamadoConsultaControl.dataAberturaInicio}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9" converter="data"/>	
+											 													
+								<h:outputText value="à" style="font-weight: bold !important;"/>		
+															
+								<h:inputText value="#{chamadoConsultaControl.dataAberturaFinal}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9" converter="data"/>													
+						    </h:panelGrid>	
+						    										           			 
 	          			</h:panelGrid>  
+	          			
           			</p:panel>
           			
           			<p:spacer height="10"/>     

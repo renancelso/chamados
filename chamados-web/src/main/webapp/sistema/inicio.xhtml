@@ -11,19 +11,16 @@
     <ui:composition template="template/padrao.xhtml">
 
         <ui:define name="conteudo">
-            <h:form>
-                <p:panel style="min-height: 1000px; min-width: 270px;">                	
-	               
-	                <h:panelGrid columns="2">		                
-	                	<h:outputText style="font-weight: bold; color: red;" value="Olá #{sessionScope['usuarioLogado'].nomeCompleto.split(' ')[0]}"/><font style="font-weight: bold;">, seja bem vindo ao sistema de gerenciamento de chamados.</font> 
-	             	</h:panelGrid>	
-	             	
-	             	<p:spacer height="15"/>
-	             	
-	             	<!-- Hoje -->	  
-	             	
+            <h:form>     
+            				
+                <p:panel style="min-height: 1000px; min-width: 270px;">   
+	             	<a href="inicio" class="btn btn-xs btn-primary btn-outline dark" 
+	               	   style="color: black !important;" title="ATUALIZAR">
+						<i class="fa fa-home"/>							
+					</a>	
+	             	<!-- Hoje -->	  	             	
 	             	<p:panel toggleable="true">	
-	             	
+	             		
 	             		<f:facet name="header">	   
 	             			
 	             			<h:outputText value="HOJE (" style="font-weight: bold; color: navy;" />

@@ -27,7 +27,7 @@ public class JobAtualizaNrAtendimentosChamados implements Job{
 			
 			AtendimentoServiceLocal atendimentoService = lookup();
 			List<Chamado> listaChamados = new ArrayList<Chamado>();			
-			listaChamados = atendimentoService.consultarChamados(new Chamado());	
+			listaChamados = atendimentoService.consultarChamados(new Chamado(), null, null);	
 			
 			if(listaChamados != null && !listaChamados.isEmpty()) {
 				for (Chamado chamado : listaChamados) {

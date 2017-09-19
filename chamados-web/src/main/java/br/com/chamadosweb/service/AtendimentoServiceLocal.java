@@ -16,16 +16,20 @@ import br.com.chamadosweb.service.model.dto.EstatisticasAtendimentosAnalistas;
 @Local
 public interface AtendimentoServiceLocal extends GenericServiceInterface{
 
-	public List<Chamado> consultarChamados(Chamado chamadoFiltroConsulta);
+	public List<Chamado> consultarChamados(Chamado chamadoFiltroConsulta, 
+										   Date dataAberturaInicio, 
+										   Date dataAberturaFinal);
 
 	public List<Atendimento> consultarAtendimentosPorChamado(Chamado chamado);
 	
 	public Long consultarQuantidadeAtendimentosPorChamado(Chamado chamado);
 
-	public List<Atendimento> consultarAtendimentosPorFiltros(
-			Date dataRespostaClienteInicial, Date dataRespostaClienteFinal, Atendimento atendimentoFiltroConsulta);
+	public List<Atendimento> consultarAtendimentosPorFiltros(Date dataRespostaClienteInicial, 
+															 Date dataRespostaClienteFinal, 
+															 Atendimento atendimentoFiltroConsulta);
 
-	public List<EstatisticasAtendimentosAnalistas> consultarEstatisticasQAtendimentosAnalistas(Date dataRespostaClienteInicial, Date dataRespostaClienteFinal,
-																							   Atendimento atendimentoFiltroConsulta);
+	public List<EstatisticasAtendimentosAnalistas>  consultarEstatisticasQAtendimentosAnalistas(Date dataRespostaClienteInicial, 
+																							    Date dataRespostaClienteFinal, 
+																							    Atendimento atendimentoFiltroConsulta);
 
 }

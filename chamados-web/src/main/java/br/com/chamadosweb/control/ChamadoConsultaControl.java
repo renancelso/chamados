@@ -38,12 +38,24 @@ public class ChamadoConsultaControl extends BaseControl {
 	
 	private List<Atendimento> listaAtendimentosDetalhes;
 	
+	private Date dataAberturaInicio;
+	
+	private Date dataAberturaFinal;		
+	
+	boolean mostrarBotaoCadastrarNovoChamado;
+		
+	private Chamado chamadoNovo;
+	
 	@PostConstruct
-	public void init() {		
+	public void init() {			
 		chamadoFiltroConsulta = new Chamado();
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		chamadoDetalhar = new Chamado();
 		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());
+		dataAberturaInicio = null;
+		dataAberturaFinal = null;
+		mostrarBotaoCadastrarNovoChamado = false;		
+		chamadoNovo = new Chamado();
 	}
 	
 	public String limpar(){
@@ -52,6 +64,10 @@ public class ChamadoConsultaControl extends BaseControl {
 		chamadoDetalhar = new Chamado();
 		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());
 		listaAtendimentosDetalhes = new ArrayList<Atendimento>();
+		dataAberturaInicio = null;
+		dataAberturaFinal = null;
+		mostrarBotaoCadastrarNovoChamado = false;
+		chamadoNovo = new Chamado();
 		return null;
 	}
 	
@@ -59,18 +75,40 @@ public class ChamadoConsultaControl extends BaseControl {
 	public String consultarChamados() {
 		
 		listaChamadosConsulta = new ArrayList<Chamado>();
-		listaChamadosConsulta = atendimentoService.consultarChamados(chamadoFiltroConsulta);	
+		listaChamadosConsulta = atendimentoService.consultarChamados(chamadoFiltroConsulta, 
+																     dataAberturaInicio, 
+																     dataAberturaFinal);	
 		
 		if(chamadoFiltroConsulta.getNrChamado() == null || chamadoFiltroConsulta.getNrChamado() == 0){
 			chamadoFiltroConsulta = new Chamado();
 		}		
 		
 		if(listaChamadosConsulta == null || listaChamadosConsulta.isEmpty()){
-			addErrorMessage("Não foi possível consulta chamados com os parãmetros informados");
-			chamadoFiltroConsulta = new Chamado();
+			
+			addErrorMessage("Não foi possível consulta chamados com os parãmetros informados");			
+			
+			chamadoNovo = new Chamado();
+			chamadoNovo.setNrChamado(chamadoFiltroConsulta.getNrChamado());
+			
+			chamadoFiltroConsulta = new Chamado();	
+			chamadoFiltroConsulta.setNrChamado(chamadoNovo.getNrChamado());
+			
+			mostrarBotaoCadastrarNovoChamado = true;
+			
 			return null;
 		}
 				
+		return null;
+	}
+	
+	public String iniciarCadastramentoChamado() {	
+		
+		chamadoDetalhar = new Chamado();
+		
+		chamadoDetalhar = chamadoNovo;	
+		
+		detalhar();
+		
 		return null;
 	}
 	
@@ -165,6 +203,39 @@ public class ChamadoConsultaControl extends BaseControl {
 			List<Atendimento> listaAtendimentosDetalhes) {
 		this.listaAtendimentosDetalhes = listaAtendimentosDetalhes;
 	}
+
+	public Date getDataAberturaInicio() {
+		return dataAberturaInicio;
+	}
+
+	public void setDataAberturaInicio(Date dataAberturaInicio) {
+		this.dataAberturaInicio = dataAberturaInicio;
+	}
+
+	public Date getDataAberturaFinal() {
+		return dataAberturaFinal;
+	}
+
+	public void setDataAberturaFinal(Date dataAberturaFinal) {
+		this.dataAberturaFinal = dataAberturaFinal;
+	}
+
+	public boolean isMostrarBotaoCadastrarNovoChamado() {
+		return mostrarBotaoCadastrarNovoChamado;
+	}
+
+	public void setMostrarBotaoCadastrarNovoChamado(
+			boolean mostrarBotaoCadastrarNovoChamado) {
+		this.mostrarBotaoCadastrarNovoChamado = mostrarBotaoCadastrarNovoChamado;
+	}
+
+	public Chamado getChamadoNovo() {
+		return chamadoNovo;
+	}
+
+	public void setChamadoNovo(Chamado chamadoNovo) {
+		this.chamadoNovo = chamadoNovo;
+	}	
 	
 	
 	

@@ -22,8 +22,13 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 	private static final long serialVersionUID = 3168122228285071290L;
 
 	@Override
-	public List<Chamado> consultarChamados(Chamado chamadoFiltroConsulta) {
+	public List<Chamado> consultarChamados(Chamado chamadoFiltroConsulta, 
+										   Date dataAberturaInicio, 
+										   Date dataAberturaFinal) {
 		try {
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
 			List<Chamado> listaChamados = new ArrayList<Chamado>();
 					
 			StringBuilder sql = new StringBuilder();
@@ -32,6 +37,19 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			if(chamadoFiltroConsulta.getNrChamado() != null && chamadoFiltroConsulta.getNrChamado() > 0){
 				sql.append(" and o.nrChamado = ").append(chamadoFiltroConsulta.getNrChamado());
 			}		
+			
+			if(dataAberturaInicio != null && dataAberturaFinal != null){
+				sql.append(" and (o.dataAbertura >= '").append(sdf.format(dataAberturaInicio)).append("'");
+				sql.append(" and o.dataAbertura <= '").append(sdf.format(dataAberturaFinal)).append("')");
+			}
+			
+			if(dataAberturaInicio != null && dataAberturaFinal == null){
+				sql.append(" and (o.dataAbertura >= '").append(sdf.format(dataAberturaInicio)).append("')");					
+			}
+			
+			if(dataAberturaInicio == null && dataAberturaFinal != null){				
+				sql.append(" and (o.dataAbertura <= '").append(sdf.format(dataAberturaFinal)).append("')");					
+			}
 			
 			sql.append(" order by o.nrChamado desc");
 			
