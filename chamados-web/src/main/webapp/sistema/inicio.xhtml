@@ -50,7 +50,9 @@
 		                    <p:ajax event="rowDblselect" listener="#{inicioControl.onRowSelect}" update="@form" 
 		                    		oncomplete="PF('atendimentoSelect').show();"/>     
 		                             
-		                    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;">
+		                    <p:column sortBy="#{item.chamado.nrChamado}" 
+		                    		  filterMatchMode="contains" filterBy="#{item.chamado.nrChamado}"		                    
+		                    		  style="text-align: center; width: 110px;font-size: 11px;">
 								<f:facet name="header">
 									<h:outputText value="Chamado" />
 								</f:facet>
@@ -66,21 +68,23 @@
 							
 							<p:column sortBy="#{item.dhRespostaCliente}" style="text-align: center; width: 180px;font-size: 11px;">
 								<f:facet name="header">
-									<h:outputText value="Retorno para o cliente em:" />
+									<h:outputText value="Retorno para o cliente em" />
 								</f:facet>
 								<h:outputText value="#{item.dhRespostaCliente}" converter="data"/>
 								<h:outputText value=" "/>
 								<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
 							</p:column>					
 																					
-							<p:column sortBy="#{item.nomeAnalista}" style="width: 220px; font-size: 11px;">							
+							<p:column sortBy="#{item.nomeAnalista}" style="width: 220px; font-size: 11px;"
+									  filterMatchMode="contains" filterBy="#{item.nomeAnalista}">							
 								<f:facet name="header">
 									<h:outputText value="Analista" />
 								</f:facet>
 								<h:outputText value="#{item.nomeAnalista.toUpperCase()}"/>								
 							</p:column>	
 							
-							<p:column sortBy="#{item.chamado.sistemaModulo}" style="font-size: 11px; width: 200px;">
+							<p:column sortBy="#{item.chamado.sistemaModulo}" style="font-size: 11px; width: 200px;"
+									  filterMatchMode="contains" filterBy="#{item.chamado.sistemaModulo}">
 								<f:facet name="header">
 									<h:outputText value="Sistema/Módulo" />
 								</f:facet>
@@ -125,13 +129,14 @@
 		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 	                             
 		                             rowsPerPageTemplate="10,20,30,40,50" 
-		                             selectionMode="single" rowKey="#{item.id}">
-		                             
+		                             selectionMode="single" rowKey="#{item.id}">		                             
 		                             
            		            <p:ajax event="rowDblselect" listener="#{inicioControl.onRowSelect}" update="@form" 
 		                    		oncomplete="PF('atendimentoSelect').show();"/>     
 		                             
-                		    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;">
+                		    <p:column sortBy="#{item.chamado.nrChamado}" 
+		                    		  filterMatchMode="contains" filterBy="#{item.chamado.nrChamado}"		                    
+		                    		  style="text-align: center; width: 110px;font-size: 11px;">
 								<f:facet name="header">
 									<h:outputText value="Chamado" />
 								</f:facet>
@@ -147,21 +152,23 @@
 							
 							<p:column sortBy="#{item.dhRespostaCliente}" style="text-align: center; width: 180px;font-size: 11px;">
 								<f:facet name="header">
-									<h:outputText value="Retorno para o cliente em:" />
+									<h:outputText value="Retorno para o cliente em" />
 								</f:facet>
 								<h:outputText value="#{item.dhRespostaCliente}" converter="data"/>
 								<h:outputText value=" "/>
 								<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
 							</p:column>					
 																					
-							<p:column sortBy="#{item.nomeAnalista}" style="width: 220px; font-size: 11px;">							
+							<p:column sortBy="#{item.nomeAnalista}" style="width: 220px; font-size: 11px;"
+									  filterMatchMode="contains" filterBy="#{item.nomeAnalista}">							
 								<f:facet name="header">
 									<h:outputText value="Analista" />
 								</f:facet>
 								<h:outputText value="#{item.nomeAnalista.toUpperCase()}"/>								
 							</p:column>	
 							
-							<p:column sortBy="#{item.chamado.sistemaModulo}" style="font-size: 11px; width: 200px;">
+							<p:column sortBy="#{item.chamado.sistemaModulo}" style="font-size: 11px; width: 200px;"
+									  filterMatchMode="contains" filterBy="#{item.chamado.sistemaModulo}">
 								<f:facet name="header">
 									<h:outputText value="Sistema/Módulo" />
 								</f:facet>
