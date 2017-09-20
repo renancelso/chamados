@@ -146,9 +146,11 @@
 							<h:inputText value="#{atendimentoControl.atendimento.nrSq}" onkeypress="mascara(this, soNumeros)"
 									     size="4" readonly="true" style="font-weight: bold !important; color: red !important;"/>		
 																     
-							<h:outputText value="Encaminhado para a equipe por: " style="font-weight: bold !important;"/>	                		
-							<h:inputText value="#{atendimentoControl.atendimento.encaminhador}" 
-									     size="60" onkeyup="maiuscula(this)"/>										     
+							<h:outputText value="Encaminhado para a equipe por: " style="font-weight: bold !important;"/>	  
+							<p:autoComplete minQueryLength="3" value="#{atendimentoControl.atendimento.encaminhador}" 
+					       				    completeMethod="#{atendimentoControl.completeEncaminhador}" size="60"
+					       				    onkeyup="maiuscula(this)" 
+					       				    style="border: 1px !important; margin-top: -17px !important; height: 20px;"/>																     
 									     
 							<h:outputText value="Cliente transferiu para equipe em: " style="font-weight: bold !important;"/>
 							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">															

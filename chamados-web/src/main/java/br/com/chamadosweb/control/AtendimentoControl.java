@@ -43,6 +43,8 @@ public class AtendimentoControl extends BaseControl {
 	private String horaAtendimentoRespostaCliente;
 	
 	private List<String> listaNomesAnalistas;	
+	
+	private List<String> listaEncaminhadoresJaCadastrados;
 			
 	@SuppressWarnings("unchecked")
 	@PostConstruct
@@ -59,9 +61,14 @@ public class AtendimentoControl extends BaseControl {
 											("SELECT distinct(o.nomeAnalista) FROM Atendimento o "
 											+"where o.nomeAnalista is not null and o.nomeAnalista <> '' "
 											+"and o.nomeAnalista in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
-											+"order by o.nomeAnalista", 0, 0);		
+											+"order by o.nomeAnalista", 0, 0);	
+		
+		listaEncaminhadoresJaCadastrados = new ArrayList<String>();
+		listaEncaminhadoresJaCadastrados = (List<String>) atendimentoService.consultarPorQuery
+									("SELECT distinct(o.encaminhador) FROM Atendimento o order by o.encaminhador", 0, 0);	
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String limpar(){
 		chamado = new Chamado();
 		atendimento = new Atendimento();		
@@ -69,6 +76,9 @@ public class AtendimentoControl extends BaseControl {
 		horaAtendimentoTransferidoEquipe = "";		
 		dataAtendimentoRespostaCliente = "";		
 		horaAtendimentoRespostaCliente = "";
+		listaEncaminhadoresJaCadastrados = new ArrayList<String>();
+		listaEncaminhadoresJaCadastrados = (List<String>) atendimentoService.consultarPorQuery
+									("SELECT distinct(o.encaminhador) FROM Atendimento o order by o.encaminhador", 0, 0);	
 		return null;
 	}
 	
@@ -380,6 +390,16 @@ public class AtendimentoControl extends BaseControl {
 //		
 //		return null;
 //	}
+	
+	 public List<String> completeEncaminhador(String query) {	        
+	 	List<String> encaminhadores = new ArrayList<String>();	       
+        for(String encaminhador : listaEncaminhadoresJaCadastrados) {
+            if(encaminhador.toUpperCase().contains(query.toUpperCase())){
+            	encaminhadores.add(encaminhador.toUpperCase());
+            }
+        }	         
+        return encaminhadores;
+	}
 
 	public Chamado getChamado() {
 		return chamado;
@@ -439,5 +459,14 @@ public class AtendimentoControl extends BaseControl {
 
 	public void setListaNomesAnalistas(List<String> listaNomesAnalistas) {
 		this.listaNomesAnalistas = listaNomesAnalistas;
+	}
+
+	public List<String> getListaEncaminhadoresJaCadastrados() {
+		return listaEncaminhadoresJaCadastrados;
+	}
+
+	public void setListaEncaminhadoresJaCadastrados(
+			List<String> listaEncaminhadoresJaCadastrados) {
+		this.listaEncaminhadoresJaCadastrados = listaEncaminhadoresJaCadastrados;
 	}		
 }
