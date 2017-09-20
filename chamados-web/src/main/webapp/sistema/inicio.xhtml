@@ -13,11 +13,15 @@
         <ui:define name="conteudo">
             <h:form>     
             				
-                <p:panel style="min-height: 1000px; min-width: 270px;">   
-	             	<a href="inicio" class="btn btn-xs btn-primary btn-outline dark" 
-	               	   style="color: black !important;" title="ATUALIZAR">
-						<i class="fa fa-home"/>							
-					</a>	
+                <p:panel style="min-height: 1000px; min-width: 270px;">
+               		
+               		<center>   
+		             	<a href="inicio" class="btn btn-xs btn-primary btn-outline dark" 
+		               	   style="color: black !important;" title="ATUALIZAR">
+							<i class="fa fa-home"/>							
+						</a>	
+					</center>
+					
 	             	<!-- Hoje -->	  	             	
 	             	<p:panel toggleable="true">	
 	             		
@@ -42,8 +46,10 @@
 		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 	                             
 		                             rowsPerPageTemplate="10,20,30,40,50" 
-		                             selectionMode="multiple" rowKey="#{item.id}">	
-		                             
+		                             selectionMode="single" rowKey="#{item.id}">	
+		                        
+		                    <p:ajax event="rowDblselect" listener="#{inicioControl.onRowSelect}" update="@form" 
+		                    		oncomplete="PF('atendimentoSelect').show();"/>     
 		                             
 		                    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;">
 								<f:facet name="header">
@@ -120,7 +126,11 @@
 		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 	                             
 		                             rowsPerPageTemplate="10,20,30,40,50" 
-		                             selectionMode="multiple" rowKey="#{item.id}">
+		                             selectionMode="single" rowKey="#{item.id}">
+		                             
+		                             
+           		            <p:ajax event="rowDblselect" listener="#{inicioControl.onRowSelect}" update="@form" 
+		                    		oncomplete="PF('atendimentoSelect').show();"/>     
 		                             
                 		    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;">
 								<f:facet name="header">
@@ -196,7 +206,7 @@
 <!-- 		                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}" -->
 <!-- 		                             emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 	                              -->
 <!-- 		                             rowsPerPageTemplate="10,20,30,40,50"  -->
-<!-- 		                             selectionMode="multiple" rowKey="#{item.id}"> -->
+<!-- 		                             selectionMode="single" rowKey="#{item.id}"> -->
 		                             
 <!--                 		    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;"> -->
 <!-- 								<f:facet name="header"> -->
@@ -245,6 +255,46 @@
 <!-- 		                </p:dataTable>	             		 -->
 	             		
 <!-- 	             	</p:panel>     -->
+
+	
+					<p:dialog widgetVar="atendimentoSelect" 
+							  id="atendimentoSelect" width="650" height="450"
+							  modal="true" closable="true">	
+			
+							<f:facet name="header">
+								<h:outputText value="ATENDIMENTO #{inicioControl.atendimentoSelect.nrSq} DO CHAMADO #{inicioControl.atendimentoSelect.chamado.nrChamado}" 
+											  style="font-size: 16px; font-weight: bold; color: blue;"/>	
+							</f:facet>	
+							
+							<h:panelGrid columns="1" columnClasses="coluna1">
+								
+								<h:outputText value=" - Chamado #{inicioControl.atendimentoSelect.chamado.nrChamado}" 
+											  style="font-size: 16px; font-weight: bold; color:red;"/>												  
+								
+								<p:editor value="#{inicioControl.atendimentoSelect.chamado.descricao}" 
+								      	  onkeyup="maiuscula(this)" height="230" width="580"/>	
+								 
+								<p:spacer height="10" />   
+								   
+								<h:panelGrid columns="4" columnClasses="coluna1">	  
+									<h:outputText value=" - Atendimento realizado por #{inicioControl.atendimentoSelect.nomeAnalista} " 
+											 	  style="font-size: 16px; font-weight: bold; color: red;"/>						
+									<h:outputText value=" em " 
+												  style="font-size: 16px; font-weight: bold; color: red;"/>	
+									<p:spacer width="4" />  												  
+									<h:outputText value="#{inicioControl.atendimentoSelect.dhRespostaCliente}" 
+												  style="font-size: 16px; font-weight: bold; color: red;" converter="data"/>	
+								</h:panelGrid>
+											  
+											  
+								<p:editor value="#{inicioControl.atendimentoSelect.descricaoAtendimento}" 
+								     	  onkeyup="maiuscula(this)" height="230" width="580"/>
+								      	  										  
+							</h:panelGrid>	
+							
+							
+							      				
+					</p:dialog>	
 	             	              
                 </p:panel>
             </h:form>

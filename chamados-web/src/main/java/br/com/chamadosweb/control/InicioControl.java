@@ -6,8 +6,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
@@ -44,8 +49,12 @@ public class InicioControl extends BaseControl{
 	
 	private Calendar anteontem;
 	
+	private Atendimento atendimentoSelect;
+	
 	@PostConstruct
 	public void init() {	
+		
+		atendimentoSelect = new Atendimento();
 		
 		/**Hoje**/
 		hoje = Calendar.getInstance();
@@ -113,7 +122,12 @@ public class InicioControl extends BaseControl{
 //			}			
 //		}			
 	}
-
+	
+	
+	public void onRowSelect(SelectEvent event) {
+        atendimentoSelect = (Atendimento) event.getObject();        
+    }
+   
 	public List<Atendimento> getListaAtendimentosHoje() {
 		return listaAtendimentosHoje;
 	}
@@ -185,5 +199,15 @@ public class InicioControl extends BaseControl{
 
 	public void setListaChamadosAnteontem(List<Chamado> listaChamadosAnteontem) {
 		this.listaChamadosAnteontem = listaChamadosAnteontem;
+	}
+
+
+	public Atendimento getAtendimentoSelect() {
+		return atendimentoSelect;
+	}
+
+
+	public void setAtendimentoSelect(Atendimento atendimentoSelect) {
+		this.atendimentoSelect = atendimentoSelect;
 	}
 }
