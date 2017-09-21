@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:pt="http://java.sun.com/jsf/passthrough"
+	  xmlns:c="http://java.sun.com/jstl/core" class="gt-ie8 gt-ie9 not-ie">
+      
+<h:body>
+    <ui:composition template="../template/padrao.xhtml">
+
+        <ui:define name="conteudo">
+            
+            <h:form>
+            
+           	   <p:messages id="messages1" closable="true" showDetail="false"/>      
+               		
+                             		
+               <p:panel style="min-height: 1000px; min-width: 270px;">               	               		
+          			
+          			<p:commandButton value="Incluir Nova Versão" update="@form" 
+          						     id="btIniciarInclusao" styleClass="signin-btn"
+									 style="font-weight: bold;"
+									 action="#{versaoHistoricoControl.iniciarInclusaoNovaVersao()}" 
+									 onstart="PF('dialogProcessando').show();" 
+									 oncomplete="PF('dialogProcessando').hide();"									
+								     onsuccess="PF('dialogProcessando').hide();"
+							 		 onerror="PF('dialogProcessando').hide();"
+							 		 rendered="#{versaoHistoricoControl.mostrarLista}"/>   
+							 		 
+					<h:outputText value="FUNCIONALIDADE EM DESENVOLVIMENTO." 
+               					  rendered="#{versaoHistoricoControl.mostrarLista}" 
+               					  style="font-weight: bold !important; color: red; font-size: 26px;"/>
+          			
+          			<p:dataTable value="#{versaoHistoricoControl.listaVersoes}" id="tabelaVersoes"									
+								 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
+	                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+	                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
+	                             emptyMessage="Nenhum registro a ser exibido" rowKey="#{item.id}"
+	                             rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
+	                             rowsPerPageTemplate="10,20,30,40,50" selectionMode="single" 
+	                             rendered="#{versaoHistoricoControl.mostrarLista}">	
+	                 	
+	                 	<p:column style="font-size: 11px; width: 120px; text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Sistema" />
+							</f:facet>
+							<h:outputText value="#{item.sistemasRelacionados} "/>														
+						</p:column>	
+	                 						
+						<p:column sortBy="#{item.nrVersao}" style="font-size: 11px; width: 120px; text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Nº versão" />
+							</f:facet>
+							<h:outputText value="#{item.nrVersao} "/>														
+						</p:column>	
+						
+						<p:column sortBy="#{item.dataEntradaProducao}" 
+								  style="font-size: 11px; width: 120px; text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Foi pra Produção em" />
+							</f:facet>
+							<h:outputText value="#{item.dataEntradaProducao}" converter="data"/>																					
+						</p:column>		
+						
+						<p:column style="font-size: 11px; width: 120px; text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="SDM" />
+							</f:facet>
+							<h:outputText value="#{item.nrSdmVersao} "/>														
+						</p:column>	
+						
+						
+						<p:column style="font-size: 11px; width: 120px; text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Responsável" />
+							</f:facet>
+							<h:outputText value="#{item.responsavelVersao} "/>														
+						</p:column>					
+						
+	                             
+	                </p:dataTable>		                
+	                
+	               	<p:commandButton value="Voltar" update="@form" 
+          						     id="btVoltar" styleClass="signin-btn"
+									 style="font-weight: bold;"
+									 action="#{versaoHistoricoControl.voltar()}" 
+									 onstart="PF('dialogProcessando').show();" 
+									 oncomplete="PF('dialogProcessando').hide();"									
+								     onsuccess="PF('dialogProcessando').hide();"
+							 		 onerror="PF('dialogProcessando').hide();"
+							 		 rendered="#{!versaoHistoricoControl.mostrarLista}"/>   
+					
+					<h:outputText value="FUNCIONALIDADE EM DESENVOLVIMENTO." 
+               					  rendered="#{!versaoHistoricoControl.mostrarLista}" 
+               					  style="font-weight: bold !important; color: red; font-size: 26px;"/>
+							 		 
+					<p:spacer height="35" rendered="#{!versaoHistoricoControl.mostrarLista}"/>
+          			
+          			<h:panelGrid columns="2" columnClasses="coluna1D,coluna2"
+          					     rendered="#{!versaoHistoricoControl.mostrarLista}">
+          					     
+          				<h:outputText value="Nº da versão: " style="font-weight: bold !important;"/>	                				
+						<h:inputText value="#{versaoHistoricoControl.versaoIncluir.nrVersao}" 
+									 size="30" onkeyup="maiuscula(this)"/>     		
+									 
+						<h:outputText value="Equipe Responsável: " style="font-weight: bold !important;"/>	
+						<h:selectOneMenu value="#{versaoHistoricoControl.versaoIncluir.responsavelVersao}">								
+							<f:selectItem itemValue="" itemLabel="Selecione..." />
+							<f:selectItem itemValue="FABRICA" itemLabel="FABRICA" />
+							<f:selectItem itemValue="SUSTENTACAO" itemLabel="SUSTENTACAO"/>
+						</h:selectOneMenu>	  
+												
+						<h:outputText value="Descrição Versão: " style="font-weight: bold !important;"/>	                		
+						<p:editor value="#{versaoHistoricoControl.versaoIncluir.descricaoVersao}" 
+								  onkeyup="maiuscula(this)" height="200" width="400"/>    
+								  
+						<h:outputText value="Nº da SDM: " style="font-weight: bold !important;"/>		  
+						<h:inputText value="#{versaoHistoricoControl.versaoIncluir.nrSdmVersao}" 
+									 onkeypress="mascara(this, soNumeros)" size="12"/>										 
+														 
+						<h:outputText value="Data de envio Artefatos: " 
+									 style="font-weight: bold !important;"/>							
+						<h:inputText value="#{versaoHistoricoControl.versaoIncluir.dataEnvioArtefatos}"
+										 onkeypress="formatar(this, '##/##/####', event);"
+										 maxlength="10" size="9" converter="data"/>		
+										 
+						<h:outputText value="Data de Entrada em Produção " 
+						 			  style="font-weight: bold !important;"/>							
+						<h:inputText value="#{versaoHistoricoControl.versaoIncluir.dataEntradaProducao}"
+									 onkeypress="formatar(this, '##/##/####', event);"
+									 maxlength="10" size="9" converter="data"/>	
+										 
+						<h:outputText value="Onde encontrar documentos e Artefatos: " 
+									  style="font-weight: bold !important;"/>	                		
+						<p:editor value="#{versaoHistoricoControl.versaoIncluir.localDocumentosArtefatos}" 
+								  onkeyup="maiuscula(this)" height="200" width="400"/>   
+								  
+						<h:outputText value="Sistemas Relacionados: " style="font-weight: bold !important;"/>	                				
+						<h:inputText value="#{versaoHistoricoControl.versaoIncluir.sistemasRelacionados}" 
+									 size="60" onkeyup="maiuscula(this)"/>     					     
+          		          			
+          			</h:panelGrid>
+          			
+          			<br/>
+          			<br/>
+          			<center>
+	          			<p:commandButton value="Cadastrar" update="@form" 
+	          						     id="btIncluirNovaVersao" styleClass="signin-btn"
+										 style="font-weight: bold;"
+										 action="#{versaoHistoricoControl.incluirNovaVersao()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"
+								 		 rendered="#{!versaoHistoricoControl.mostrarLista}"/> 
+			 		 </center>		 		 
+          			
+                		 			 
+                </p:panel>                               
+                
+                <p:dialog widgetVar="dialogProcessando" modal="true" 
+						  height="50" width="350" resizable="false;"
+						  header="Processando Informações" draggable="false"
+					      closable="false" id="dialogProcessando" 
+					      style="z-index: 9999; font-size: 14px;">					
+					<center>
+						<h:outputText value="Por favor, aguarde..." style="font-weight: bold; font-size: 14px;" />
+						<br/>
+						<img src="resources/imagens/ajax-loader-green-white.gif"/> 
+					</center>
+					
+				</p:dialog>
+                
+            </h:form>            
+                        
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+
+</html>

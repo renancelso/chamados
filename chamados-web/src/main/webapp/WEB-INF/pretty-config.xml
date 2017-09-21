@@ -57,7 +57,12 @@
     <url-mapping id="estatisticas_chamados">
         <pattern value="/estatisticas_chamados" />
         <view-id value="/sistema/chamado/estatisticas_chamados.jsf" />
-    </url-mapping>    
+    </url-mapping>   
+        
+    <url-mapping id="historico_versao">
+        <pattern value="/historico_versao" />
+        <view-id value="/sistema/versao/historico_versao.jsf" />
+    </url-mapping> 
              
    	<url-mapping id="logoff">
 	  	<pattern value="/logoff" />
