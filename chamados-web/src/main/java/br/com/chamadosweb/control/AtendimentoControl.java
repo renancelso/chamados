@@ -391,7 +391,7 @@ public class AtendimentoControl extends BaseControl {
 //		return null;
 //	}
 	
-	 public List<String> completeEncaminhador(String query) {	        
+	public List<String> completeEncaminhador(String query) {	        
 	 	List<String> encaminhadores = new ArrayList<String>();	       
         for(String encaminhador : listaEncaminhadoresJaCadastrados) {
             if(encaminhador.toUpperCase().contains(query.toUpperCase())){

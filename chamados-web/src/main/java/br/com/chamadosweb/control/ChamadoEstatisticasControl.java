@@ -59,7 +59,7 @@ public class ChamadoEstatisticasControl extends BaseControl {
 		
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
-		c.add(Calendar.DAY_OF_MONTH, -93);			
+		c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);				
 		dataRespostaClienteInicial = c.getTime();
 		
 		dataRespostaClienteFinal = new Date();
