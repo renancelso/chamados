@@ -8,8 +8,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.SelectEvent;
+
 import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.VersaoServiceLocal;
+import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Versao;
 
 /**
@@ -65,6 +68,13 @@ public class VersaoHistoricoControl extends BaseControl {
 		versaoIncluir = new Versao();
 		return null;
 	}
+	
+	
+	public void onRowSelect(SelectEvent event) {
+		versaoIncluir = new Versao();
+		versaoIncluir  = (Versao) event.getObject();      
+		mostrarLista = false;
+    }
 
 	public List<Versao> getListaVersoes() {
 		return listaVersoes;

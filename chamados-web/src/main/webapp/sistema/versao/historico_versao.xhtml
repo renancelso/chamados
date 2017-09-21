@@ -14,6 +14,11 @@
             
             <h:form>
             
+            	<center>
+           	   		<h:outputText value="FUNCIONALIDADE EM DESENVOLVIMENTO." 
+               				  	  style="font-weight: bold !important; color: red; font-size: 20px;"/>
+               	</center>
+            
            	   <p:messages id="messages1" closable="true" showDetail="false"/>      
                		
                              		
@@ -28,11 +33,7 @@
 								     onsuccess="PF('dialogProcessando').hide();"
 							 		 onerror="PF('dialogProcessando').hide();"
 							 		 rendered="#{versaoHistoricoControl.mostrarLista}"/>   
-							 		 
-					<h:outputText value="FUNCIONALIDADE EM DESENVOLVIMENTO." 
-               					  rendered="#{versaoHistoricoControl.mostrarLista}" 
-               					  style="font-weight: bold !important; color: red; font-size: 26px;"/>
-          			
+					          			
           			<p:dataTable value="#{versaoHistoricoControl.listaVersoes}" id="tabelaVersoes"									
 								 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
 	                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
@@ -41,15 +42,24 @@
 	                             rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
 	                             rowsPerPageTemplate="10,20,30,40,50" selectionMode="single" 
 	                             rendered="#{versaoHistoricoControl.mostrarLista}">	
+	                 		                 	
+	                 	<p:ajax event="rowDblselect" update="@form"
+	                 			listener="#{versaoHistoricoControl.onRowSelect}" 	                 			
+	                 			onstart="PF('dialogProcessando').show();" 
+								oncomplete="PF('dialogProcessando').hide();"									
+								onsuccess="PF('dialogProcessando').hide();"
+							 	onerror="PF('dialogProcessando').hide();"/>     
 	                 	
-	                 	<p:column style="font-size: 11px; width: 120px; text-align: center;">
+	                 	<p:column style="font-size: 11px; width: 220px;"
+	                 	 		  filterMatchMode="contains" filterBy="#{item.sistemasRelacionados}">
 							<f:facet name="header">
 								<h:outputText value="Sistema" />
 							</f:facet>
 							<h:outputText value="#{item.sistemasRelacionados} "/>														
 						</p:column>	
 	                 						
-						<p:column sortBy="#{item.nrVersao}" style="font-size: 11px; width: 120px; text-align: center;">
+						<p:column sortBy="#{item.nrVersao}"
+								  style="font-size: 11px; width: 120px; text-align: center;">
 							<f:facet name="header">
 								<h:outputText value="Nº versão" />
 							</f:facet>
@@ -57,14 +67,14 @@
 						</p:column>	
 						
 						<p:column sortBy="#{item.dataEntradaProducao}" 
-								  style="font-size: 11px; width: 120px; text-align: center;">
+								  style="font-size: 11px; width: 100px; text-align: center;">
 							<f:facet name="header">
 								<h:outputText value="Foi pra Produção em" />
 							</f:facet>
 							<h:outputText value="#{item.dataEntradaProducao}" converter="data"/>																					
 						</p:column>		
 						
-						<p:column style="font-size: 11px; width: 120px; text-align: center;">
+						<p:column style="font-size: 11px; width: 40px; text-align: center;">
 							<f:facet name="header">
 								<h:outputText value="SDM" />
 							</f:facet>
@@ -72,7 +82,8 @@
 						</p:column>	
 						
 						
-						<p:column style="font-size: 11px; width: 120px; text-align: center;">
+						<p:column style="font-size: 11px; width: 150px; text-align: center;"
+								  filterMatchMode="contains" filterBy="#{item.responsavelVersao}">
 							<f:facet name="header">
 								<h:outputText value="Responsável" />
 							</f:facet>
@@ -90,12 +101,8 @@
 									 oncomplete="PF('dialogProcessando').hide();"									
 								     onsuccess="PF('dialogProcessando').hide();"
 							 		 onerror="PF('dialogProcessando').hide();"
-							 		 rendered="#{!versaoHistoricoControl.mostrarLista}"/>   
-					
-					<h:outputText value="FUNCIONALIDADE EM DESENVOLVIMENTO." 
-               					  rendered="#{!versaoHistoricoControl.mostrarLista}" 
-               					  style="font-weight: bold !important; color: red; font-size: 26px;"/>
-							 		 
+							 		 rendered="#{!versaoHistoricoControl.mostrarLista}"/>   					
+												 		 
 					<p:spacer height="35" rendered="#{!versaoHistoricoControl.mostrarLista}"/>
           			
           			<h:panelGrid columns="2" columnClasses="coluna1D,coluna2"
@@ -110,6 +117,7 @@
 							<f:selectItem itemValue="" itemLabel="Selecione..." />
 							<f:selectItem itemValue="FABRICA" itemLabel="FABRICA" />
 							<f:selectItem itemValue="SUSTENTACAO" itemLabel="SUSTENTACAO"/>
+							<f:selectItem itemValue="FABRICA / SUSTENTACAO" itemLabel="FABRICA / SUSTENTACAO"/>
 						</h:selectOneMenu>	  
 												
 						<h:outputText value="Descrição Versão: " style="font-weight: bold !important;"/>	                		
@@ -146,7 +154,7 @@
           			<br/>
           			<br/>
           			<center>
-	          			<p:commandButton value="Cadastrar" update="@form" 
+	          			<p:commandButton value="Atualizar Dados" update="@form" 
 	          						     id="btIncluirNovaVersao" styleClass="signin-btn"
 										 style="font-weight: bold;"
 										 action="#{versaoHistoricoControl.incluirNovaVersao()}" 
