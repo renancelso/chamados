@@ -74,9 +74,13 @@
 							<h:inputText value="#{atendimentoControl.chamado.sistemaModulo}" 
 									     size="30" onkeyup="maiuscula(this)" />	
 									     
-							<h:outputText value="Ambiente: " style="font-weight: bold !important;"/>	                		
-							<h:inputText value="#{atendimentoControl.chamado.ambiente}" 
-									     size="20" onkeyup="maiuscula(this)" />
+							<h:outputText value="Ambiente: " style="font-weight: bold !important;"/>	
+							<h:selectOneMenu value="#{atendimentoControl.chamado.ambiente}">								
+								<f:selectItem itemValue="PRODUÇÃO" itemLabel="PRODUÇÃO" />
+								<f:selectItem itemValue="HOMOLOGAÇÃO" itemLabel="HOMOLOGAÇÃO" />
+								<f:selectItem itemValue="DESENVOLVIMENTO" itemLabel="DESENVOLVIMENTO" />
+								<f:selectItem itemValue="" itemLabel="Selecione..." />
+							</h:selectOneMenu>	           
 									     
 							<h:outputText value="Classificação: " style="font-weight: bold !important;"/>	                		
 							<h:inputText value="#{atendimentoControl.chamado.classificacao}" 
@@ -84,10 +88,11 @@
 									     
 							<h:outputText value="Impacto: " style="font-weight: bold !important;"/>	 									     
 							<h:selectOneMenu value="#{atendimentoControl.chamado.impacto}">
-								<f:selectItem itemValue="" itemLabel="Selecione..." />
+								
+								<f:selectItem itemValue="Individual" itemLabel="Individual" />
 								<f:selectItem itemValue="Departamento" itemLabel="Departamento" />
 								<f:selectItem itemValue="Empresa" itemLabel="Empresa" />
-								<f:selectItem itemValue="Individual" itemLabel="Individual" />
+								<f:selectItem itemValue="" itemLabel="Selecione..." />
 							</h:selectOneMenu>		
 									     
 									     
