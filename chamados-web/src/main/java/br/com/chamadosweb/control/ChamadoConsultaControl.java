@@ -79,8 +79,12 @@ public class ChamadoConsultaControl extends BaseControl {
 																     dataAberturaInicio, 
 																     dataAberturaFinal);	
 		
-		if(chamadoFiltroConsulta.getNrChamado() == null || chamadoFiltroConsulta.getNrChamado() == 0){
+		if(chamadoFiltroConsulta == null){
 			chamadoFiltroConsulta = new Chamado();
+		}		
+		
+		if(chamadoFiltroConsulta.getNrChamado() == 0){
+			chamadoFiltroConsulta.setNrChamado(null);			
 		}		
 		
 		if(listaChamadosConsulta == null || listaChamadosConsulta.isEmpty()){
@@ -164,9 +168,14 @@ public class ChamadoConsultaControl extends BaseControl {
 		chamadoDetalhar = new Chamado();
 		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());
 		listaAtendimentosDetalhes = new ArrayList<Atendimento>();
-		if(chamadoFiltroConsulta.getNrChamado() == null || chamadoFiltroConsulta.getNrChamado() == 0){
+		
+		if(chamadoFiltroConsulta == null){
 			chamadoFiltroConsulta = new Chamado();
-		}	
+		}		
+		
+		if(chamadoFiltroConsulta.getNrChamado() == 0){
+			chamadoFiltroConsulta.setNrChamado(null);			
+		}
 		
 		return null;
 	}

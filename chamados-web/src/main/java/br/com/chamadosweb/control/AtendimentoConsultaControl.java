@@ -46,12 +46,15 @@ public class AtendimentoConsultaControl extends BaseControl {
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void init() {		
+		
 		atendimentoFiltroConsulta = new Atendimento();
-		atendimentoFiltroConsulta.setChamado(new Chamado());		
+		atendimentoFiltroConsulta.setChamado(new Chamado());	
+		
 		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
 				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
 			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
 		}
+		
 		listaAtendimentosConsulta = new ArrayList<Atendimento>();
 		atendimentoDetalhar = new Atendimento();
 		
@@ -117,6 +120,7 @@ public class AtendimentoConsultaControl extends BaseControl {
 																					   dataRespostaClienteFinal, 
 																					   atendimentoFiltroConsulta);		
 		listaChamadosConsulta = new ArrayList<Chamado>();
+		
 		if(listaAtendimentosConsulta != null && !listaAtendimentosConsulta.isEmpty()) {			
 			for (Atendimento atendimento : listaAtendimentosConsulta) {
 				if(!listaChamadosConsulta.contains(atendimento.getChamado())){
@@ -125,8 +129,7 @@ public class AtendimentoConsultaControl extends BaseControl {
 			}			
 		}		
 		
-		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
-				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
+		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null || atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
 			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
 		}
 		

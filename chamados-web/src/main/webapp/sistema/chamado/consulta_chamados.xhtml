@@ -55,6 +55,10 @@
 											 onkeypress="formatar(this, '##/##/####', event);"
 											 maxlength="10" size="9" converter="data"/>													
 						    </h:panelGrid>	
+						    						    
+						    <h:outputText value="Descrição do Chamado: " style="font-weight: bold !important; "/>									 	 
+							<h:inputText value="#{chamadoConsultaControl.chamadoFiltroConsulta.descricao}" 
+									     size="70" onkeyup="maiuscula(this)" />	
 						    										           			 
 	          			</h:panelGrid>  
 	          			

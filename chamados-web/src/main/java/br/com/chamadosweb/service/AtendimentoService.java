@@ -51,6 +51,11 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 				sql.append(" and (o.dataAbertura <= '").append(sdf.format(dataAberturaFinal)).append("')");					
 			}
 			
+			if(chamadoFiltroConsulta.getDescricao() != null 
+					&& !"".equalsIgnoreCase(chamadoFiltroConsulta.getDescricao())) {
+				sql.append(" and o.descricao like '%").append(chamadoFiltroConsulta.getDescricao()).append("%'");
+			}
+			
 			sql.append(" order by o.nrChamado desc");
 			
 			listaChamados = (List<Chamado>) consultarPorQuery(sql.toString(),0, 0);
@@ -143,6 +148,11 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 					&& atendimentoFiltroConsulta.getChamado().getNrChamado() != null
 					&& atendimentoFiltroConsulta.getChamado().getNrChamado() > 0) {
 				sql.append(" and o.chamado.nrChamado = ").append(atendimentoFiltroConsulta.getChamado().getNrChamado());
+			}
+			
+			if(atendimentoFiltroConsulta.getDescricaoAtendimento() != null 
+					&& !"".equalsIgnoreCase(atendimentoFiltroConsulta.getDescricaoAtendimento())) {
+				sql.append(" and o.descricaoAtendimento like '%").append(atendimentoFiltroConsulta.getDescricaoAtendimento()).append("%'");
 			}
 					
 			sql.append(" order by o.dhRespostaCliente desc, o.chamado.nrChamado desc, o.nrSq desc");

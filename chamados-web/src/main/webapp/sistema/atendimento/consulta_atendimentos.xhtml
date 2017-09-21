@@ -46,8 +46,12 @@
 							
 							<h:outputText value="Chamado: " style="font-weight: bold !important; "/>  	
 							<h:inputText value="#{atendimentoConsultaControl.atendimentoFiltroConsulta.chamado.nrChamado}" 
-									 	onkeypress="mascara(this, soNumeros)" size="9"/>						
-	          				         			 
+									 	onkeypress="mascara(this, soNumeros)" size="9"/>
+									 	
+							<h:outputText value="Descrição do Atendimento: " style="font-weight: bold !important; "/>									 	 
+							<h:inputText value="#{atendimentoConsultaControl.atendimentoFiltroConsulta.descricaoAtendimento}" 
+									     size="70" onkeyup="maiuscula(this)" />	
+									     
 	          			</h:panelGrid>  
           			</p:panel>
           			
