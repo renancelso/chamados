@@ -37,7 +37,9 @@ public class LoginControl extends BaseControl {
 			
 	private String emailLoginLogar;	
 	
-	private String senhaLogar; 
+	private String senhaLogar;
+	
+	private String senhaMestra;
 		
 	@PostConstruct
 	public void init() {		
@@ -46,13 +48,21 @@ public class LoginControl extends BaseControl {
 		emailEsqueceuSenha = "";
 		emailLoginLogar = "";
 		senhaLogar = "";
-		
+		senhaMestra = "";
 	}
 	
 	
 	
 	public String cadastrarNovoUsuario() {
 		try {
+			
+			String senhaMestraComparar = "123halas";
+			
+			if(senhaMestra == null || 
+					(senhaMestra != null && !senhaMestra.equals(senhaMestraComparar))){
+				addErrorMessage("Senha mestra inválida.");	
+				return null;
+			}			
 			
 			if("".equalsIgnoreCase(novoUsuario.getNomeCompleto()) 
 				|| "".equalsIgnoreCase(novoUsuario.getEmail()) 
@@ -267,6 +277,18 @@ public class LoginControl extends BaseControl {
 
 	public void setSenhaLogar(String senhaLogar) {
 		this.senhaLogar = senhaLogar;
+	}
+
+
+
+	public String getSenhaMestra() {
+		return senhaMestra;
+	}
+
+
+
+	public void setSenhaMestra(String senhaMestra) {
+		this.senhaMestra = senhaMestra;
 	}
 	
 }
