@@ -13,12 +13,7 @@
         <ui:define name="conteudo">
             
             <h:form>
-            
-            	<center>
-           	   		<h:outputText value="FUNCIONALIDADE EM DESENVOLVIMENTO." 
-               				  	  style="font-weight: bold !important; color: red; font-size: 20px;"/>
-               	</center>
-            
+                                    
            	   <p:messages id="messages1" closable="true" showDetail="false"/>      
                		
                              		
@@ -32,14 +27,26 @@
 									 oncomplete="PF('dialogProcessando').hide();"									
 								     onsuccess="PF('dialogProcessando').hide();"
 							 		 onerror="PF('dialogProcessando').hide();"
-							 		 rendered="#{versaoHistoricoControl.mostrarLista}"/>   
+							 		 rendered="#{versaoHistoricoControl.mostrarLista}"/> 
+							 		 
+			 		<p:spacer width="50"/>  
+			 		
+			 		<p:commandButton value="Atualizar Lista" update="@form" 
+          						     id="btInit" styleClass="signin-btn"
+									 style="font-weight: bold;"
+									 action="#{versaoHistoricoControl.init()}" 
+									 onstart="PF('dialogProcessando').show();" 
+									 oncomplete="PF('dialogProcessando').hide();"									
+								     onsuccess="PF('dialogProcessando').hide();"
+							 		 onerror="PF('dialogProcessando').hide();"
+							 		 rendered="#{versaoHistoricoControl.mostrarLista}"/> 
 					          			
           			<p:dataTable value="#{versaoHistoricoControl.listaVersoes}" id="tabelaVersoes"									
 								 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
 	                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
 	                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 	                             emptyMessage="Nenhum registro a ser exibido" rowKey="#{item.id}"
-	                             rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
+	                             rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 	                             
 	                             rowsPerPageTemplate="10,20,30,40,50" selectionMode="single" 
 	                             rendered="#{versaoHistoricoControl.mostrarLista}">	
 	                 		                 	
@@ -50,47 +57,48 @@
 								onsuccess="PF('dialogProcessando').hide();"
 							 	onerror="PF('dialogProcessando').hide();"/>     
 	                 	
-	                 	<p:column style="font-size: 11px; width: 220px;"
-	                 	 		  filterMatchMode="contains" filterBy="#{item.sistemasRelacionados}">
-							<f:facet name="header">
-								<h:outputText value="Sistema" />
-							</f:facet>
-							<h:outputText value="#{item.sistemasRelacionados} "/>														
-						</p:column>	
-	                 						
-						<p:column sortBy="#{item.nrVersao}"
-								  style="font-size: 11px; width: 120px; text-align: center;">
+	                 	<p:column sortBy="#{item.nrVersao}"
+	                 			  filterMatchMode="contains" filterBy="#{item.nrVersao}"	                 			  
+								  style="font-size: 12px; width: 120px; text-align: center; font-weight: bold;">
 							<f:facet name="header">
 								<h:outputText value="Nº versão" />
 							</f:facet>
 							<h:outputText value="#{item.nrVersao} "/>														
 						</p:column>	
-						
-						<p:column sortBy="#{item.dataEntradaProducao}" 
-								  style="font-size: 11px; width: 100px; text-align: center;">
+	                 	
+	                 	<p:column style="font-size: 12px; width: 220px; font-weight: bold;"
+	                 			  filterStyle="width: 200px;"
+	                 	 		  filterMatchMode="contains" filterBy="#{item.sistemasRelacionados}">
 							<f:facet name="header">
-								<h:outputText value="Foi pra Produção em" />
+								<h:outputText value="Sistema" />
 							</f:facet>
-							<h:outputText value="#{item.dataEntradaProducao}" converter="data"/>																					
-						</p:column>		
-						
-						<p:column style="font-size: 11px; width: 40px; text-align: center;">
+							<h:outputText value="#{item.sistemasRelacionados} "/>														
+						</p:column>		                 						
+												
+						<p:column style="font-size: 12px; width: 90px; text-align: center; font-weight: bold;"
+								  filterMatchMode="contains" filterBy="#{item.nrSdmVersao}">
 							<f:facet name="header">
-								<h:outputText value="SDM" />
+								<h:outputText value="Nº SDM" />
 							</f:facet>
 							<h:outputText value="#{item.nrSdmVersao} "/>														
 						</p:column>	
-						
-						
-						<p:column style="font-size: 11px; width: 150px; text-align: center;"
+												
+						<p:column style="font-size: 11px; width: 150px; text-align: center; font-weight: bold;"
 								  filterMatchMode="contains" filterBy="#{item.responsavelVersao}">
 							<f:facet name="header">
 								<h:outputText value="Responsável" />
 							</f:facet>
 							<h:outputText value="#{item.responsavelVersao} "/>														
-						</p:column>					
+						</p:column>	
 						
-	                             
+						<p:column sortBy="#{item.dataEntradaProducao}" 
+								  style="font-size: 11px; width: 100px; text-align: center; font-weight: bold;">
+							<f:facet name="header">
+								<h:outputText value="Foi pra Produção em" />
+							</f:facet>
+							<h:outputText value="#{item.dataEntradaProducao}" converter="data"/>																					
+						</p:column>		
+							                             
 	                </p:dataTable>		                
 	                
 	               	<p:commandButton value="Voltar" update="@form" 
