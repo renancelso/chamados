@@ -61,6 +61,19 @@ public class VersaoHistoricoControl extends BaseControl {
 		return null;
 	}
 	
+	
+	public String excluirDados() {
+		try {
+			versaoService.remover(versaoIncluir);				
+			addInfoMessage("Versão "+versaoIncluir.getNrVersao()+" excluída com sucesso.");		
+			voltar();					
+		} catch(Exception e){
+			addInfoMessage("Erro ao excluir Versão");
+			log.error(e);			
+		}
+		return null;
+	}
+	
 	public String voltar() {		
 		listaVersoes = new ArrayList<Versao>();		
 		listaVersoes = versaoService.consultarVersoes(versaoFiltro);		

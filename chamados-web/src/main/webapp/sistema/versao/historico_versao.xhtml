@@ -161,7 +161,9 @@
           			
           			<br/>
           			<br/>
+          			
           			<center>
+          			
 	          			<p:commandButton value="Atualizar Dados" update="@form" 
 	          						     id="btIncluirNovaVersao" styleClass="signin-btn"
 										 style="font-weight: bold;"
@@ -171,6 +173,18 @@
 									     onsuccess="PF('dialogProcessando').hide();"
 								 		 onerror="PF('dialogProcessando').hide();"
 								 		 rendered="#{!versaoHistoricoControl.mostrarLista}"/> 
+						
+						<p:spacer width="50"/>		 		 
+								 		 
+						<p:commandButton value="Excluir Dados da Versão" update="@form" 
+	          						     id="btExcluirDadosVersao" styleClass="signin-btn"
+										 style="font-weight: bold;"
+										 action="#{versaoHistoricoControl.excluirDados()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"
+								 		 rendered="#{!versaoHistoricoControl.mostrarLista and versaoHistoricoControl.versaoIncluir.id != null}"/> 
 			 		 </center>		 		 
           			
                 		 			 
