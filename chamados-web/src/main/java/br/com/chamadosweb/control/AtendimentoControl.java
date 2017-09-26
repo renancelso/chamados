@@ -98,6 +98,9 @@ public class AtendimentoControl extends BaseControl {
 		if(chamado == null){
 			chamado = new Chamado();
 			chamado.setNrChamado(nrChamadoAux);								
+		} else {
+			chamado.setListaAtendimentos(new ArrayList<Atendimento>());
+			chamado.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamado));
 		}
 		
 		nrChamadoAux = null;	

@@ -207,6 +207,121 @@
                 	
               	 	</p:panel>
               	 	
+              	 	
+              	 	<p:spacer height="120"/>
+              	 	
+              	 	<p:panel header="Atendimento já realizados no chamado #{atendimentoControl.chamado.nrChamado}"
+                			 rendered="#{atendimentoControl.chamado.nrChamado != null}"
+                			 toggleable="true">
+                		
+                		<p:dataTable var="item" value="#{atendimentoControl.chamado.listaAtendimentos}">
+						 		
+						 	<f:facet name="header">
+					          Histórico de atendimentos realizados no chamado #{atendimentoControl.chamado.nrChamado}
+					        </f:facet>	
+						 										
+						 	<p:column style="width:40px">
+					            <p:rowToggler />
+					        </p:column>
+						 															
+							<p:column style="text-align: center; width: 80px;">
+								<f:facet name="header">
+									<h:outputText value="Atend." />
+								</f:facet>
+								<h:outputText value="#{item.nrSq}" />
+							</p:column>							
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Encaminhado por" />
+								</f:facet>
+								<h:outputText value="#{item.encaminhador}"/>
+							</p:column>	
+							
+							<p:column style="width: 180px; color: red;">
+								<f:facet name="header">
+									<h:outputText value="Analista" />
+								</f:facet>
+								<h:outputText value="#{item.nomeAnalista}"/>
+							</p:column>	
+							
+							<p:column style="text-align: center; width: 200px;">
+								<f:facet name="header">
+									<h:outputText value="Transf. para a equipe em:" />
+								</f:facet>
+								<h:outputText value="#{item.dhTransferidoEquipe}" converter="data"/>
+								<h:outputText value=" "/>
+								<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>
+							</p:column>	
+													
+							<p:column style="text-align: center; width: 210px;">
+								<f:facet name="header">
+									<h:outputText value="Retorno para o cliente em:" />
+								</f:facet>
+								<h:outputText value="#{item.dhRespostaCliente}" converter="data"/>
+								<h:outputText value=" "/>
+								<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
+							</p:column>		
+														
+							<p:rowExpansion>
+				            	<h:panelGrid columns="2" columnClasses="coluna1,coluna2">  
+						
+									<h:outputText value="Chamado: " style="font-weight: bold !important;"/>	                			
+									<h:inputText value="#{item.chamado.nrChamado}" 
+												 onkeypress="mascara(this, soNumeros)" size="8" readonly="true"
+											     style="font-weight: bold !important; color: red !important;"/>            			                			 
+		               			 	               			 
+		               			 	<h:outputText value="Atendimento: " style="font-weight: bold !important;"/>	                			
+									<h:inputText value="#{item.nrSq}" onkeypress="mascara(this, soNumeros)"
+											     size="4" readonly="true" 
+											     style="font-weight: bold !important; color: red !important;"/>		
+																		     
+									<h:outputText value="Encaminhado para a equipe por: " style="font-weight: bold !important;"/>	                		
+									<h:inputText value="#{item.encaminhador}" 
+											     size="40" onkeyup="maiuscula(this)" readonly="true"/>										     
+											     
+									<h:outputText value="Cliente transferiu para equipe em: " style="font-weight: bold !important;"/>
+									<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">															
+										<h:inputText value="#{item.dhTransferidoEquipe}" 
+													 onkeypress="formatar(this, '##/##/####', event);"
+													 maxlength="10" size="9" readonly="true" converter="data"/>								
+										<h:outputText value="às" style="font-weight: bold !important;"/>								
+										<h:inputText value="#{item.dhTransferidoEquipe}" 
+													 onkeypress="formatar(this, '##:##', event);"
+													 maxlength="5" size="6" readonly="true" converter="hora"/>								
+								    </h:panelGrid>
+								    
+								    <h:outputText value="Resposta para o cliente em: " style="font-weight: bold !important;"/>
+									<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">								
+										<h:inputText value="#{item.dhRespostaCliente}" 
+													 onkeypress="formatar(this, '##/##/####', event);"
+													 maxlength="10" size="9" readonly="true" converter="data"/>																 					
+										<h:outputText value="às" style="font-weight: bold !important;"/>								
+										<h:inputText value="#{item.dhRespostaCliente}" 
+													 onkeypress="formatar(this, '##:##', event);"
+													 maxlength="5" size="6" readonly="true" converter="hora"/>								
+								    </h:panelGrid>	
+								    
+								    <h:outputText value="Analista: " style="font-weight: bold !important;"/>	                		
+									<h:inputText value="#{item.nomeAnalista.toUpperCase()}" 
+											     size="35" onkeyup="maiuscula(this)" readonly="true"
+											     style="font-weight: bold !important; color: red !important;"/>			
+											     
+									<h:outputText value="Descrição Atendimento: " style="font-weight: bold !important;"/>	                		
+									<p:editor value="#{item.descricaoAtendimento}" 
+										      onkeyup="maiuscula(this)" height="200" width="500" readonly="true"/>   			
+		               			 
+		               			 </h:panelGrid>	 
+		               			    
+				        	</p:rowExpansion>						 
+						 
+						</p:dataTable>	
+                			 
+                			 
+                			 
+                	</p:panel>
+              	 	
+              	 	
             	</p:panel>
             	
             	<p:dialog widgetVar="dialogProcessando" modal="true" 
