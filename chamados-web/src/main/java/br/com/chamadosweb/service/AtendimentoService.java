@@ -12,6 +12,7 @@ import br.com.chamadosweb.padrao.GenericService;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
 import br.com.chamadosweb.service.model.dto.EstatisticasAtendimentosAnalistas;
+import br.com.chamadosweb.service.model.dto.EstatisticasChamadosAnalistas;
 
 /**
  * @author Renan Celso
@@ -202,13 +203,7 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			if(atendimentoFiltroConsulta.getNomeAnalista() != null 
 					&& !"".equalsIgnoreCase(atendimentoFiltroConsulta.getNomeAnalista())) {
 				sql.append(" and o.nomeAnalista = '").append(atendimentoFiltroConsulta.getNomeAnalista()).append("'");
-			}
-			
-			if(atendimentoFiltroConsulta.getChamado() != null 
-					&& atendimentoFiltroConsulta.getChamado().getNrChamado() != null
-					&& atendimentoFiltroConsulta.getChamado().getNrChamado() > 0) {
-				sql.append(" and o.chamado.nrChamado = ").append(atendimentoFiltroConsulta.getChamado().getNrChamado());
-			}
+			}						
 			
 			sql.append(" and o.nomeAnalista in (SELECT distinct (u.nome_completo) FROM Usuario u)");
 					
@@ -232,5 +227,66 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 		
 	}
 
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<EstatisticasChamadosAnalistas> consultarEstatisticasQChamadosAnalistas(Date dataRespostaClienteInicial, 
+																					   Date dataRespostaClienteFinal,
+																					   Atendimento atendimentoFiltroConsulta) {
+		try {
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			List<EstatisticasChamadosAnalistas> listaEstatisticasChamadosAnalistas = new ArrayList<EstatisticasChamadosAnalistas>();
+					
+			StringBuilder sql = new StringBuilder();
+			sql.append("select t.nomeAnalista, sum(t.contador) totalChamados from");	
+			
+			sql.append(" (SELECT nomeAnalista, nrChamado, 1 contador FROM atendimento o where nomeAnalista is not null ");
+						
+			if(dataRespostaClienteInicial != null && dataRespostaClienteFinal != null){
+				sql.append(" and ((o.dhRespostaCliente >= '").append(sdf.format(dataRespostaClienteInicial)).append("'");
+				sql.append(" and o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("')");	
+				sql.append(")");
+			}
+			
+			if(dataRespostaClienteInicial != null && dataRespostaClienteFinal == null){
+				sql.append(" and (o.dhRespostaCliente >= '").append(sdf.format(dataRespostaClienteInicial)).append("'");	
+				sql.append(")");
+			}
+			
+			if(dataRespostaClienteInicial == null && dataRespostaClienteFinal != null){				
+				sql.append(" and (o.dhRespostaCliente <= '").append(sdf.format(dataRespostaClienteFinal)).append("'");	
+				sql.append(")");	
+			}
+			
+			if(atendimentoFiltroConsulta.getNomeAnalista() != null 
+					&& !"".equalsIgnoreCase(atendimentoFiltroConsulta.getNomeAnalista())) {
+				sql.append(" and o.nomeAnalista = '").append(atendimentoFiltroConsulta.getNomeAnalista()).append("'");
+			}			
+			
+			sql.append(" group by nomeAnalista, nrChamado) t");			
+			sql.append(" where t.nomeAnalista in (SELECT nome_completo FROM usuario) group by nomeAnalista");
+			sql.append(" order by totalChamados desc");
+							
+			List<Object[]> listaObjetos = (List<Object[]>) consultarPorQueryNativa(sql.toString(), 0, 0);
+			
+			
+			for (Object[] obj : listaObjetos) {
+				EstatisticasChamadosAnalistas estatistica = new EstatisticasChamadosAnalistas();
+				estatistica.setNomeAnalista(String.valueOf(obj[0]));
+				estatistica.setQtdChamados(new BigInteger(String.valueOf(obj[1])).longValue());	
+				listaEstatisticasChamadosAnalistas.add(estatistica);
+			}
+								
+			return listaEstatisticasChamadosAnalistas;
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}	
+	}
+	
 }
+
+
+

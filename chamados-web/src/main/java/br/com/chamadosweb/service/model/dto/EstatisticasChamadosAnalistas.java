@@ -5,27 +5,24 @@ package br.com.chamadosweb.service.model.dto;
  * @author Renan Celso
  *
  */
-public class EstatisticasAtendimentosAnalistas {
-	
+public class EstatisticasChamadosAnalistas {
+
 	private String nomeAnalista;	
-	private Long qtdAtendimentos;
+	private Long qtdChamados;
 	
 	public String getNomeAnalista() {
 		return nomeAnalista;
 	}
-	
 	public void setNomeAnalista(String nomeAnalista) {
 		this.nomeAnalista = nomeAnalista;
 	}
-	
-	public Long getQtdAtendimentos() {
-		return qtdAtendimentos;
+	public Long getQtdChamados() {
+		return qtdChamados;
+	}
+	public void setQtdChamados(Long qtdChamados) {
+		this.qtdChamados = qtdChamados;
 	}
 	
-	public void setQtdAtendimentos(Long qtdAtendimentos) {
-		this.qtdAtendimentos = qtdAtendimentos;
-	}
-		
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,7 +40,7 @@ public class EstatisticasAtendimentosAnalistas {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EstatisticasAtendimentosAnalistas other = (EstatisticasAtendimentosAnalistas) obj;
+		EstatisticasChamadosAnalistas other = (EstatisticasChamadosAnalistas) obj;
 		if (nomeAnalista == null) {
 			if (other.nomeAnalista != null)
 				return false;
@@ -51,5 +48,7 @@ public class EstatisticasAtendimentosAnalistas {
 			return false;
 		return true;
 	}
+	
+	
 	
 }

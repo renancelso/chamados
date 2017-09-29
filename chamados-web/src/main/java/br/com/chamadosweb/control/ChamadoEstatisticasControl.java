@@ -15,6 +15,7 @@ import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
 import br.com.chamadosweb.service.model.dto.EstatisticasAtendimentosAnalistas;
+import br.com.chamadosweb.service.model.dto.EstatisticasChamadosAnalistas;
 
 /**
 *
@@ -43,11 +44,14 @@ public class ChamadoEstatisticasControl extends BaseControl {
 	
 	private Long qtdAtendimentosConsulta;
 	
+	private List<EstatisticasChamadosAnalistas> listaEstatisticasChamadosAnalistas;
+	
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	public void init() {	
 		
 		listaEstatisticasAtendimentosAnalistas = new ArrayList<EstatisticasAtendimentosAnalistas>();
+		listaEstatisticasChamadosAnalistas = new ArrayList<EstatisticasChamadosAnalistas>();
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		
 		atendimentoFiltroConsulta = new Atendimento();
@@ -102,10 +106,16 @@ public class ChamadoEstatisticasControl extends BaseControl {
 		}	
 		
 		listaEstatisticasAtendimentosAnalistas = new ArrayList<EstatisticasAtendimentosAnalistas>();
-		listaEstatisticasAtendimentosAnalistas = atendimentoService.consultarEstatisticasQAtendimentosAnalistas
-																									(dataRespostaClienteInicial, 
-																									 dataRespostaClienteFinal, 
-																									 atendimentoFiltroConsulta);
+		listaEstatisticasAtendimentosAnalistas = atendimentoService.consultarEstatisticasQAtendimentosAnalistas(dataRespostaClienteInicial, 
+																												dataRespostaClienteFinal, 
+																												atendimentoFiltroConsulta);
+		
+		
+		listaEstatisticasChamadosAnalistas = new ArrayList<EstatisticasChamadosAnalistas>();
+		
+		listaEstatisticasChamadosAnalistas = atendimentoService.consultarEstatisticasQChamadosAnalistas(dataRespostaClienteInicial, 
+																										dataRespostaClienteFinal, 
+																										atendimentoFiltroConsulta);
 		
 		qtdAtendimentosConsulta = new Long(0);
 		
@@ -137,7 +147,7 @@ public class ChamadoEstatisticasControl extends BaseControl {
 		
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
-		c.add(Calendar.DAY_OF_MONTH, -93);			
+		c.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);				
 		dataRespostaClienteInicial = c.getTime();
 		
 		dataRespostaClienteFinal = new Date();
@@ -148,6 +158,7 @@ public class ChamadoEstatisticasControl extends BaseControl {
 		
 		listaEstatisticasAtendimentosAnalistas = new ArrayList<EstatisticasAtendimentosAnalistas>();
 		listaChamadosConsulta = new ArrayList<Chamado>();
+		listaEstatisticasChamadosAnalistas = new ArrayList<EstatisticasChamadosAnalistas>();
 		
 		return null;
 	}
@@ -213,6 +224,17 @@ public class ChamadoEstatisticasControl extends BaseControl {
 
 	public void setQtdAtendimentosConsulta(Long qtdAtendimentosConsulta) {
 		this.qtdAtendimentosConsulta = qtdAtendimentosConsulta;
+	}
+
+
+	public List<EstatisticasChamadosAnalistas> getListaEstatisticasChamadosAnalistas() {
+		return listaEstatisticasChamadosAnalistas;
+	}
+
+
+	public void setListaEstatisticasChamadosAnalistas(
+			List<EstatisticasChamadosAnalistas> listaEstatisticasChamadosAnalistas) {
+		this.listaEstatisticasChamadosAnalistas = listaEstatisticasChamadosAnalistas;
 	}	
 		
 }

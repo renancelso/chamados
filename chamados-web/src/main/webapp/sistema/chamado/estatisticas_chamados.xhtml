@@ -73,7 +73,7 @@
 	        	   </h:panelGrid>          
 	        			
 	        	   <p:spacer height="20"/> 
-	        	   
+	        	   	        	   	        	   
 	        	   <p:panel rendered="#{chamadoEstatisticasControl.listaChamadosConsulta != null and chamadoEstatisticasControl.listaChamadosConsulta.size() > 0}"
 	        	   			toggleable="true" header=" ">	 
 	        	   			
@@ -87,7 +87,7 @@
 	                	</f:facet>	              	                				  
 	                				  
 	                	<p:dataTable value="#{chamadoEstatisticasControl.listaChamadosConsulta}" id="tabelaChamados"
-								 	 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
+								 	 paginator="true" style="min-width: 720px; margin-top: 10px;" 			 			  
 	                            	 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
 	                             	 currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 	                             	 emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
@@ -140,8 +140,40 @@
 							</p:column>		
 													
 						</p:dataTable>
+													        	   
+	        	   </p:panel>
 	        	   
-	        	   </p:panel>  
+	        	   <p:panel rendered="#{chamadoEstatisticasControl.listaEstatisticasChamadosAnalistas != null and chamadoEstatisticasControl.listaEstatisticasChamadosAnalistas.size() > 0}"
+	        	   			toggleable="true" header=" ">
+	        	   		
+	        	   	   <f:facet name="header">     	   	        	   	
+		        	   		<h:outputText value="CHAMADOS AATENDIDOS POR ANALISTA COM OS FILTROS INFORMADOS" 
+				             			  style="font-weight: bold; color: red;"/>			                	
+	                   </f:facet>	                   	                  	
+	        	   
+		        	   <p:dataTable value="#{chamadoEstatisticasControl.listaEstatisticasChamadosAnalistas}" 
+	                				id="tabelaEstatisticasChamadosAnalistas" style="min-width: 300px;"
+	                             	emptyMessage="Nenhum registro a ser exibido" 	                             
+	                             	reflow="true" var="item" rows="50" rowIndexVar="rowIndex"  
+	                             	selectionMode="single" rowKey="#{item.nomeAnalista}">	
+							
+							<p:column style="text-align: center; width: 120px; font-size: 11px; font-weight: bold;">
+								<f:facet name="header">
+									<h:outputText value="Nome Analista" />
+								</f:facet>
+								<h:outputText value="#{item.nomeAnalista}" />
+							</p:column>
+							
+							<p:column style="font-size: 11px; width: 110px; text-align: center; font-weight: bold;">
+								<f:facet name="header">
+									<h:outputText value="Chamados Atendidos" />
+								</f:facet>
+								<h:outputText value="#{item.qtdChamados}" />
+							</p:column>								
+							
+						</p:dataTable>
+						
+				   </p:panel>  	        	   
 	        	   
 	        	   <p:panel rendered="#{chamadoEstatisticasControl.listaEstatisticasAtendimentosAnalistas != null and chamadoEstatisticasControl.listaEstatisticasAtendimentosAnalistas.size() > 0}"
 	        	   			toggleable="true" header=" ">	 
@@ -156,23 +188,21 @@
 	                	</f:facet>	    
 	                	
 	                	<p:dataTable value="#{chamadoEstatisticasControl.listaEstatisticasAtendimentosAnalistas}" 
-	                				 id="tabelaEstatisticasAtendimentosAnalistas" paginator="true" 			 			  
-	                            	 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-	                             	 currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
+	                				 id="tabelaEstatisticasAtendimentosAnalistas"  		
 	                             	 emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex"  	                             
 	                             	 rowsPerPageTemplate="10,20,30,40,50" reflow="true" var="item" rows="10"
 	                             	 selectionMode="single" rowKey="#{item.nomeAnalista}">	
 						
-							<p:column style="text-align: center; width: 120px; font-size: 11px;">
+							<p:column style="text-align: center; width: 120px;  font-size: 11px; font-weight: bold;">
 								<f:facet name="header">
-									<h:outputText value="Analista" />
+									<h:outputText value="Nome Analista" />
 								</f:facet>
 								<h:outputText value="#{item.nomeAnalista}" />
 							</p:column>
 							
-							<p:column style="font-size: 11px; width: 110px; text-align: center;">
+							<p:column style=" font-size: 11px; font-weight: bold; width: 110px; text-align: center;">
 								<f:facet name="header">
-									<h:outputText value="Atendimentos" />
+									<h:outputText value="Atendimentos Realizados" />
 								</f:facet>
 								<h:outputText value="#{item.qtdAtendimentos}" />
 							</p:column>								
