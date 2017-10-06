@@ -95,29 +95,58 @@ public class AtendimentoControl extends BaseControl {
 		
 		chamado = (Chamado) atendimentoService.consultarPorChavePrimaria(chamado, chamado.getNrChamado());
 		
-		if(chamado == null){
+		if(chamado == null) {
+			
 			chamado = new Chamado();
-			chamado.setNrChamado(nrChamadoAux);								
+			chamado.setNrChamado(nrChamadoAux);		
+			
+			atendimento = new Atendimento();
+			atendimento.setChamado(chamado);
+			
+			List<Atendimento> listaAtend = new ArrayList<Atendimento>();
+			listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado);					
+			atendimento.setNrSq(new Long((listaAtend != null && !listaAtend.isEmpty()) 
+								? (listaAtend.size()+1) 
+								: 1));
+		
 		} else {
-			chamado.setListaAtendimentos(new ArrayList<Atendimento>());
+			
+			chamado.setListaAtendimentos(new ArrayList<Atendimento>());			
 			chamado.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamado));
-		}
-		
-		nrChamadoAux = null;	
+			
+			atendimento = new Atendimento();
+			
+			if(chamado.getListaAtendimentos() != null
+					&& !chamado.getListaAtendimentos().isEmpty()) {				
 				
+				if(chamado.getListaAtendimentos().get(0).getDhRespostaCliente() == null) {					
+					
+					atendimento = chamado.getListaAtendimentos().get(0);
+					
+				} else {	
+					
+					atendimento.setChamado(chamado);
+					List<Atendimento> listaAtend = new ArrayList<Atendimento>();
+					listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado);					
+					atendimento.setNrSq(new Long((listaAtend != null && !listaAtend.isEmpty()) 
+										? (listaAtend.size()+1) 
+										: 1));
+				}	
+				
+			} else {
+				
+				atendimento.setChamado(chamado);
+				List<Atendimento> listaAtend = new ArrayList<Atendimento>();
+				listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado);					
+				atendimento.setNrSq(new Long((listaAtend != null && !listaAtend.isEmpty()) 
+								    ? (listaAtend.size()+1) 
+								    : 1));
+			}
+		}		
+		
+		nrChamadoAux = null;					
 		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
-		Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado");
-		
-		atendimento = new Atendimento();
-		atendimento.setChamado(chamado);
-		
-		List<Atendimento> listaAtend = new ArrayList<Atendimento>();
-		listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado);
-		
-		atendimento.setNrSq(new Long((listaAtend != null && !listaAtend.isEmpty()) 
-									  ? (listaAtend.size()+1) 
-									  : 1));
-		
+		Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado");				
 		atendimento.setNomeAnalista(usuarioLogado.getNomeCompleto());
 									
 		return null;
