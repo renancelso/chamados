@@ -92,6 +92,58 @@
 <script>var init = [];</script>
 
 
+<h:form id="formDialogs">
+
+	<p:dialog header="Sessão Expirada" widgetVar="dialogSessaoExpirada"
+		modal="true" height="130" draggable="false"
+		width="300" resizable="false;" closable="false"
+		id="dialogSessaoExpirada" style="z-index: 9999;">
+
+		<center>
+			<br />
+			<h:outputText value="Sua sessão expirou!" />
+			<br />
+			<h:outputText value="É necessário logar novamente." />
+			<br />
+			
+			<p:commandButton value="Login" type="success"
+				title="Ir para tela de Login" styleClass="btn btn-success"
+				ajax="false" update="@(form)" style="margin-top: 10px;"
+				onclick="PF('dialogSessaoExpirada').hide();" 
+				action="#{sessionControl.deslogar()}"/>					
+				
+		</center>
+
+	</p:dialog>
+
+	<p:dialog header="Sessão Expirando..." widgetVar="dialogSessaoVaiExpirar"
+		modal="true" height="130" draggable="false"
+		width="300" resizable="false;" closable="false"
+		id="dialogSessaoVaiExpirar" style="z-index: 9999;">
+
+		<center>
+			<h:outputText class="sessionTimer" />
+			<br />
+			<h:outputText value="Deseja renovar a sessão?" />
+			<br />
+			<p:commandButton value="Sim" type="success" title="Sim"
+				styleClass="btn btn-success" ajax="false" update="@(form)"
+				style="margin-top: 10px;"
+				onclick="PF('dialogSessaoVaiExpirar').hide();"
+				action="#{sessionControl.renovarSessao()}" />
+
+			<p:commandButton value="Não" type="success" title="Não"
+				styleClass="btn btn-success" ajax="false" update="@(form)"
+				style="margin-top: 10px; margin-left: 30px;"
+				onclick="PF('dialogSessaoVaiExpirar').hide();"
+				action="#{sessionControl.invalidateSession()}" />
+		</center>
+
+	</p:dialog>
+
+</h:form>
+
+
 <div id="main-wrapper">
 
 	<div id="main-navbar" class="navbar navbar-inverse" role="navigation">
@@ -107,7 +159,7 @@
 					<div style="margin-left: 50px;">
 						<img alt="" src="assets/images/logo.png"/>						
 					</div>		
-					CHAMADOS-WEB
+					#CwBasaSust
 				</a>
 		
 				<button type="button" class="navbar-toggle collapsed"						
