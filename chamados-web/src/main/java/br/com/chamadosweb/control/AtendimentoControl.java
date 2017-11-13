@@ -58,11 +58,10 @@ public class AtendimentoControl extends BaseControl {
 		
 		listaNomesAnalistas = new ArrayList<String>();		
 		listaNomesAnalistas = (List<String>) atendimentoService.consultarPorQuery
-											("SELECT distinct(o.nomeAnalista) FROM Atendimento o "
-											+"where o.nomeAnalista is not null and o.nomeAnalista <> '' "
-											+"and o.nomeAnalista in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
-											+"order by o.nomeAnalista", 0, 0);	
-		
+												("SELECT distinct(o.nomeCompleto) FROM Usuario o order by o.nomeCompleto",
+												 0, 
+												 0);
+					
 		listaEncaminhadoresJaCadastrados = new ArrayList<String>();
 		listaEncaminhadoresJaCadastrados = (List<String>) atendimentoService.consultarPorQuery
 									("SELECT distinct(o.encaminhador) FROM Atendimento o order by o.encaminhador", 0, 0);	
