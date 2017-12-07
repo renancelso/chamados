@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.padrao.Md5;
 import br.com.chamadosweb.service.LoginServiceLocal;
+import br.com.chamadosweb.service.model.Empresa;
 import br.com.chamadosweb.service.model.Usuario;
 
 /**
@@ -40,6 +41,8 @@ public class LoginControl extends BaseControl {
 	private String senhaLogar;
 	
 	private String senhaMestra;
+	
+	private Long codigoEmpresaNovoUsuario;
 		
 	@PostConstruct
 	public void init() {		
@@ -98,7 +101,16 @@ public class LoginControl extends BaseControl {
 				
 			novoUsuario.setTipoUsuario("PADRAO");			
 			novoUsuario.setSituacao("A");			
-			novoUsuario.setDataHoraAtualizacao(new Date());			
+			novoUsuario.setDataHoraAtualizacao(new Date());		
+			
+			try {
+				Empresa empresa = new Empresa();
+				novoUsuario.setEmpresa(new Empresa());
+				novoUsuario.setEmpresa((Empresa) loginService.consultarPorChavePrimaria(empresa, codigoEmpresaNovoUsuario));
+			} catch(Exception e){
+				log.error(e);
+			}
+			
 			novoUsuario = (Usuario) loginService.atualizar(novoUsuario);
 			
 			addInfoMessage("Usuário "+novoUsuario.getLogin()+" ("+novoUsuario.getEmail()+") cadastrado com sucesso");						
@@ -289,6 +301,18 @@ public class LoginControl extends BaseControl {
 
 	public void setSenhaMestra(String senhaMestra) {
 		this.senhaMestra = senhaMestra;
+	}
+
+
+
+	public Long getCodigoEmpresaNovoUsuario() {
+		return codigoEmpresaNovoUsuario;
+	}
+
+
+
+	public void setCodigoEmpresaNovoUsuario(Long codigoEmpresaNovoUsuario) {
+		this.codigoEmpresaNovoUsuario = codigoEmpresaNovoUsuario;
 	}
 	
 }

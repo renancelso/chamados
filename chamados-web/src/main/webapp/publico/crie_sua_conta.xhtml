@@ -60,7 +60,17 @@
 				<center>
 				
 					<div class="form-group w-icon">
-						<h:panelGrid columns="4">									
+						<h:panelGrid columns="4">
+							
+							<h:outputText value="Empresa " style="font-size: 16px !important; font-weight: bold !important; "/>						
+							<h:selectOneMenu value="#{loginControl.codigoEmpresaNovoUsuario}"
+									         style="width: 200px;">								
+								<f:selectItem itemValue="1" itemLabel="1 - BASA" />
+								<f:selectItem itemValue="2" itemLabel="2 - BANPARÁ" />								
+							</h:selectOneMenu>	
+							<h:outputText value=" " style="font-size: 16px !important; font-weight: bolder !important; color: red; margin-left: 10px !important;"/>
+							<p:spacer height="45"></p:spacer>				
+																
 							<h:outputText value="Nome " style="font-size: 16px !important; font-weight: bold !important; "/>						
 							<h:inputText styleClass="form-control" size="30"
 										 style="padding-left: 3px !important; margin-left: 3px !important;"
