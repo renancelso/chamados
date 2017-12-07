@@ -9,7 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -81,6 +83,10 @@ public class Chamado implements Serializable {
 	
 	@Column(name = "qtdAtendimentos")
 	private Long qtdAtendimentos;
+		
+	@ManyToOne
+	@JoinColumn(name="empresa")		
+	private Empresa empresa; 
 
 	public Long getNrChamado() {
 		return nrChamado;
@@ -216,6 +222,14 @@ public class Chamado implements Serializable {
 
 	public void setQtdAtendimentos(Long qtdAtendimentos) {
 		this.qtdAtendimentos = qtdAtendimentos;
+	}
+		
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 	@Override
