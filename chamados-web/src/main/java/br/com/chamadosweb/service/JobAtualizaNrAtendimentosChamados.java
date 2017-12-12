@@ -27,7 +27,23 @@ public class JobAtualizaNrAtendimentosChamados implements Job{
 			
 			AtendimentoServiceLocal atendimentoService = lookup();
 			List<Chamado> listaChamados = new ArrayList<Chamado>();			
-			listaChamados = atendimentoService.consultarChamados(new Chamado(), null, null, null);	
+			listaChamados = atendimentoService.consultarChamados(new Chamado(), null, null, new Long(1));	
+			
+			if(listaChamados != null && !listaChamados.isEmpty()) {
+				for (Chamado chamado : listaChamados) {
+					
+					long qtdAtendimentos = chamado.getQtdAtendimentos();		
+															
+					chamado.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamado, chamado.getId().getEmpresa()));
+					
+					if(qtdAtendimentos != chamado.getQtdAtendimentos()){
+						atendimentoService.atualizar(chamado);
+					}
+					
+				}
+			}		
+				
+			listaChamados = atendimentoService.consultarChamados(new Chamado(), null, null, new Long(2));	
 			
 			if(listaChamados != null && !listaChamados.isEmpty()) {
 				for (Chamado chamado : listaChamados) {
@@ -41,7 +57,7 @@ public class JobAtualizaNrAtendimentosChamados implements Job{
 					}
 					
 				}
-			}
+			}	
 			
 						
 		} catch (Exception e) {

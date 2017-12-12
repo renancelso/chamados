@@ -34,11 +34,13 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			List<Chamado> listaChamados = new ArrayList<Chamado>();
 					
 			StringBuilder sql = new StringBuilder();
-			sql.append("select o from ").append(Chamado.class.getSimpleName()).append(" o where 1=1");			
+			sql.append("select o from ").append(Chamado.class.getSimpleName()).append(" o where 1=1");		
 			
-			if(chamadoFiltroConsulta.getId().getNrChamado() != null && chamadoFiltroConsulta.getId().getNrChamado() > 0){
-				sql.append(" and o.id.nrChamado = ").append(chamadoFiltroConsulta.getId().getNrChamado());
-			}		
+			if(chamadoFiltroConsulta.getId() != null){			
+				if(chamadoFiltroConsulta.getId().getNrChamado() != null && chamadoFiltroConsulta.getId().getNrChamado() > 0){
+					sql.append(" and o.id.nrChamado = ").append(chamadoFiltroConsulta.getId().getNrChamado());
+				}	
+			}
 			
 			if(dataAberturaInicio != null && dataAberturaFinal != null){
 				sql.append(" and (o.dataAbertura >= '").append(sdf.format(dataAberturaInicio)).append("'");
@@ -111,7 +113,7 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			sql.append(" and o.nrChamado = ").append(chamado.getId().getNrChamado());	
 			
 			if(empresa != null && empresa != 0) {
-				sql.append("and o.empresa = ").append(empresa);
+				sql.append(" and o.empresa = ").append(empresa);
 			}
 			
 			sql.append(" order by o.nrSq desc");

@@ -40,7 +40,7 @@ public class IniciaJobsControl {
 			JobDetail job = JobBuilder.newJob(JobAtualizaNrAtendimentosChamados.class).withIdentity("JobAtualizaNrAtendimentosChamados", "grupo1").build();			
 			Trigger trigger = TriggerBuilder.newTrigger()
 												.withIdentity("triggerJobAtualizaNrAtendimentosChamados", "grupo1")
-												.withSchedule(CronScheduleBuilder.cronSchedule("0 0/2 * * * ?"))
+												.withSchedule(CronScheduleBuilder.cronSchedule("0 0/20 * * * ?"))
 												.build();
 			
 			sched.scheduleJob(job, trigger);			
