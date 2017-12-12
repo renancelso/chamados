@@ -19,7 +19,7 @@
 
             
                <p:panel style="min-height: 1000px; min-width: 270px;"
-                		 rendered="#{chamadoConsultaControl.chamadoDetalhar == null or chamadoConsultaControl.chamadoDetalhar.nrChamado == null}">
+                		 rendered="#{chamadoConsultaControl.chamadoDetalhar == null or chamadoConsultaControl.chamadoDetalhar.id.nrChamado == null}">
                 	  
               		<p:panel header="Filtros para Consulta">
               		
@@ -28,10 +28,10 @@
 	          				<h:outputText value="Nº do Chamado: " style="font-weight: bold !important; "/>  
 	          				<h:panelGrid columns="2" columnClasses="coluna2,coluna1">	
 								
-								<h:inputText value="#{chamadoConsultaControl.chamadoFiltroConsulta.nrChamado}" 
+								<h:inputText value="#{chamadoConsultaControl.chamadoFiltroConsulta.id.nrChamado}" 
 											 onkeypress="mascara(this, soNumeros)" size="12"/>	
 											 
-								<p:commandButton value="Cadastrar Chamado #{chamadoConsultaControl.chamadoNovo.nrChamado}" update="@form" 
+								<p:commandButton value="Cadastrar Chamado #{chamadoConsultaControl.chamadoNovo.id.nrChamado}" update="@form" 
 												 id="btNovoChamado" styleClass="signin-btn"
 												 style="font-weight: bold; margin-left: 15px;"
 												 action="#{chamadoConsultaControl.iniciarCadastramentoChamado()}" 
@@ -102,13 +102,13 @@
 	                             emptyMessage="Nenhum registro a ser exibido"
 	                             rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 
 	                             rowsPerPageTemplate="10,20,30,40,50" selection="#{chamadoConsultaControl.chamadoDetalhar}"
-	                             selectionMode="single" rowKey="#{item.nrChamado}">								  
+	                             selectionMode="single" rowKey="#{item.id.nrChamado}">								  
 						
 						<p:column style="text-align: center;font-size: 11px; width: 80px;">
 							<f:facet name="header">
 								<h:outputText value="Chamado" />
 							</f:facet>
-							<h:outputText value="#{item.nrChamado}" />
+							<h:outputText value="#{item.id.nrChamado}" />
 						</p:column>
 						
 						<p:column style="font-size: 11px; width: 110px; text-align: center;">
@@ -195,8 +195,8 @@
                 
                 <p:panel style="min-height: 1000px; min-width: 270px;"
                 		 rendered="#{chamadoConsultaControl.chamadoDetalhar != null 
-                		 			 and chamadoConsultaControl.chamadoDetalhar.nrChamado != null 
-                		 			 and chamadoConsultaControl.chamadoDetalhar.nrChamado > 0}">	                	 
+                		 			 and chamadoConsultaControl.chamadoDetalhar.id.nrChamado != null 
+                		 			 and chamadoConsultaControl.chamadoDetalhar.id.nrChamado > 0}">	                	 
 			          	
                 		<p:commandButton value="Voltar" update="@form" 
 									     id="bVoltar" styleClass="signin-btn"
@@ -209,7 +209,7 @@
 								 		 
 						<p:spacer height="50"/>		
 						
-						<p:panel header="Chamado #{chamadoConsultaControl.chamadoDetalhar.nrChamado}"
+						<p:panel header="Chamado #{chamadoConsultaControl.chamadoDetalhar.id.nrChamado}"
                 				 toggleable="true" >
                 			 
 	               			 <h:panelGrid columns="2" columnClasses="coluna1,coluna2">
@@ -306,7 +306,7 @@
 						<p:dataTable var="item" value="#{chamadoConsultaControl.listaAtendimentosDetalhes}">
 						 		
 						 	<f:facet name="header">
-					           Atendimentos realizados no chamado #{chamadoConsultaControl.chamadoDetalhar.nrChamado}
+					           Atendimentos realizados no chamado #{chamadoConsultaControl.chamadoDetalhar.id.nrChamado}
 					        </f:facet>	
 						 										
 						 	<p:column style="width:40px">
@@ -356,7 +356,7 @@
 				            	<h:panelGrid columns="2" columnClasses="coluna1,coluna2">  
 						
 									<h:outputText value="Chamado: " style="font-weight: bold !important;"/>	                			
-									<h:inputText value="#{item.chamado.nrChamado}" 
+									<h:inputText value="#{item.chamado.id.nrChamado}" 
 												 onkeypress="mascara(this, soNumeros)" size="8" readonly="true"
 											     style="font-weight: bold !important; color: red !important;"/>            			                			 
 		               			 	               			 

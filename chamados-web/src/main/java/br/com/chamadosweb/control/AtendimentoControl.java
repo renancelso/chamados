@@ -16,6 +16,7 @@ import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.ChamadoPK;
 import br.com.chamadosweb.service.model.Usuario;
 
 /**
@@ -32,6 +33,7 @@ public class AtendimentoControl extends BaseControl {
 	private AtendimentoServiceLocal atendimentoService;
 	
 	private Chamado chamado;	
+	
 	private Atendimento atendimento;
 	
 	private String dataAtendimentoTransferidoEquipe;
@@ -50,6 +52,7 @@ public class AtendimentoControl extends BaseControl {
 	@PostConstruct
 	public void init() {
 		chamado = new Chamado();
+		chamado.setId(new ChamadoPK());
 		atendimento = new Atendimento();		
 		dataAtendimentoTransferidoEquipe = "";		
 		horaAtendimentoTransferidoEquipe = "";		
@@ -58,18 +61,20 @@ public class AtendimentoControl extends BaseControl {
 		
 		listaNomesAnalistas = new ArrayList<String>();		
 		listaNomesAnalistas = (List<String>) atendimentoService.consultarPorQuery
-												("SELECT distinct(o.nomeCompleto) FROM Usuario o order by o.nomeCompleto",
+												("SELECT distinct(o.nomeCompleto) FROM Usuario o where o.empresa = "+getUsuarioLogado().getEmpresa().getId()+" order by o.nomeCompleto",
 												 0, 
-												 0);
-					
+												 0);					
 		listaEncaminhadoresJaCadastrados = new ArrayList<String>();
 		listaEncaminhadoresJaCadastrados = (List<String>) atendimentoService.consultarPorQuery
-									("SELECT distinct(o.encaminhador) FROM Atendimento o order by o.encaminhador", 0, 0);	
+												("SELECT distinct(o.encaminhador) FROM Atendimento o where o.chamado.id.empresa = "+getUsuarioLogado().getEmpresa().getId()+" order by o.encaminhador",
+												 0, 
+												 0);	
 	}
 	
 	@SuppressWarnings("unchecked")
 	public String limpar(){
 		chamado = new Chamado();
+		chamado.setId(new ChamadoPK());
 		atendimento = new Atendimento();		
 		dataAtendimentoTransferidoEquipe = "";		
 		horaAtendimentoTransferidoEquipe = "";		
@@ -83,27 +88,40 @@ public class AtendimentoControl extends BaseControl {
 	
 	public String buscarChamado() {
 		
-		Long nrChamadoAux = chamado.getNrChamado();		
+		Long nrChamadoAux = chamado.getId().getNrChamado() ;		
 				
 		if(nrChamadoAux == null || nrChamadoAux == 0){
 			addErrorMessage("Informe um chamado.");
 			chamado = new Chamado();
-			chamado.setNrChamado(null);		
+			chamado.getId().setNrChamado(null);		
 			return null;
 		}
 		
-		chamado = (Chamado) atendimentoService.consultarPorChavePrimaria(chamado, chamado.getNrChamado());
+		chamado.getId().setNrChamado(nrChamadoAux);
+		chamado.getId().setEmpresa(getUsuarioLogado().getEmpresa().getId());		
+		
+		chamado = (Chamado) atendimentoService.consultarPorChavePrimaria(chamado, chamado.getId());		
+		
+		if(chamado != null){
+			if(chamado.getId() != null){
+				if(chamado.getId().getEmpresa() != getUsuarioLogado().getEmpresa().getId()){
+					chamado = null;
+				}	
+			}
+		}
 		
 		if(chamado == null) {
 			
 			chamado = new Chamado();
-			chamado.setNrChamado(nrChamadoAux);		
+			chamado.setId(new ChamadoPK());
+			chamado.getId().setNrChamado(nrChamadoAux);		
+			chamado.getId().setEmpresa(getUsuarioLogado().getEmpresa().getId());
 			
 			atendimento = new Atendimento();
 			atendimento.setChamado(chamado);
 			
 			List<Atendimento> listaAtend = new ArrayList<Atendimento>();
-			listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado);					
+			listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado, getUsuarioLogado().getEmpresa().getId());					
 			atendimento.setNrSq(new Long((listaAtend != null && !listaAtend.isEmpty()) 
 								? (listaAtend.size()+1) 
 								: 1));
@@ -111,7 +129,7 @@ public class AtendimentoControl extends BaseControl {
 		} else {
 			
 			chamado.setListaAtendimentos(new ArrayList<Atendimento>());			
-			chamado.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamado));
+			chamado.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamado,getUsuarioLogado().getEmpresa().getId()));
 			
 			atendimento = new Atendimento();
 			
@@ -126,7 +144,7 @@ public class AtendimentoControl extends BaseControl {
 					
 					atendimento.setChamado(chamado);
 					List<Atendimento> listaAtend = new ArrayList<Atendimento>();
-					listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado);					
+					listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado,getUsuarioLogado().getEmpresa().getId());					
 					atendimento.setNrSq(new Long((listaAtend != null && !listaAtend.isEmpty()) 
 										? (listaAtend.size()+1) 
 										: 1));
@@ -136,7 +154,7 @@ public class AtendimentoControl extends BaseControl {
 				
 				atendimento.setChamado(chamado);
 				List<Atendimento> listaAtend = new ArrayList<Atendimento>();
-				listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado);					
+				listaAtend = atendimentoService.consultarAtendimentosPorChamado(chamado,getUsuarioLogado().getEmpresa().getId());					
 				atendimento.setNrSq(new Long((listaAtend != null && !listaAtend.isEmpty()) 
 								    ? (listaAtend.size()+1) 
 								    : 1));
@@ -160,7 +178,7 @@ public class AtendimentoControl extends BaseControl {
 			
 			try {
 				Long qtdAtendimentos = chamado.getQtdAtendimentos();
-				chamado.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamado));
+				chamado.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamado,getUsuarioLogado().getEmpresa().getId()));
 				
 				if(qtdAtendimentos != chamado.getQtdAtendimentos()){
 					atendimentoService.atualizar(chamado);
@@ -169,12 +187,14 @@ public class AtendimentoControl extends BaseControl {
 				e.printStackTrace();
 			}
 			
+			chamado.getId().setEmpresa(usuarioLogado.getEmpresa().getId());		
+					
 			chamado.setLoginUsuAtu(usuarioLogado.getLogin());			
 			chamado.setDhAtu(new Date());	
 			
 			atendimentoService.atualizar(chamado);
 			
-			addInfoMessage("Chamado "+chamado.getNrChamado()+" atualizado com sucesso.");			 
+			addInfoMessage("Chamado "+chamado.getId().getNrChamado() +" atualizado com sucesso.");			 
 		} catch(Exception e){
 			addErrorMessage("Erro ao atualizar chamado."+e.getMessage());
 		}
@@ -209,6 +229,8 @@ public class AtendimentoControl extends BaseControl {
     		
     		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
 			Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado"); 
+						
+			chamado.getId().setEmpresa(usuarioLogado.getEmpresa().getId());	
 			
 			chamado.setLoginUsuAtu(usuarioLogado.getLogin());
 			chamado.setDhAtu(new Date());
@@ -223,7 +245,7 @@ public class AtendimentoControl extends BaseControl {
 			
 			try {
 				Long qtdAtendimentos = chamado.getQtdAtendimentos();
-				chamado.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamado));
+				chamado.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamado,getUsuarioLogado().getEmpresa().getId()));
 				
 				if(qtdAtendimentos != chamado.getQtdAtendimentos()){
 					atendimentoService.atualizar(chamado);
@@ -232,7 +254,7 @@ public class AtendimentoControl extends BaseControl {
 				e.printStackTrace();
 			}
 			
-			addInfoMessage("Atendimento "+atendimento.getNrSq()+" incluído com sucesso no chamado "+chamado.getNrChamado());	
+			addInfoMessage("Atendimento "+atendimento.getNrSq()+" incluído com sucesso no chamado "+chamado.getId().getNrChamado() );	
 			
 			limpar();
 			
@@ -272,7 +294,7 @@ public class AtendimentoControl extends BaseControl {
 //	            		
 //	            		chamado = new Chamado();
 //	            		
-//	            		chamado.setNrChamado(cw);
+//	            		chamado.getId().setNrChamado(cw);
 //		            	try{
 //		            		chamado.setAmbiente(campos[10]);
 //	            		} catch(Exception e){

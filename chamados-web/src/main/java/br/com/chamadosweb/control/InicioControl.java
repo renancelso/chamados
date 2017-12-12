@@ -61,7 +61,8 @@ public class InicioControl extends BaseControl{
 		
 		listaAtendimentosHoje = atendimentoService.consultarAtendimentosPorFiltros(hoje.getTime(), 
 																				   null, 
-																				   new Atendimento());			
+																				   new Atendimento(),
+																				   getUsuarioLogado().getEmpresa().getId());			
 		
 		listaChamadosHoje = new ArrayList<Chamado>();
 		if(listaAtendimentosHoje != null && !listaAtendimentosHoje.isEmpty()) {			
@@ -79,14 +80,16 @@ public class InicioControl extends BaseControl{
 			ontem.add(Calendar.DAY_OF_MONTH, -1);				
 			listaAtendimentosOntem = atendimentoService.consultarAtendimentosPorFiltros(ontem.getTime(), 
 																						hoje.getTime(), 
-																					    new Atendimento());	
+																					    new Atendimento(),
+																					    getUsuarioLogado().getEmpresa().getId());	
 		} while ((ontem.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY 
 				 || ontem.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
 				&& (listaAtendimentosOntem == null || listaAtendimentosOntem.isEmpty()));
 		
 		listaAtendimentosOntem = atendimentoService.consultarAtendimentosPorFiltros(ontem.getTime(), 
 																					hoje.getTime(), 
-																				    new Atendimento());			
+																				    new Atendimento(),
+																				    getUsuarioLogado().getEmpresa().getId());			
 		
 		listaChamadosOntem = new ArrayList<Chamado>();
 		if(listaAtendimentosOntem != null && !listaAtendimentosOntem.isEmpty()) {			

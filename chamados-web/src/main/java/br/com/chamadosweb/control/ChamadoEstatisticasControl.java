@@ -14,6 +14,7 @@ import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.ChamadoPK;
 import br.com.chamadosweb.service.model.dto.EstatisticasAtendimentosAnalistas;
 import br.com.chamadosweb.service.model.dto.EstatisticasChamadosAnalistas;
 
@@ -56,9 +57,11 @@ public class ChamadoEstatisticasControl extends BaseControl {
 		
 		atendimentoFiltroConsulta = new Atendimento();
 		atendimentoFiltroConsulta.setChamado(new Chamado());
-		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
-				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
-			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		atendimentoFiltroConsulta.getChamado().setId(new ChamadoPK());		
+		
+		if(atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == null
+				|| atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == 0){
+			atendimentoFiltroConsulta.getChamado().getId().setNrChamado(null);			
 		}
 		
 		Calendar c = Calendar.getInstance();
@@ -95,7 +98,8 @@ public class ChamadoEstatisticasControl extends BaseControl {
 						
 		listaAtendimentosConsulta = atendimentoService.consultarAtendimentosPorFiltros(dataRespostaClienteInicial, 
 																					   dataRespostaClienteFinal, 
-																					   atendimentoFiltroConsulta);		
+																					   atendimentoFiltroConsulta,
+																					   getUsuarioLogado().getEmpresa().getId());		
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		if(listaAtendimentosConsulta != null && !listaAtendimentosConsulta.isEmpty()) {			
 			for (Atendimento atendimento : listaAtendimentosConsulta) {
@@ -108,14 +112,16 @@ public class ChamadoEstatisticasControl extends BaseControl {
 		listaEstatisticasAtendimentosAnalistas = new ArrayList<EstatisticasAtendimentosAnalistas>();
 		listaEstatisticasAtendimentosAnalistas = atendimentoService.consultarEstatisticasQAtendimentosAnalistas(dataRespostaClienteInicial, 
 																												dataRespostaClienteFinal, 
-																												atendimentoFiltroConsulta);
+																												atendimentoFiltroConsulta,
+																												getUsuarioLogado().getEmpresa().getId());
 		
 		
 		listaEstatisticasChamadosAnalistas = new ArrayList<EstatisticasChamadosAnalistas>();
 		
 		listaEstatisticasChamadosAnalistas = atendimentoService.consultarEstatisticasQChamadosAnalistas(dataRespostaClienteInicial, 
 																										dataRespostaClienteFinal, 
-																										atendimentoFiltroConsulta);
+																										atendimentoFiltroConsulta,
+																										getUsuarioLogado().getEmpresa().getId());
 		
 		qtdAtendimentosConsulta = new Long(0);
 		
@@ -123,9 +129,9 @@ public class ChamadoEstatisticasControl extends BaseControl {
 			qtdAtendimentosConsulta += est.getQtdAtendimentos();			
 		}
 		
-		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
-				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
-			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		if(atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == null
+				|| atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == 0){
+			atendimentoFiltroConsulta.getChamado().getId().setNrChamado(null);			
 		}
 		
 		if(listaAtendimentosConsulta == null || listaAtendimentosConsulta.isEmpty()){
@@ -138,11 +144,14 @@ public class ChamadoEstatisticasControl extends BaseControl {
 	}
 	
 	public String limpar() {
+		
 		atendimentoFiltroConsulta = new Atendimento();
 		atendimentoFiltroConsulta.setChamado(new Chamado());
-		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
-				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
-			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		atendimentoFiltroConsulta.getChamado().setId(new ChamadoPK());
+		
+		if(atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == null
+				|| atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == 0){
+			atendimentoFiltroConsulta.getChamado().getId().setNrChamado(null);			
 		}
 		
 		Calendar c = Calendar.getInstance();

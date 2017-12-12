@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -34,7 +35,10 @@ public class Atendimento implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="nrChamado", nullable = false)	
+	@JoinColumns({
+		@JoinColumn(name="nrChamado", referencedColumnName="nrChamado", insertable=true, updatable=true),
+		@JoinColumn(name="empresa", referencedColumnName="empresa" , insertable=true, updatable=true),		
+		})	
 	@Index(name = "index_atend_nrChamado")
 	private Chamado chamado; 
 		
@@ -69,6 +73,7 @@ public class Atendimento implements Serializable {
 	
 	@Column(name = "loginUsuAtu")
 	private String loginUsuAtu; 
+		
 
 	public Long getId() {
 		return id;
@@ -148,8 +153,8 @@ public class Atendimento implements Serializable {
 
 	public void setLoginUsuAtu(String loginUsuAtu) {
 		this.loginUsuAtu = loginUsuAtu;
-	}
-
+	}	
+		
 	@Override
 	public int hashCode() {
 		final int prime = 31;

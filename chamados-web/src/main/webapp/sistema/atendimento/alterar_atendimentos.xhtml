@@ -24,7 +24,7 @@
                 	                	
                 		<h:outputText value="Buscar Atendimentos do Chamado Nº: " style="font-weight: bold !important; "/>
                 		<p:spacer width="10"/>			
-						<h:inputText value="#{atendimentoAlteracaoControl.chamadoBuscar.nrChamado}" 
+						<h:inputText value="#{atendimentoAlteracaoControl.chamadoBuscar.id.nrChamado}" 
 									 onkeypress="mascara(this, soNumeros)"/>
 						<p:spacer width="20"/>			
 						<p:commandButton value="Buscar" update="@form" id="btBuscarAtendimentos" 
@@ -64,7 +64,7 @@
 							<f:facet name="header">
 								<h:outputText value="Chamado" />
 							</f:facet>
-							<h:outputText value="#{item.chamado.nrChamado}" />
+							<h:outputText value="#{item.chamado.id.nrChamado}" />
 						</p:column>
 						
 						<p:column style="text-align: center; width: 90px;font-size: 11px;">
@@ -130,7 +130,7 @@
 						<h:panelGrid columns="2" columnClasses="coluna1,coluna2">   
 						
 							<h:outputText value="Chamado: " style="font-weight: bold !important;"/>	                			
-							<h:inputText value="#{atendimentoAlteracaoControl.atendimentoDetalhar.chamado.nrChamado}" 
+							<h:inputText value="#{atendimentoAlteracaoControl.atendimentoDetalhar.chamado.id.nrChamado}" 
 										 onkeypress="mascara(this, soNumeros)" size="8" readonly="true"
 									     style="font-weight: bold !important; color: red !important;"/>            			                			 
                			 	               			 

@@ -13,7 +13,7 @@ import br.com.chamadosweb.service.model.Versao;
 @Local
 public interface VersaoServiceLocal extends GenericServiceInterface{
 
-	public List<Versao> consultarVersoes(Versao versaoFiltro);
+	public List<Versao> consultarVersoes(Versao versaoFiltro, Long empresa);
 
 
 }

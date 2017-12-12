@@ -23,7 +23,7 @@
                 	                	
                 		<h:outputText value="Chamado: " style="font-weight: bold !important; "/>
                 		<p:spacer width="10"/>			
-						<h:inputText value="#{atendimentoControl.chamado.nrChamado}" onkeypress="mascara(this, soNumeros)"/>
+						<h:inputText value="#{atendimentoControl.chamado.id.nrChamado}" onkeypress="mascara(this, soNumeros)"/>
 						<p:spacer width="20"/>			
 						<p:commandButton value="Buscar" update="@form" id="btBuscar" styleClass="signin-btn"
 										 style="font-weight: bold;"
@@ -47,8 +47,8 @@
                 	
                 	<p:spacer height="10"/>
                 	
-                	<p:panel header="Chamado #{atendimentoControl.chamado.nrChamado}"
-                			 rendered="#{atendimentoControl.chamado.nrChamado != null}"
+                	<p:panel header="Chamado #{atendimentoControl.chamado.id.nrChamado}"
+                			 rendered="#{atendimentoControl.chamado.id.nrChamado != null}"
                 			 toggleable="true" >
                 			 
                			 <h:panelGrid columns="2" columnClasses="coluna1,coluna2">
@@ -142,8 +142,8 @@
                			                 	
                 	</p:panel>
                 	                	
-                	<p:panel header="Novo atendimento do chamado #{atendimentoControl.chamado.nrChamado}"                 			
-                			 rendered="#{atendimentoControl.chamado.nrChamado != null}">
+                	<p:panel header="Novo atendimento do chamado #{atendimentoControl.chamado.id.nrChamado}"                 			
+                			 rendered="#{atendimentoControl.chamado.id.nrChamado != null}">
                 	
                 		 <h:panelGrid columns="2" columnClasses="coluna1,coluna2">               			                			 
                			 	               			 
@@ -210,14 +210,14 @@
               	 	
               	 	<p:spacer height="120"/>
               	 	
-              	 	<p:panel header="Atendimento já realizados no chamado #{atendimentoControl.chamado.nrChamado}"
-                			 rendered="#{atendimentoControl.chamado.nrChamado != null}"
+              	 	<p:panel header="Atendimento já realizados no chamado #{atendimentoControl.chamado.id.nrChamado}"
+                			 rendered="#{atendimentoControl.chamado.id.nrChamado != null}"
                 			 toggleable="true">
                 		
                 		<p:dataTable var="item" value="#{atendimentoControl.chamado.listaAtendimentos}">
 						 		
 						 	<f:facet name="header">
-					          Histórico de atendimentos realizados no chamado #{atendimentoControl.chamado.nrChamado}
+					          Histórico de atendimentos realizados no chamado #{atendimentoControl.chamado.id.nrChamado}
 					        </f:facet>	
 						 										
 						 	<p:column style="width:40px">
@@ -267,7 +267,7 @@
 				            	<h:panelGrid columns="2" columnClasses="coluna1,coluna2">  
 						
 									<h:outputText value="Chamado: " style="font-weight: bold !important;"/>	                			
-									<h:inputText value="#{item.chamado.nrChamado}" 
+									<h:inputText value="#{item.chamado.id.nrChamado}" 
 												 onkeypress="mascara(this, soNumeros)" size="8" readonly="true"
 											     style="font-weight: bold !important; color: red !important;"/>            			                			 
 		               			 	               			 

@@ -59,7 +59,9 @@ public class LoginControl extends BaseControl {
 	public String cadastrarNovoUsuario() {
 		try {
 			
-			String senhaMestraComparar = "123halas";
+			Empresa emp = new Empresa();
+			emp = (Empresa) loginService.consultarPorChavePrimaria(emp, codigoEmpresaNovoUsuario);			
+			String senhaMestraComparar = emp.getPalavraPasse();
 			
 			if(senhaMestra == null || 
 					(senhaMestra != null && !senhaMestra.equals(senhaMestraComparar))){

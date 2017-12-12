@@ -92,15 +92,15 @@
 	                             	 currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
 	                             	 emptyMessage="Nenhum registro a ser exibido" rowIndexVar="rowIndex" reflow="true" var="item" rows="10" 	                             
 	                             	 rowsPerPageTemplate="10,20,30,40,50" 
-	                             	 selectionMode="single" rowKey="#{item.nrChamado}">	
+	                             	 selectionMode="single" rowKey="#{item.id.nrChamado}">	
 						
 							<p:column style="text-align: center; width: 120px; font-size: 11px;"
-									  filterMatchMode="contains" filterBy="#{item.nrChamado}"
-									  sortBy="#{item.nrChamado}">
+									  filterMatchMode="contains" filterBy="#{item.id.nrChamado}"
+									  sortBy="#{item.id.nrChamado}">
 								<f:facet name="header">
 									<h:outputText value="Chamado" />
 								</f:facet>
-								<h:outputText value="#{item.nrChamado}" />
+								<h:outputText value="#{item.id.nrChamado}" />
 							</p:column>
 							
 							<p:column style="font-size: 11px; width: 120px; text-align: center;">

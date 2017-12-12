@@ -19,22 +19,27 @@ public interface AtendimentoServiceLocal extends GenericServiceInterface{
 
 	public List<Chamado> consultarChamados(Chamado chamadoFiltroConsulta, 
 										   Date dataAberturaInicio, 
-										   Date dataAberturaFinal);
+										   Date dataAberturaFinal,
+										   Long empresa);
 
-	public List<Atendimento> consultarAtendimentosPorChamado(Chamado chamado);
+	public List<Atendimento> consultarAtendimentosPorChamado(Chamado chamado, Long empresa);
 	
-	public Long consultarQuantidadeAtendimentosPorChamado(Chamado chamado);
+	public Long consultarQuantidadeAtendimentosPorChamado(Chamado chamado, Long empresa);
 
 	public List<Atendimento> consultarAtendimentosPorFiltros(Date dataRespostaClienteInicial, 
 															 Date dataRespostaClienteFinal, 
-															 Atendimento atendimentoFiltroConsulta);
+															 Atendimento atendimentoFiltroConsulta,
+															 Long empresa);
 
 	public List<EstatisticasAtendimentosAnalistas>  consultarEstatisticasQAtendimentosAnalistas(Date dataRespostaClienteInicial, 
 																							    Date dataRespostaClienteFinal, 
-																							    Atendimento atendimentoFiltroConsulta);
+																							    Atendimento atendimentoFiltroConsulta,
+																							    Long empresa);
 	
 	public List<EstatisticasChamadosAnalistas>  consultarEstatisticasQChamadosAnalistas(Date dataRespostaClienteInicial, 
 																						Date dataRespostaClienteFinal, 
-																						Atendimento atendimentoFiltroConsulta);
+																						Atendimento atendimentoFiltroConsulta,
+																						Long empresa);
+
 
 }

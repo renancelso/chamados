@@ -50,13 +50,13 @@
 		                    <p:ajax event="rowDblselect" listener="#{inicioControl.onRowSelect}" update="@form" 
 		                    		oncomplete="PF('atendimentoSelect').show();"/>     
 		                             
-		                    <p:column sortBy="#{item.chamado.nrChamado}" 
-		                    		  filterMatchMode="contains" filterBy="#{item.chamado.nrChamado}"		                    
+		                    <p:column sortBy="#{item.chamado.id.nrChamado}" 
+		                    		  filterMatchMode="contains" filterBy="#{item.chamado.id.nrChamado}"		                    
 		                    		  style="text-align: center; width: 120px; font-size: 11px;">
 								<f:facet name="header">
 									<h:outputText value="Chamado" />
 								</f:facet>
-								<h:outputText value="#{item.chamado.nrChamado}" />
+								<h:outputText value="#{item.chamado.id.nrChamado}" />
 							</p:column>							
 							
 							<p:column style="text-align: center; width: 90px;font-size: 11px;">
@@ -134,13 +134,13 @@
            		            <p:ajax event="rowDblselect" listener="#{inicioControl.onRowSelect}" update="@form" 
 		                    		oncomplete="PF('atendimentoSelect').show();"/>     
 		                             
-                		    <p:column sortBy="#{item.chamado.nrChamado}" 
-		                    		  filterMatchMode="contains" filterBy="#{item.chamado.nrChamado}"		                    
+                		    <p:column sortBy="#{item.chamado.id.nrChamado}" 
+		                    		  filterMatchMode="contains" filterBy="#{item.chamado.id.nrChamado}"		                    
 		                    		  style="text-align: center; width: 120px; font-size: 11px;">
 								<f:facet name="header">
 									<h:outputText value="Chamado" />
 								</f:facet>
-								<h:outputText value="#{item.chamado.nrChamado}" />
+								<h:outputText value="#{item.chamado.id.nrChamado}" />
 							</p:column>							
 							
 							<p:column style="text-align: center; width: 90px;font-size: 11px;">
@@ -214,11 +214,11 @@
 <!-- 		                             rowsPerPageTemplate="10,20,30,40,50"  -->
 <!-- 		                             selectionMode="single" rowKey="#{item.id}"> -->
 		                             
-<!--                 		    <p:column sortBy="#{item.chamado.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;"> -->
+<!--                 		    <p:column sortBy="#{item.chamado.id.nrChamado}" style="text-align: center; width: 80px;font-size: 11px;"> -->
 <!-- 								<f:facet name="header"> -->
 <!-- 									<h:outputText value="Chamado" /> -->
 <!-- 								</f:facet> -->
-<!-- 								<h:outputText value="#{item.chamado.nrChamado}" /> -->
+<!-- 								<h:outputText value="#{item.chamado.id.nrChamado}" /> -->
 <!-- 							</p:column>							 -->
 							
 <!-- 							<p:column style="text-align: center; width: 90px;font-size: 11px;"> -->
@@ -268,13 +268,13 @@
 							  modal="true" closable="true">	
 			
 							<f:facet name="header">
-								<h:outputText value="ATENDIMENTO #{inicioControl.atendimentoSelect.nrSq} DO CHAMADO #{inicioControl.atendimentoSelect.chamado.nrChamado}" 
+								<h:outputText value="ATENDIMENTO #{inicioControl.atendimentoSelect.nrSq} DO CHAMADO #{inicioControl.atendimentoSelect.chamado.id.nrChamado}" 
 											  style="font-size: 16px; font-weight: bold; color: blue;"/>	
 							</f:facet>	
 							
 							<h:panelGrid columns="1" columnClasses="coluna1">
 								
-								<h:outputText value=" - Chamado #{inicioControl.atendimentoSelect.chamado.nrChamado}" 
+								<h:outputText value=" - Chamado #{inicioControl.atendimentoSelect.chamado.id.nrChamado}" 
 											  style="font-size: 16px; font-weight: bold; color:red;"/>												  
 								
 								<p:editor value="#{inicioControl.atendimentoSelect.chamado.descricao}" 

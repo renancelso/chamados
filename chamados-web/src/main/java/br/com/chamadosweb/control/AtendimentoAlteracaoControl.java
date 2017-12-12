@@ -16,6 +16,7 @@ import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.ChamadoPK;
 import br.com.chamadosweb.service.model.Usuario;
 
 /**
@@ -54,6 +55,7 @@ public class AtendimentoAlteracaoControl extends BaseControl {
 	public void init() {	
 		
 		chamadoBuscar = new Chamado();
+		chamadoBuscar.setId(new ChamadoPK());		
 		listaAtendimentos = new ArrayList<Atendimento>();
 		atendimentoDetalhar = new Atendimento();
 		dataAtendimentoTransferidoEquipe = "";		
@@ -63,17 +65,18 @@ public class AtendimentoAlteracaoControl extends BaseControl {
 		
 		listaNomesAnalistas = new ArrayList<String>();		
 		listaNomesAnalistas = (List<String>) atendimentoService.consultarPorQuery
-												("SELECT distinct(o.nomeCompleto) FROM Usuario o order by o.nomeCompleto",
+												("SELECT distinct(o.nomeCompleto) FROM Usuario o where o.empresa = "+getUsuarioLogado().getEmpresa().getId()+" order by o.nomeCompleto",
 												 0, 
 												 0);	
 		
 		listaEncaminhadoresJaCadastrados = new ArrayList<String>();
 		listaEncaminhadoresJaCadastrados = (List<String>) atendimentoService.consultarPorQuery
-									("SELECT distinct(o.encaminhador) FROM Atendimento o order by o.encaminhador", 0, 0);
+									("SELECT distinct(o.encaminhador) FROM Atendimento o where o.chamado.id.empresa = "+getUsuarioLogado().getEmpresa().getId()+" order by o.encaminhador", 0, 0);
 	}
 	
 	public String limpar(){
 		chamadoBuscar = new Chamado();
+		chamadoBuscar.setId(new ChamadoPK());
 		listaAtendimentos = new ArrayList<Atendimento>();
 		atendimentoDetalhar = new Atendimento();
 		dataAtendimentoTransferidoEquipe = "";		
@@ -89,27 +92,42 @@ public class AtendimentoAlteracaoControl extends BaseControl {
 		
 		listaAtendimentos = new ArrayList<Atendimento>();
 		
-		Long nrChamadoAux = chamadoBuscar.getNrChamado();		
+		Long nrChamadoAux = chamadoBuscar.getId().getNrChamado();		
 		
 		if(nrChamadoAux == null || nrChamadoAux == 0){
 			addErrorMessage("Informe um chamado.");
-			chamadoBuscar = new Chamado();			
+			chamadoBuscar = new Chamado();	
+			chamadoBuscar.setId(new ChamadoPK());
 			return null;
 		}
 		
-		chamadoBuscar = (Chamado) atendimentoService.consultarPorChavePrimaria(chamadoBuscar, chamadoBuscar.getNrChamado());
+		chamadoBuscar.setId(new ChamadoPK());
+		chamadoBuscar.getId().setEmpresa(getUsuarioLogado().getEmpresa().getId());
+		chamadoBuscar.getId().setNrChamado(nrChamadoAux);	
+		
+		chamadoBuscar = (Chamado) atendimentoService.consultarPorChavePrimaria(chamadoBuscar, chamadoBuscar.getId());
+			
+		if(chamadoBuscar != null) {
+			if(chamadoBuscar.getId() != null){
+				if(chamadoBuscar.getId().getEmpresa() != getUsuarioLogado().getEmpresa().getId()){
+					chamadoBuscar = null;
+				}	
+			}
+		}
 				
-		if(chamadoBuscar == null || (chamadoBuscar.getNrChamado() == null || chamadoBuscar.getNrChamado() == 0)) {			
+		if(chamadoBuscar == null || (chamadoBuscar.getId().getNrChamado()  == null || chamadoBuscar.getId().getNrChamado()  == 0)) {			
 			addErrorMessage("Chamado não encontrado. Favor informar um número de chamado válido.");
-			chamadoBuscar = new Chamado();			
+			chamadoBuscar = new Chamado();		
+			chamadoBuscar.setId(new ChamadoPK());
 			return null;		
 		} 
 		
-		listaAtendimentos = atendimentoService.consultarAtendimentosPorChamado(chamadoBuscar);
+		listaAtendimentos = atendimentoService.consultarAtendimentosPorChamado(chamadoBuscar,getUsuarioLogado().getEmpresa().getId());
 		
 		if(listaAtendimentos == null && listaAtendimentos.isEmpty()){
-			addErrorMessage("Não existem atendimentos cadastrados para o chamado"+chamadoBuscar.getNrChamado());
-			chamadoBuscar = new Chamado();				
+			addErrorMessage("Não existem atendimentos cadastrados para o chamado"+chamadoBuscar.getId().getNrChamado() );
+			chamadoBuscar = new Chamado();		
+			chamadoBuscar.setId(new ChamadoPK());
 			return null;
 		}
 						
@@ -173,7 +191,7 @@ public class AtendimentoAlteracaoControl extends BaseControl {
     		
 			atendimentoService.atualizar(atendimentoDetalhar);	
 			
-			addInfoMessage("Atendimento "+atendimentoDetalhar.getNrSq()+" alterado com sucesso no chamado "+atendimentoDetalhar.getChamado().getNrChamado());	
+			addInfoMessage("Atendimento "+atendimentoDetalhar.getNrSq()+" alterado com sucesso no chamado "+atendimentoDetalhar.getChamado().getId().getNrChamado() );	
 			
 		} catch(Exception e){
 			addErrorMessage("Erro ao atualizar atendimento. "+e.getMessage());

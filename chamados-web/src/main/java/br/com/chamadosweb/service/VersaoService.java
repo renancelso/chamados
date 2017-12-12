@@ -18,12 +18,13 @@ public class VersaoService extends GenericService implements VersaoServiceLocal 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Versao> consultarVersoes(Versao versaoFiltro) {
+	public List<Versao> consultarVersoes(Versao versaoFiltro, Long empresa) {
 		
 		List<Versao> listaVersoes = new ArrayList<Versao>();
 		
 		StringBuilder sql = new StringBuilder();
-		sql.append("select o from ").append(Versao.class.getSimpleName()).append(" o where 1 = 1 ");		
+		sql.append("select o from ").append(Versao.class.getSimpleName()).append(" o where 1 = 1 ");	
+		sql.append(" and o.empresa =").append(empresa);
 //		sql.append("");
 //		sql.append("");
 //		sql.append("");

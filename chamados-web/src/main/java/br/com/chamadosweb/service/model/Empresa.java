@@ -2,29 +2,29 @@ package br.com.chamadosweb.service.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-/**
- *
- * @author Renan Celso
- * 
- */
+import java.util.List;
+
+
 @Entity
 @Table(name="empresa")
 public class Empresa implements Serializable {
-	
-	private static final long serialVersionUID = 8401394568372127970L;
+	private static final long serialVersionUID = 1L;
 
 	@Id	
 	@Column(name = "id")
 	private Long id;
 	
 	@Column(name = "nomeEmpresa")
-	private String nomeEmpresa;		
+	private String nomeEmpresa;	
 	
+	@Column(name = "palavraPasse")
+	private String palavraPasse;
+
+	public Empresa() {
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -39,6 +39,14 @@ public class Empresa implements Serializable {
 
 	public void setNomeEmpresa(String nomeEmpresa) {
 		this.nomeEmpresa = nomeEmpresa;
+	}		
+
+	public String getPalavraPasse() {
+		return palavraPasse;
+	}
+
+	public void setPalavraPasse(String palavraPasse) {
+		this.palavraPasse = palavraPasse;
 	}
 
 	@Override
@@ -65,4 +73,5 @@ public class Empresa implements Serializable {
 			return false;
 		return true;
 	}
+		
 }

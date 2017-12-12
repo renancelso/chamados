@@ -5,11 +5,12 @@
 	
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/jdbc/chamadosDS</jta-data-source>
-		<class>br.com.chamadosweb.service.model.Usuario</class>		
-		<class>br.com.chamadosweb.service.model.Chamado</class>
-		<class>br.com.chamadosweb.service.model.Atendimento</class>
+		<class>br.com.chamadosweb.service.model.Usuario</class>
 		<class>br.com.chamadosweb.service.model.Versao</class>
-		<class>br.com.chamadosweb.service.model.Empresa</class>
+		<class>br.com.chamadosweb.service.model.Empresa</class>		
+		<class>br.com.chamadosweb.service.model.Chamado</class>
+		<class>br.com.chamadosweb.service.model.ChamadoPK</class>	
+		<class>br.com.chamadosweb.service.model.Atendimento</class>	
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<shared-cache-mode>NONE</shared-cache-mode>			
 		<properties>		

@@ -12,7 +12,6 @@ import org.primefaces.event.SelectEvent;
 
 import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.VersaoServiceLocal;
-import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Versao;
 
 /**
@@ -39,18 +38,20 @@ public class VersaoHistoricoControl extends BaseControl {
 	@PostConstruct
 	public void init() {		
 		listaVersoes = new ArrayList<Versao>();		
-		listaVersoes = versaoService.consultarVersoes(versaoFiltro);	
+		listaVersoes = versaoService.consultarVersoes(versaoFiltro, getUsuarioLogado().getEmpresa().getId());	
 		mostrarLista = true;
 	}
 		
 	public String iniciarInclusaoNovaVersao() {		
 		mostrarLista = false;		
-		versaoIncluir = new Versao();		
+		versaoIncluir = new Versao();	
+		versaoIncluir.setEmpresa(getUsuarioLogado().getEmpresa());		
 		return null;
 	}
 	
 	public String incluirNovaVersao() {		
 		try {
+			versaoIncluir.setEmpresa(getUsuarioLogado().getEmpresa());
 			versaoService.atualizar(versaoIncluir);				
 			addInfoMessage("Versão "+versaoIncluir.getNrVersao()+" cadastrada com sucesso.");		
 			voltar();					
@@ -63,7 +64,7 @@ public class VersaoHistoricoControl extends BaseControl {
 	
 	
 	public String excluirDados() {
-		try {
+		try {			
 			versaoService.remover(versaoIncluir);				
 			addInfoMessage("Versão "+versaoIncluir.getNrVersao()+" excluída com sucesso.");		
 			voltar();					
@@ -76,7 +77,7 @@ public class VersaoHistoricoControl extends BaseControl {
 	
 	public String voltar() {		
 		listaVersoes = new ArrayList<Versao>();		
-		listaVersoes = versaoService.consultarVersoes(versaoFiltro);		
+		listaVersoes = versaoService.consultarVersoes(versaoFiltro, getUsuarioLogado().getEmpresa().getId());		
 		mostrarLista = true;
 		versaoIncluir = new Versao();
 		return null;

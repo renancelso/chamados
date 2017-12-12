@@ -20,6 +20,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import net.sf.jasperreports.engine.JRException;
@@ -29,6 +30,8 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
 import org.apache.log4j.Logger;
+
+import br.com.chamadosweb.service.model.Usuario;
 
 /**
  * @author Renan Celso
@@ -51,6 +54,14 @@ public class BaseControl implements Serializable{
 
 	public BaseControl() {
 		Locale.setDefault(new Locale("pt", "BR"));	
+	}
+	
+	public Usuario getUsuarioLogado() {
+		
+		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);		
+		Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioLogado");
+		return usuarioLogado;
+		
 	}
 
 	public static void addErrorMessage(List<?> listaErro) {

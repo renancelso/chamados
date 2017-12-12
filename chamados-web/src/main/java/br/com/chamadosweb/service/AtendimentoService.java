@@ -25,7 +25,8 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 	@Override
 	public List<Chamado> consultarChamados(Chamado chamadoFiltroConsulta, 
 										   Date dataAberturaInicio, 
-										   Date dataAberturaFinal) {
+										   Date dataAberturaFinal,
+										   Long empresa) {
 		try {
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -35,8 +36,8 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			StringBuilder sql = new StringBuilder();
 			sql.append("select o from ").append(Chamado.class.getSimpleName()).append(" o where 1=1");			
 			
-			if(chamadoFiltroConsulta.getNrChamado() != null && chamadoFiltroConsulta.getNrChamado() > 0){
-				sql.append(" and o.nrChamado = ").append(chamadoFiltroConsulta.getNrChamado());
+			if(chamadoFiltroConsulta.getId().getNrChamado() != null && chamadoFiltroConsulta.getId().getNrChamado() > 0){
+				sql.append(" and o.id.nrChamado = ").append(chamadoFiltroConsulta.getId().getNrChamado());
 			}		
 			
 			if(dataAberturaInicio != null && dataAberturaFinal != null){
@@ -57,7 +58,11 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 				sql.append(" and o.descricao like '%").append(chamadoFiltroConsulta.getDescricao()).append("%'");
 			}
 			
-			sql.append(" order by o.nrChamado desc");
+			if(empresa != null && empresa != 0) {
+				sql.append(" and o.id.empresa = ").append(empresa);
+			}
+			
+			sql.append(" order by o.id.nrChamado desc");
 			
 			listaChamados = (List<Chamado>) consultarPorQuery(sql.toString(),0, 0);
 								
@@ -72,13 +77,18 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 	}
 	
 	@Override
-	public List<Atendimento> consultarAtendimentosPorChamado(Chamado chamado) {
+	public List<Atendimento> consultarAtendimentosPorChamado(Chamado chamado, Long empresa) {
 		try {
 			List<Atendimento> listaAtendimento = new ArrayList<Atendimento>();
 					
 			StringBuilder sql = new StringBuilder();
 			sql.append("select o from ").append(Atendimento.class.getSimpleName()).append(" o where 1=1");	
-			sql.append(" and o.chamado.nrChamado = ").append(chamado.getNrChamado());			
+			sql.append(" and o.chamado.id.nrChamado = ").append(chamado.getId().getNrChamado());	
+			
+			if(empresa != null && empresa != 0) {
+				sql.append("and o.chamado.id.empresa = ").append(empresa);
+			}
+			
 			sql.append(" order by o.nrSq desc");
 						
 			listaAtendimento = (List<Atendimento>) consultarPorQuery(sql.toString(), 0, 0);
@@ -93,12 +103,17 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 	
 	
 	@Override
-	public Long consultarQuantidadeAtendimentosPorChamado(Chamado chamado) {
+	public Long consultarQuantidadeAtendimentosPorChamado(Chamado chamado, Long empresa) {
 		try {
 			
 			StringBuilder sql = new StringBuilder();
 			sql.append("select count(*) from ").append(Atendimento.class.getSimpleName()).append(" o where 1=1");	
-			sql.append(" and o.nrChamado = ").append(chamado.getNrChamado());			
+			sql.append(" and o.nrChamado = ").append(chamado.getId().getNrChamado());	
+			
+			if(empresa != null && empresa != 0) {
+				sql.append("and o.empresa = ").append(empresa);
+			}
+			
 			sql.append(" order by o.nrSq desc");
 						
 			List<BigInteger> qtdAtendimentos = (List<BigInteger>) consultarPorQueryNativa(sql.toString(), 0, 0);
@@ -115,7 +130,8 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 	@Override
 	public List<Atendimento> consultarAtendimentosPorFiltros(Date dataRespostaClienteInicial, 
 												             Date dataRespostaClienteFinal,
-												             Atendimento atendimentoFiltroConsulta) {
+												             Atendimento atendimentoFiltroConsulta,
+												             Long empresa) {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			
@@ -146,17 +162,21 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			}
 			
 			if(atendimentoFiltroConsulta.getChamado() != null 
-					&& atendimentoFiltroConsulta.getChamado().getNrChamado() != null
-					&& atendimentoFiltroConsulta.getChamado().getNrChamado() > 0) {
-				sql.append(" and o.chamado.nrChamado = ").append(atendimentoFiltroConsulta.getChamado().getNrChamado());
+					&& atendimentoFiltroConsulta.getChamado().getId().getNrChamado() != null
+					&& atendimentoFiltroConsulta.getChamado().getId().getNrChamado() > 0) {
+				sql.append(" and o.chamado.id.nrChamado = ").append(atendimentoFiltroConsulta.getChamado().getId().getNrChamado());
 			}
 			
 			if(atendimentoFiltroConsulta.getDescricaoAtendimento() != null 
 					&& !"".equalsIgnoreCase(atendimentoFiltroConsulta.getDescricaoAtendimento())) {
 				sql.append(" and o.descricaoAtendimento like '%").append(atendimentoFiltroConsulta.getDescricaoAtendimento()).append("%'");
 			}
+			
+			if(empresa != null && empresa != 0) {
+				sql.append("and o.chamado.id.empresa = ").append(empresa);
+			}
 					
-			sql.append(" order by o.dhRespostaCliente desc, o.chamado.nrChamado desc, o.nrSq desc");
+			sql.append(" order by o.dhRespostaCliente desc, o.chamado.id.nrChamado desc, o.nrSq desc");
 						
 			listaAtendimento = (List<Atendimento>) consultarPorQuery(sql.toString(), 0, 0);
 								
@@ -175,7 +195,8 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 	public List<EstatisticasAtendimentosAnalistas> consultarEstatisticasQAtendimentosAnalistas
 															(Date dataRespostaClienteInicial, 
 												             Date dataRespostaClienteFinal,
-												             Atendimento atendimentoFiltroConsulta) {
+												             Atendimento atendimentoFiltroConsulta,
+												             Long empresa) {
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			
@@ -203,7 +224,11 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			if(atendimentoFiltroConsulta.getNomeAnalista() != null 
 					&& !"".equalsIgnoreCase(atendimentoFiltroConsulta.getNomeAnalista())) {
 				sql.append(" and o.nomeAnalista = '").append(atendimentoFiltroConsulta.getNomeAnalista()).append("'");
-			}						
+			}	
+			
+			if(empresa != null && empresa != 0) {
+				sql.append("and o.empresa = ").append(empresa);
+			}
 			
 			sql.append(" and o.nomeAnalista in (SELECT distinct (u.nome_completo) FROM Usuario u)");
 					
@@ -231,7 +256,8 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 	@Override
 	public List<EstatisticasChamadosAnalistas> consultarEstatisticasQChamadosAnalistas(Date dataRespostaClienteInicial, 
 																					   Date dataRespostaClienteFinal,
-																					   Atendimento atendimentoFiltroConsulta) {
+																					   Atendimento atendimentoFiltroConsulta,
+																					   Long empresa) {
 		try {
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -262,7 +288,11 @@ public class AtendimentoService extends GenericService implements AtendimentoSer
 			if(atendimentoFiltroConsulta.getNomeAnalista() != null 
 					&& !"".equalsIgnoreCase(atendimentoFiltroConsulta.getNomeAnalista())) {
 				sql.append(" and o.nomeAnalista = '").append(atendimentoFiltroConsulta.getNomeAnalista()).append("'");
-			}			
+			}		
+			
+			if(empresa != null && empresa != 0) {
+				sql.append("and o.empresa = ").append(empresa);
+			}
 			
 			sql.append(" group by nomeAnalista, nrChamado) t");			
 			sql.append(" where t.nomeAnalista in (SELECT nome_completo FROM usuario) group by nomeAnalista");

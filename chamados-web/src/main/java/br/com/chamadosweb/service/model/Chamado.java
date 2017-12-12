@@ -1,38 +1,25 @@
 package br.com.chamadosweb.service.model;
 
 import java.io.Serializable;
+
+import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 
 /**
- *
- * @author Renan Celso
+ * The persistent class for the chamado database table.
  * 
  */
 @Entity
 @Table(name="chamado")
 public class Chamado implements Serializable {
-	
-	private static final long serialVersionUID = -3549108858335426839L;
-	
-	@Id	
-	@Column(name = "nrChamado")
-	private Long nrChamado;
-		
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private ChamadoPK id;
+
 	@Column(name = "requisitante")
 	private String requisitante; 
 	
@@ -83,19 +70,19 @@ public class Chamado implements Serializable {
 	
 	@Column(name = "qtdAtendimentos")
 	private Long qtdAtendimentos;
-		
-	@ManyToOne
-	@JoinColumn(name="empresa")		
-	private Empresa empresa; 
+			
 
-	public Long getNrChamado() {
-		return nrChamado;
+	public Chamado() {
 	}
 
-	public void setNrChamado(Long nrChamado) {
-		this.nrChamado = nrChamado;
-	}	
-	
+	public ChamadoPK getId() {
+		return id;
+	}
+
+	public void setId(ChamadoPK id) {
+		this.id = id;
+	}
+
 	public String getRequisitante() {
 		return requisitante;
 	}
@@ -175,7 +162,7 @@ public class Chamado implements Serializable {
 	public void setPrioridade(Integer prioridade) {
 		this.prioridade = prioridade;
 	}
-		
+
 	public String getFuncionalidade() {
 		return funcionalidade;
 	}
@@ -198,8 +185,8 @@ public class Chamado implements Serializable {
 
 	public void setListaAtendimentos(List<Atendimento> listaAtendimentos) {
 		this.listaAtendimentos = listaAtendimentos;
-	}	
-			
+	}
+
 	public Date getDhAtu() {
 		return dhAtu;
 	}
@@ -207,14 +194,14 @@ public class Chamado implements Serializable {
 	public void setDhAtu(Date dhAtu) {
 		this.dhAtu = dhAtu;
 	}
-		
+
 	public String getLoginUsuAtu() {
 		return loginUsuAtu;
 	}
 
 	public void setLoginUsuAtu(String loginUsuAtu) {
 		this.loginUsuAtu = loginUsuAtu;
-	}		
+	}
 
 	public Long getQtdAtendimentos() {
 		return qtdAtendimentos;
@@ -223,21 +210,12 @@ public class Chamado implements Serializable {
 	public void setQtdAtendimentos(Long qtdAtendimentos) {
 		this.qtdAtendimentos = qtdAtendimentos;
 	}
-		
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((nrChamado == null) ? 0 : nrChamado.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -250,12 +228,12 @@ public class Chamado implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Chamado other = (Chamado) obj;
-		if (nrChamado == null) {
-			if (other.nrChamado != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!nrChamado.equals(other.nrChamado))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
-	   
+	}
+		
 }

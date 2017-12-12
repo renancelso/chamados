@@ -15,6 +15,7 @@ import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.ChamadoPK;
 import br.com.chamadosweb.service.model.Usuario;
 
 /**
@@ -47,8 +48,12 @@ public class ChamadoConsultaControl extends BaseControl {
 	private Chamado chamadoNovo;
 	
 	@PostConstruct
-	public void init() {			
+	public void init() {	
+		
 		chamadoFiltroConsulta = new Chamado();
+		chamadoFiltroConsulta.setId(new ChamadoPK());
+		
+		
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		chamadoDetalhar = new Chamado();
 		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());
@@ -59,7 +64,10 @@ public class ChamadoConsultaControl extends BaseControl {
 	}
 	
 	public String limpar(){
+		
 		chamadoFiltroConsulta = new Chamado();
+		chamadoFiltroConsulta.setId(new ChamadoPK());
+		
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		chamadoDetalhar = new Chamado();
 		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());
@@ -77,14 +85,16 @@ public class ChamadoConsultaControl extends BaseControl {
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		listaChamadosConsulta = atendimentoService.consultarChamados(chamadoFiltroConsulta, 
 																     dataAberturaInicio, 
-																     dataAberturaFinal);	
+																     dataAberturaFinal,
+																     getUsuarioLogado().getEmpresa().getId());	
 		
 		if(chamadoFiltroConsulta == null){
 			chamadoFiltroConsulta = new Chamado();
+			chamadoFiltroConsulta.setId(new ChamadoPK());
 		}		
 		
-		if(chamadoFiltroConsulta.getNrChamado() == 0){
-			chamadoFiltroConsulta.setNrChamado(null);			
+		if(chamadoFiltroConsulta.getId().getNrChamado()  == 0){
+			chamadoFiltroConsulta.getId().setNrChamado(null);			
 		}		
 		
 		if(listaChamadosConsulta == null || listaChamadosConsulta.isEmpty()){
@@ -92,10 +102,12 @@ public class ChamadoConsultaControl extends BaseControl {
 			addErrorMessage("Não foi possível consulta chamados com os parãmetros informados");			
 			
 			chamadoNovo = new Chamado();
-			chamadoNovo.setNrChamado(chamadoFiltroConsulta.getNrChamado());
+			chamadoNovo.getId().setNrChamado(chamadoFiltroConsulta.getId().getNrChamado() );
 			
 			chamadoFiltroConsulta = new Chamado();	
-			chamadoFiltroConsulta.setNrChamado(chamadoNovo.getNrChamado());
+			chamadoFiltroConsulta.setId(new ChamadoPK());
+			
+			chamadoFiltroConsulta.getId().setNrChamado(chamadoNovo.getId().getNrChamado() );
 			
 			mostrarBotaoCadastrarNovoChamado = true;
 			
@@ -119,7 +131,7 @@ public class ChamadoConsultaControl extends BaseControl {
 	public String detalhar(){
 		
 		chamadoDetalhar.setListaAtendimentos(new ArrayList<Atendimento>());				
-		chamadoDetalhar.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamadoDetalhar));		
+		chamadoDetalhar.setListaAtendimentos(atendimentoService.consultarAtendimentosPorChamado(chamadoDetalhar,getUsuarioLogado().getEmpresa().getId()));		
 		listaAtendimentosDetalhes = chamadoDetalhar.getListaAtendimentos();
 		
 		if(chamadoDetalhar.getListaAtendimentos() == null 
@@ -140,7 +152,7 @@ public class ChamadoConsultaControl extends BaseControl {
 			
 			try {
 				Long qtdAtendimentos = chamadoDetalhar.getQtdAtendimentos();
-				chamadoDetalhar.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamadoDetalhar));
+				chamadoDetalhar.setQtdAtendimentos(atendimentoService.consultarQuantidadeAtendimentosPorChamado(chamadoDetalhar,getUsuarioLogado().getEmpresa().getId()));
 				
 				if(qtdAtendimentos != chamadoDetalhar.getQtdAtendimentos()){
 					atendimentoService.atualizar(chamadoDetalhar);
@@ -154,7 +166,7 @@ public class ChamadoConsultaControl extends BaseControl {
 			
 			atendimentoService.atualizar(chamadoDetalhar);
 			
-			addInfoMessage("Chamado "+chamadoDetalhar.getNrChamado()+" atualizado com sucesso.");			 
+			addInfoMessage("Chamado "+chamadoDetalhar.getId().getNrChamado() +" atualizado com sucesso.");			 
 		} catch(Exception e){
 			addErrorMessage("Erro ao atualizar chamado."+e.getMessage());
 		}
@@ -170,11 +182,15 @@ public class ChamadoConsultaControl extends BaseControl {
 		listaAtendimentosDetalhes = new ArrayList<Atendimento>();
 		
 		if(chamadoFiltroConsulta == null){
-			chamadoFiltroConsulta = new Chamado();
-		}		
+			chamadoFiltroConsulta = new Chamado();			
+		}	
 		
-		if(chamadoFiltroConsulta.getNrChamado() == 0){
-			chamadoFiltroConsulta.setNrChamado(null);			
+		if(chamadoFiltroConsulta.getId() == null){			
+			chamadoFiltroConsulta.setId(new ChamadoPK());
+		}	
+		
+		if(chamadoFiltroConsulta.getId().getNrChamado()  == 0){
+			chamadoFiltroConsulta.getId().setNrChamado(null);			
 		}
 		
 		return null;

@@ -1,6 +1,5 @@
 package br.com.chamadosweb.control;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +14,7 @@ import br.com.chamadosweb.padrao.BaseControl;
 import br.com.chamadosweb.service.AtendimentoServiceLocal;
 import br.com.chamadosweb.service.model.Atendimento;
 import br.com.chamadosweb.service.model.Chamado;
+import br.com.chamadosweb.service.model.ChamadoPK;
 
 /**
 *
@@ -49,10 +49,11 @@ public class AtendimentoConsultaControl extends BaseControl {
 		
 		atendimentoFiltroConsulta = new Atendimento();
 		atendimentoFiltroConsulta.setChamado(new Chamado());	
+		atendimentoFiltroConsulta.getChamado().setId(new ChamadoPK());
 		
-		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
-				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
-			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		if(atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == null
+				|| atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == 0){
+			atendimentoFiltroConsulta.getChamado().getId().setNrChamado(null);			
 		}
 		
 		listaAtendimentosConsulta = new ArrayList<Atendimento>();
@@ -73,24 +74,29 @@ public class AtendimentoConsultaControl extends BaseControl {
 		
 		listaNomesAnalistas = new ArrayList<String>();		
 		listaNomesAnalistas = (List<String>) atendimentoService.consultarPorQuery
-											("SELECT distinct(o.nomeAnalista) FROM Atendimento o "
-											+"where o.nomeAnalista is not null and o.nomeAnalista <> '' "
-											+"and o.nomeAnalista in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
-											+"order by o.nomeAnalista", 0, 0);		
+											("SELECT distinct(o.nomeAnalista) FROM Atendimento o"
+											+" where o.nomeAnalista is not null and o.nomeAnalista <> ''"
+											+" and o.nomeAnalista in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
+											+" and o.chamado.id.empresa = "+getUsuarioLogado().getEmpresa().getId()
+											+" order by o.nomeAnalista", 0, 0);		
 		
 		listaNomesAnalistas.addAll((List<String>) atendimentoService.consultarPorQuery
-											("SELECT distinct(o.nomeAnalista) FROM Atendimento o "
-											+"where o.nomeAnalista is not null and o.nomeAnalista <> '' "
-											+"and o.nomeAnalista not in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
-											+"order by o.nomeAnalista", 0, 0));		
+											("SELECT distinct(o.nomeAnalista) FROM Atendimento o"
+											+" where o.nomeAnalista is not null and o.nomeAnalista <> ''"
+											+" and o.nomeAnalista not in (SELECT distinct(u.nomeCompleto) FROM Usuario u)"		
+											+" and o.chamado.id.empresa = "+getUsuarioLogado().getEmpresa().getId()
+											+" order by o.nomeAnalista", 0, 0));		
 	}
 	
-	public String limpar(){
+	public String limpar() {
+		
 		atendimentoFiltroConsulta = new Atendimento();
 		atendimentoFiltroConsulta.setChamado(new Chamado());
-		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
-				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
-			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		atendimentoFiltroConsulta.getChamado().setId(new ChamadoPK());
+		
+		if(atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == null
+				|| atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == 0){
+			atendimentoFiltroConsulta.getChamado().getId().setNrChamado(null);			
 		}
 		listaAtendimentosConsulta = new ArrayList<Atendimento>();
 		atendimentoDetalhar = new Atendimento();
@@ -118,7 +124,8 @@ public class AtendimentoConsultaControl extends BaseControl {
 						
 		listaAtendimentosConsulta = atendimentoService.consultarAtendimentosPorFiltros(dataRespostaClienteInicial, 
 																					   dataRespostaClienteFinal, 
-																					   atendimentoFiltroConsulta);		
+																					   atendimentoFiltroConsulta,
+																					   getUsuarioLogado().getEmpresa().getId());		
 		listaChamadosConsulta = new ArrayList<Chamado>();
 		
 		if(listaAtendimentosConsulta != null && !listaAtendimentosConsulta.isEmpty()) {			
@@ -129,8 +136,8 @@ public class AtendimentoConsultaControl extends BaseControl {
 			}			
 		}		
 		
-		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null || atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
-			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		if(atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == null || atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == 0){
+			atendimentoFiltroConsulta.getChamado().getId().setNrChamado(null);			
 		}
 		
 		if(listaAtendimentosConsulta == null || listaAtendimentosConsulta.isEmpty()){
@@ -152,9 +159,9 @@ public class AtendimentoConsultaControl extends BaseControl {
 	public String voltar() {		
 		
 		atendimentoDetalhar = new Atendimento();		
-		if(atendimentoFiltroConsulta.getChamado().getNrChamado() == null
-				|| atendimentoFiltroConsulta.getChamado().getNrChamado() == 0){
-			atendimentoFiltroConsulta.getChamado().setNrChamado(null);			
+		if(atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == null
+				|| atendimentoFiltroConsulta.getChamado().getId().getNrChamado()  == 0){
+			atendimentoFiltroConsulta.getChamado().getId().setNrChamado(null);			
 		}
 		
 		return null;
