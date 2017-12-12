@@ -42,7 +42,7 @@ public class LoginControl extends BaseControl {
 	
 	private String senhaMestra;
 	
-	private Long codigoEmpresaNovoUsuario;
+	private Long codigoEmpresaNovoUsuario;	
 		
 	@PostConstruct
 	public void init() {		
@@ -51,7 +51,7 @@ public class LoginControl extends BaseControl {
 		emailEsqueceuSenha = "";
 		emailLoginLogar = "";
 		senhaLogar = "";
-		senhaMestra = "";
+		senhaMestra = "";				
 	}
 	
 	
@@ -245,73 +245,49 @@ public class LoginControl extends BaseControl {
 		this.novoUsuario = novoUsuario;
 	}
 
-
-
 	public String getSenhaConfirmacao() {
 		return senhaConfirmacao;
 	}
-
-
 
 	public void setSenhaConfirmacao(String senhaConfirmacao) {
 		this.senhaConfirmacao = senhaConfirmacao;
 	}
 
-
-
 	public String getEmailEsqueceuSenha() {
 		return emailEsqueceuSenha;
 	}
-
-
 
 	public void setEmailEsqueceuSenha(String emailEsqueceuSenha) {
 		this.emailEsqueceuSenha = emailEsqueceuSenha;
 	}
 
-
-
 	public String getEmailLoginLogar() {
 		return emailLoginLogar;
 	}
-
-
 
 	public void setEmailLoginLogar(String emailLoginLogar) {
 		this.emailLoginLogar = emailLoginLogar;
 	}
 
-
-
 	public String getSenhaLogar() {
 		return senhaLogar;
 	}
-
-
 
 	public void setSenhaLogar(String senhaLogar) {
 		this.senhaLogar = senhaLogar;
 	}
 
-
-
 	public String getSenhaMestra() {
 		return senhaMestra;
 	}
-
-
 
 	public void setSenhaMestra(String senhaMestra) {
 		this.senhaMestra = senhaMestra;
 	}
 
-
-
 	public Long getCodigoEmpresaNovoUsuario() {
 		return codigoEmpresaNovoUsuario;
 	}
-
-
 
 	public void setCodigoEmpresaNovoUsuario(Long codigoEmpresaNovoUsuario) {
 		this.codigoEmpresaNovoUsuario = codigoEmpresaNovoUsuario;
