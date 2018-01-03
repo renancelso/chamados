@@ -61,6 +61,7 @@ public class ChamadoConsultaControl extends BaseControl {
 		dataAberturaFinal = null;
 		mostrarBotaoCadastrarNovoChamado = false;		
 		chamadoNovo = new Chamado();
+		chamadoNovo.setId(new ChamadoPK());		
 	}
 	
 	public String limpar(){
@@ -76,6 +77,7 @@ public class ChamadoConsultaControl extends BaseControl {
 		dataAberturaFinal = null;
 		mostrarBotaoCadastrarNovoChamado = false;
 		chamadoNovo = new Chamado();
+		chamadoNovo.setId(new ChamadoPK());	
 		return null;
 	}
 	
@@ -102,14 +104,21 @@ public class ChamadoConsultaControl extends BaseControl {
 			addErrorMessage("Não foi possível consulta chamados com os parãmetros informados");			
 			
 			chamadoNovo = new Chamado();
-			chamadoNovo.getId().setNrChamado(chamadoFiltroConsulta.getId().getNrChamado() );
+			chamadoNovo.setId(new ChamadoPK());
+			chamadoNovo.getId().setNrChamado(chamadoFiltroConsulta.getId().getNrChamado());
 			
 			chamadoFiltroConsulta = new Chamado();	
 			chamadoFiltroConsulta.setId(new ChamadoPK());
 			
-			chamadoFiltroConsulta.getId().setNrChamado(chamadoNovo.getId().getNrChamado() );
+			chamadoFiltroConsulta.getId().setNrChamado(chamadoNovo.getId().getNrChamado());
 			
-			mostrarBotaoCadastrarNovoChamado = true;
+			if (chamadoNovo.getId() != null
+					&& chamadoNovo.getId().getNrChamado() != null
+					&& chamadoNovo.getId().getNrChamado() > 0) {				
+				mostrarBotaoCadastrarNovoChamado = true;				
+			} else {				
+				mostrarBotaoCadastrarNovoChamado = false;				
+			}
 			
 			return null;
 		}
@@ -120,8 +129,10 @@ public class ChamadoConsultaControl extends BaseControl {
 	public String iniciarCadastramentoChamado() {	
 		
 		chamadoDetalhar = new Chamado();
+		chamadoDetalhar.setId(new ChamadoPK());
 		
 		chamadoDetalhar = chamadoNovo;	
+		chamadoDetalhar.setId(chamadoNovo.getId());
 		
 		detalhar();
 		
