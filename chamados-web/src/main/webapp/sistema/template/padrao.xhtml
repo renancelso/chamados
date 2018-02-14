@@ -159,21 +159,19 @@
 					<div style="margin-left: 50px;">
 						<img alt="" src="assets/images/logo.png"/>						
 					</div>		
-					#CwSus#{sessionScope['usuarioLogado'].empresa.nomeEmpresa}
-				</a>
-				
+					#CwSus#{sessionScope['usuarioLogado'].empresa.nomeEmpresa}					
+				</a>					
 		
 				<button type="button" class="navbar-toggle collapsed"						
 						data-toggle="collapse" data-target="#main-navbar-collapse">					
 					<i class="navbar-icon fa fa-bars"></i>
-				</button>
-
-			</div> 			
+				</button>								
+			</div> 						
 
 			<div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
 				<div>					
 					<div class="right clearfix">
-						<ul class="nav navbar-nav pull-right right-navbar-nav">
+						<ul class="nav navbar-nav pull-right right-navbar-nav">									
 								
 							<li>
 								<form class="navbar-form pull-left">
@@ -268,12 +266,21 @@
 					
 	</h:form>
 	
-	<div id="content-wrapper">	
-		<ui:insert name="conteudo" />	
+	<div id="content-wrapper">		
+		
+		<ui:insert name="conteudo" />
+					
+		<font style="font-weight: bold; font-size: 10px;
+					 bottom: 0; margin-top: 600px; color: navy;">
+			 <a href="https://github.com/renancelso" 
+				style="font-weight: bold; font-size: 9px;
+				color: #000000;">© RENAN DA SILVA CELSO ©</a>				
+		</font>					
+		
 	</div> 
-	
+		
 	<div id="main-menu-bg"></div>
-	
+		
 </div>
 
 <!-- Pixel Admin's javascripts -->
