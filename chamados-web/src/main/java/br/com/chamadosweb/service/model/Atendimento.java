@@ -21,59 +21,66 @@ import org.hibernate.annotations.Index;
 /**
  *
  * @author Renan Celso
- * 
+ *
  */
 @Entity
 @Table(name="atendimento")
 public class Atendimento implements Serializable {
-		
+
 	private static final long serialVersionUID = 4678461063573174892L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	
+
 	@ManyToOne
 	@JoinColumns({
 		@JoinColumn(name="nrChamado", referencedColumnName="nrChamado", insertable=true, updatable=true),
-		@JoinColumn(name="empresa", referencedColumnName="empresa" , insertable=true, updatable=true),		
-		})	
+		@JoinColumn(name="empresa", referencedColumnName="empresa" , insertable=true, updatable=true),
+		})
 	@Index(name = "index_atend_nrChamado")
-	private Chamado chamado; 
-		
-	@Column(name = "nrSq", nullable = false)
+	private Chamado chamado;
+
+   @ManyToOne
+   @JoinColumns({
+		   @JoinColumn(name="ocorrencia_id", referencedColumnName="id", insertable=true, updatable=true),
+   })
+   @Index(name = "index_atend_nrOcorrencia")
+   private Ocorrencia ocorrencia;
+
+   @Column(name = "nrSq", nullable = false)
 	@Index(name = "index_atend_nrSq")
 	private Long nrSq;
-	
-	@Column(name = "encaminhador")	
+
+	@Column(name = "encaminhador")
 	private String encaminhador;
-		
-	
+
+
 	//Data e Hora que o Cliente transferiu o chamado para a equipe
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dhTransferidoEquipe")
-	private Date dhTransferidoEquipe; 
-	
+	private Date dhTransferidoEquipe;
+
 	//Data e Hora que a Equipe transferiu o chamado para o Cliente
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dhRespostaCliente")
-	private Date dhRespostaCliente; 	
-		
+	private Date dhRespostaCliente;
+
 	@Column(name = "nomeAnalista")
-	private String nomeAnalista; 
+	private String nomeAnalista;
 
 	@Lob
 	@Column(name = "descricaoAtendimento")
-	private String descricaoAtendimento; 
-	
+	private String descricaoAtendimento;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dhAtu")
-	private Date dhAtu; 
-	
+	private Date dhAtu;
+
 	@Column(name = "loginUsuAtu")
-	private String loginUsuAtu; 
-		
+	private String loginUsuAtu;
+
 
 	public Long getId() {
 		return id;
@@ -91,14 +98,22 @@ public class Atendimento implements Serializable {
 		this.chamado = chamado;
 	}
 
-	public Long getNrSq() {
+   public Ocorrencia getOcorrencia() {
+	  return ocorrencia;
+   }
+
+   public void setOcorrencia(Ocorrencia ocorrencia) {
+	  this.ocorrencia = ocorrencia;
+   }
+
+   public Long getNrSq() {
 		return nrSq;
 	}
 
 	public void setNrSq(Long nrSq) {
 		this.nrSq = nrSq;
 	}
-		
+
 	public String getEncaminhador() {
 		return encaminhador;
 	}
@@ -130,15 +145,15 @@ public class Atendimento implements Serializable {
 	public void setNomeAnalista(String nomeAnalista) {
 		this.nomeAnalista = nomeAnalista;
 	}
-		
+
 	public String getDescricaoAtendimento() {
 		return descricaoAtendimento;
 	}
 
 	public void setDescricaoAtendimento(String descricaoAtendimento) {
 		this.descricaoAtendimento = descricaoAtendimento;
-	}	
-		
+	}
+
 	public Date getDhAtu() {
 		return dhAtu;
 	}
@@ -146,15 +161,15 @@ public class Atendimento implements Serializable {
 	public void setDhAtu(Date dhAtu) {
 		this.dhAtu = dhAtu;
 	}
-		
+
 	public String getLoginUsuAtu() {
 		return loginUsuAtu;
 	}
 
 	public void setLoginUsuAtu(String loginUsuAtu) {
 		this.loginUsuAtu = loginUsuAtu;
-	}	
-		
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -190,6 +205,6 @@ public class Atendimento implements Serializable {
 		} else if (!nrSq.equals(other.nrSq))
 			return false;
 		return true;
-	}	
-	   
+	}
+
 }

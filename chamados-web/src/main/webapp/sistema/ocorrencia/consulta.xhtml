@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:pt="http://java.sun.com/jsf/passthrough"
+	  xmlns:c="http://java.sun.com/jstl/core" class="gt-ie8 gt-ie9 not-ie">
+      
+<h:body>
+    <ui:composition template="../template/padrao.xhtml">
+
+        <ui:define name="conteudo">
+            
+            <h:form>
+            
+           	   <p:messages id="messages1" closable="true" showDetail="false"/>       
+               
+
+            
+               <p:panel style="min-height: 1000px; min-width: 270px;"
+                		 rendered="#{ocorrenciaConsultaControl.ocorrenciaDetalhes == null}">
+                	  
+              		<p:panel header="Filtros para ocorrência">
+              		
+	          			<h:panelGrid columns="2" columnClasses="coluna1,coluna2">	          				
+	          				
+	          				<h:outputText value="Nº da ocorrência: " style="font-weight: bold !important; "/>
+	          				<h:panelGrid columns="2" columnClasses="coluna2,coluna1">	
+								
+								<h:inputText value="#{ocorrenciaConsultaControl.ocorrenciaFiltro.id}"
+											 onkeypress="mascara(this, soNumeros)" size="12"/>	
+											 
+								<p:commandButton value="Cadastrar nova ocorrência" update="@form"
+												 id="btNovaOcorrencia" styleClass="signin-btn"
+												 style="font-weight: bold; margin-left: 15px;"
+												 action="#{ocorrenciaConsultaControl.novo()}"
+												 onstart="PF('dialogProcessando').show();" 
+												 oncomplete="PF('dialogProcessando').hide();"									
+											     onsuccess="PF('dialogProcessando').hide();"
+										 		 onerror="PF('dialogProcessando').hide();"
+										 		 rendered="#{ocorrenciaConsultaControl.mostrarBotaoNovo}"/>
+							</h:panelGrid>	
+										 
+										 
+							<h:outputText value="Período do Abertura " style="font-weight: bold !important; "/>  
+							<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">	
+								<h:inputText value="#{ocorrenciaConsultaControl.dataAberturaInicio}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9" converter="data"/>	
+											 													
+								<h:outputText value="à" style="font-weight: bold !important;"/>		
+															
+								<h:inputText value="#{ocorrenciaConsultaControl.dataAberturaFinal}" 
+											 onkeypress="formatar(this, '##/##/####', event);"
+											 maxlength="10" size="9" converter="data"/>													
+						    </h:panelGrid>	
+						    						    
+						    <h:outputText value="Descrição da ocorrência: " style="font-weight: bold !important; "/>
+							<h:inputText value="#{ocorrenciaConsultaControl.ocorrenciaFiltro.descricao}" 
+									     size="70" onkeyup="maiuscula(this)" />	
+						    										           			 
+	          			</h:panelGrid>  
+	          			
+          			</p:panel>
+          			
+          			<p:spacer height="10"/>     
+          			
+          			<h:panelGrid columns="3">
+          				
+	          			<p:commandButton value="Consultar ocorrencias" update="@form"
+											 id="btConsultarOcurrencias" styleClass="signin-btn"
+											 style="font-weight: bold;"
+											 action="#{ocorrenciaConsultaControl.listar()}"
+											 onstart="PF('dialogProcessando').show();" 
+											 oncomplete="PF('dialogProcessando').hide();"									
+										     onsuccess="PF('dialogProcessando').hide();"
+									 		 onerror="PF('dialogProcessando').hide();"/>  
+									 		 
+						<p:spacer width="25"/>
+									
+						<p:commandButton value="Limpar" update="@form" 
+									     id="btLimpar" styleClass="signin-btn"
+									     style="font-weight: bold;"
+										 action="#{ocorrenciaConsultaControl.limpar()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>  
+          			
+          			
+          			
+          			</h:panelGrid>          			          						
+          			
+          			<p:spacer height="10"/>  
+          			
+          			<p:dataTable value="#{ocorrenciaConsultaControl.ocorrencias}" id="tabelaOcorrencias"
+								 rendered="#{ocorrenciaConsultaControl.ocorrencias != null and ocorrenciaConsultaControl.ocorrencias.size() > 0}"
+								 paginator="true" style="min-width: 760px; margin-top: 10px;" 			 			  
+	                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+	                             currentPageReportTemplate="Exibindo de {startRecord} a {endRecord} de {totalRecords} - Página: {currentPage}/{totalPages}"
+	                             emptyMessage="Nenhum registro a ser exibido"
+	                             rowIndexVar="rowIndex" reflow="true" var="item" rows="30" 
+	                             rowsPerPageTemplate="10,20,30,40,50" selection="#{ocorrenciaConsultaControl.ocorrenciaDetalhes}"
+	                             selectionMode="single" rowKey="#{item.id}">
+						
+						<p:column style="text-align: center;font-size: 11px; width: 80px;">
+							<f:facet name="header">
+								<h:outputText value="Ocorrência" />
+							</f:facet>
+							<h:outputText value="#{item.id}" />
+						</p:column>
+
+						<p:column style="text-align: center;font-size: 11px; width: 80px;">
+							<f:facet name="header">
+								<h:outputText value="Abertura" />
+							</f:facet>
+							<h:outputText value="#{item.dataAbertura}" converter="data"/>
+						</p:column>	
+						
+						<p:column style="font-size: 11px; text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Depto." />
+							</f:facet>
+							<h:outputText value="#{item.departamento}" />
+						</p:column>		
+												
+						<p:column style="font-size: 11px; text-align: center;">
+							<f:facet name="header">
+								<h:outputText value="Sistema/Módulo" />
+							</f:facet>
+							<h:outputText value="#{item.sistemaModulo}" />
+						</p:column>
+
+						<p:column style="font-size: 11px; text-align: center; width: 80px;">
+							<f:facet name="header">
+								<h:outputText value="Urgência" />
+							</f:facet>
+							<h:outputText value="#{item.urgencia}" />
+						</p:column>		
+						
+						
+						<p:column style="width: 8%; text-align: center;">                               
+	                        <p:commandLink title="Detalhar" update="@form" value="Detalhar"
+	                         			   action="#{ocorrenciaConsultaControl.detalhar()}">
+	                        	<f:setPropertyActionListener value="#{item}" target="#{ocorrenciaConsultaControl.ocorrenciaDetalhes}" />                         	
+	                        </p:commandLink>                           
+                     	</p:column>								  
+								 
+					</p:dataTable>   
+                	
+                </p:panel>  
+                
+                <p:panel style="min-height: 1000px; min-width: 270px;"
+                		 rendered="#{ocorrenciaConsultaControl.ocorrenciaDetalhes != null}">
+			          	
+                		<p:commandButton value="Voltar" update="@form" 
+									     id="bVoltar" styleClass="signin-btn"
+									     style="font-weight: bold;"
+										 action="#{ocorrenciaConsultaControl.voltar()}" 
+										 onstart="PF('dialogProcessando').show();" 
+										 oncomplete="PF('dialogProcessando').hide();"									
+									     onsuccess="PF('dialogProcessando').hide();"
+								 		 onerror="PF('dialogProcessando').hide();"/>
+								 		 
+						<p:spacer height="50"/>		
+						
+						<p:panel header="Chamado #{ocorrenciaConsultaControl.ocorrenciaDetalhes.id}"
+                				 toggleable="true" >
+                			 
+	               			 <h:panelGrid columns="2" columnClasses="coluna1,coluna2">
+	               			                			 
+	               			 	<h:outputText value="Descrição da ocorrência: " style="font-weight: bold !important;"/>
+								<p:editor value="#{ocorrenciaConsultaControl.ocorrenciaDetalhes.descricao}" 
+										  onkeyup="maiuscula(this)" height="200" width="500"/>    
+												    		
+	               			 	<h:outputText value="Requisitante: " style="font-weight: bold !important;"/>	                				
+								<h:inputText value="#{ocorrenciaConsultaControl.ocorrenciaDetalhes.requisitante}" 
+											 size="50" onkeyup="maiuscula(this)"/>     
+											 
+								<h:outputText value="Departamento: " style="font-weight: bold !important;"/>	                				
+								<h:inputText value="#{ocorrenciaConsultaControl.ocorrenciaDetalhes.departamento}" 
+											 size="50" onkeyup="maiuscula(this)"/> 
+											 
+								<h:outputText value="Data de Abertura: " style="font-weight: bold !important;"/>							
+								<h:inputText value="#{ocorrenciaConsultaControl.ocorrenciaDetalhes.dataAbertura}"
+												 onkeypress="formatar(this, '##/##/####', event);"
+												 maxlength="10" size="9" converter="data"/>									
+											
+								<h:outputText value="Sistema / Módulo: " style="font-weight: bold !important;"/>	                		
+								<h:inputText value="#{ocorrenciaConsultaControl.ocorrenciaDetalhes.sistemaModulo}" 
+										     size="30" onkeyup="maiuscula(this)" />	
+										     
+
+								<h:outputText value="Urgência: " style="font-weight: bold !important;"/>	
+								<h:selectOneMenu value="#{ocorrenciaConsultaControl.ocorrenciaDetalhes.urgencia}">
+									<f:selectItem itemValue="" itemLabel="Selecione..." />
+									<f:selectItem itemValue="Baixo" itemLabel="Baixo" />
+									<f:selectItem itemValue="Médio" itemLabel="Médio" />
+									<f:selectItem itemValue="Alto" itemLabel="Alto" />
+								</h:selectOneMenu>	               		
+																	     		     
+								<h:outputText value="Prioridade: " style="font-weight: bold !important;"/>	  
+								<h:selectOneMenu value="#{ocorrenciaConsultaControl.ocorrenciaDetalhes.prioridade}">
+									<f:selectItem itemValue="" itemLabel="Selecione..." />
+									<f:selectItem itemValue="1" itemLabel="1" />
+									<f:selectItem itemValue="2" itemLabel="2" />
+									<f:selectItem itemValue="3" itemLabel="3" />
+									<f:selectItem itemValue="4" itemLabel="4" />
+									<f:selectItem itemValue="5" itemLabel="5" />
+								</h:selectOneMenu>	 									     
+	               			 </h:panelGrid>
+	               			 
+	               			 <p:spacer height="20"/>
+	               			 
+	               			 <center>
+									<p:commandButton value="Salvar" update="@form"
+			               			 				 id="btDadosOcorrencia" styleClass="signin-btn"
+			               			 				 style="font-weight: bold !important;"
+													 action="#{ocorrenciaConsultaControl.salvar()}"
+													 onstart="PF('dialogProcessando').show();" 
+													 oncomplete="PF('dialogProcessando').hide();"									
+												     onsuccess="PF('dialogProcessando').hide();"
+											 		 onerror="PF('dialogProcessando').hide(); "/>
+	               			 </center>
+	               			 
+	               			 <p:spacer height="20"/>
+	               			 	               			                 	
+	                	</p:panel>
+						
+						<p:spacer height="15"/>			
+						
+						<p:dataTable var="item" value="#{ocorrenciaConsultaControl.ocorrenciasDetalhes}">
+						 		
+						 	<f:facet name="header">
+					           Atendimentos realizados no chamado #{ocorrenciaConsultaControl.ocorrenciaDetalhes.id}
+					        </f:facet>	
+						 										
+						 	<p:column style="width:40px">
+					            <p:rowToggler />
+					        </p:column>
+						 															
+							<p:column style="text-align: center; width: 80px;">
+								<f:facet name="header">
+									<h:outputText value="Atend." />
+								</f:facet>
+								<h:outputText value="#{item.nrSq}" />
+							</p:column>							
+							
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Encaminhado por" />
+								</f:facet>
+								<h:outputText value="#{item.encaminhador}"/>
+							</p:column>	
+							
+							<p:column style="width: 180px; color: red;">
+								<f:facet name="header">
+									<h:outputText value="Analista" />
+								</f:facet>
+								<h:outputText value="#{item.nomeAnalista}"/>
+							</p:column>	
+							
+							<p:column style="text-align: center; width: 200px;">
+								<f:facet name="header">
+									<h:outputText value="Transf. para a equipe em:" />
+								</f:facet>
+								<h:outputText value="#{item.dhTransferidoEquipe}" converter="data"/>
+								<h:outputText value=" "/>
+								<h:outputText value="#{item.dhTransferidoEquipe}" converter="hora"/>
+							</p:column>	
+													
+							<p:column style="text-align: center; width: 210px;">
+								<f:facet name="header">
+									<h:outputText value="Retorno para o cliente em:" />
+								</f:facet>
+								<h:outputText value="#{item.dhRespostaCliente}" converter="data"/>
+								<h:outputText value=" "/>
+								<h:outputText value="#{item.dhRespostaCliente}" converter="hora"/>
+							</p:column>		
+														
+							<p:rowExpansion>
+				            	<h:panelGrid columns="2" columnClasses="coluna1,coluna2">  
+						
+									<h:outputText value="Chamado: " style="font-weight: bold !important;"/>	                			
+									<h:inputText value="#{item.chamado.id}"
+												 onkeypress="mascara(this, soNumeros)" size="8" readonly="true"
+											     style="font-weight: bold !important; color: red !important;"/>            			                			 
+		               			 	               			 
+		               			 	<h:outputText value="Atendimento: " style="font-weight: bold !important;"/>	                			
+									<h:inputText value="#{item.nrSq}" onkeypress="mascara(this, soNumeros)"
+											     size="4" readonly="true" 
+											     style="font-weight: bold !important; color: red !important;"/>		
+																		     
+									<h:outputText value="Encaminhado para a equipe por: " style="font-weight: bold !important;"/>	                		
+									<h:inputText value="#{item.encaminhador}" 
+											     size="40" onkeyup="maiuscula(this)" readonly="true"/>										     
+											     
+									<h:outputText value="Cliente transferiu para equipe em: " style="font-weight: bold !important;"/>
+									<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">															
+										<h:inputText value="#{item.dhTransferidoEquipe}" 
+													 onkeypress="formatar(this, '##/##/####', event);"
+													 maxlength="10" size="9" readonly="true" converter="data"/>								
+										<h:outputText value="às" style="font-weight: bold !important;"/>								
+										<h:inputText value="#{item.dhTransferidoEquipe}" 
+													 onkeypress="formatar(this, '##:##', event);"
+													 maxlength="5" size="6" readonly="true" converter="hora"/>								
+								    </h:panelGrid>
+								    
+								    <h:outputText value="Resposta para o cliente em: " style="font-weight: bold !important;"/>
+									<h:panelGrid columns="3" columnClasses="coluna2,coluna1,coluna2">								
+										<h:inputText value="#{item.dhRespostaCliente}" 
+													 onkeypress="formatar(this, '##/##/####', event);"
+													 maxlength="10" size="9" readonly="true" converter="data"/>																 					
+										<h:outputText value="às" style="font-weight: bold !important;"/>								
+										<h:inputText value="#{item.dhRespostaCliente}" 
+													 onkeypress="formatar(this, '##:##', event);"
+													 maxlength="5" size="6" readonly="true" converter="hora"/>								
+								    </h:panelGrid>	
+								    
+								    <h:outputText value="Analista: " style="font-weight: bold !important;"/>	                		
+									<h:inputText value="#{item.nomeAnalista.toUpperCase()}" 
+											     size="35" onkeyup="maiuscula(this)" readonly="true"
+											     style="font-weight: bold !important; color: red !important;"/>			
+											     
+									<h:outputText value="Descrição Atendimento: " style="font-weight: bold !important;"/>	                		
+									<p:editor value="#{item.descricaoAtendimento}" 
+										      onkeyup="maiuscula(this)" height="200" width="500" readonly="true"/>   			
+		               			 
+		               			 </h:panelGrid>	 
+		               			    
+				        	</p:rowExpansion>						 
+						 
+						</p:dataTable>						
+                		 			 
+                </p:panel>                
+                
+                <p:dialog widgetVar="dialogProcessando" modal="true" 
+						  height="50" width="350" resizable="false;"
+						  header="Processando Informações" draggable="false"
+					      closable="false" id="dialogProcessando" 
+					      style="z-index: 9999; font-size: 14px;">					
+					<center>
+						<h:outputText value="Por favor, aguarde..." style="font-weight: bold; font-size: 14px;" />
+						<br/>
+						<img src="resources/imagens/ajax-loader-green-white.gif"/> 
+					</center>
+					
+				</p:dialog>
+                
+            </h:form>            
+                        
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+
+</html>

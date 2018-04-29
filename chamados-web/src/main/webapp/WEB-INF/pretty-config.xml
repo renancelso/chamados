@@ -57,8 +57,18 @@
     <url-mapping id="estatisticas_chamados">
         <pattern value="/estatisticas_chamados" />
         <view-id value="/sistema/chamado/estatisticas_chamados.jsf" />
-    </url-mapping>   
-        
+    </url-mapping>
+
+    <url-mapping id="consulta_ocorrencias">
+        <pattern value="/consulta_ocorrencias" />
+        <view-id value="/sistema/ocorrencia/consulta.jsf" />
+    </url-mapping>
+
+    <url-mapping id="estatisticas_ocorrencias">
+        <pattern value="/estatisticas_ocorrencias" />
+        <view-id value="/sistema/ocorrencia/estatisticas.jsf" />
+    </url-mapping>
+
     <url-mapping id="historico_versao">
         <pattern value="/historico_versao" />
         <view-id value="/sistema/versao/historico_versao.jsf" />

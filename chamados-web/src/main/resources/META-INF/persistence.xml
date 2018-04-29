@@ -10,19 +10,21 @@
 		<class>br.com.chamadosweb.service.model.Empresa</class>		
 		<class>br.com.chamadosweb.service.model.Chamado</class>
 		<class>br.com.chamadosweb.service.model.ChamadoPK</class>	
-		<class>br.com.chamadosweb.service.model.Atendimento</class>	
+		<class>br.com.chamadosweb.service.model.Atendimento</class>
+		<class>br.com.chamadosweb.service.model.Ocorrencia</class>
+
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<shared-cache-mode>NONE</shared-cache-mode>			
 		<properties>		
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> 
-			<property name="hibernate.hbm2ddl.auto" value="update" /> 
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" /> 
 			<property name="hibernate.format_sql" value="false" />  
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>			
 			<property name="hibernate.connection.characterEncoding" value="UTF-8" />
-<!-- 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/chamados"/> -->
-<!-- 			<property name="hibernate.connection.username" value="root"/> 				 			 -->
-<!-- 			<property name="hibernate.connection.password" value="senha"/>				 			 -->
+ 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/chamados-gago"/>
+ 			<property name="hibernate.connection.username" value="root"/>
+ 			<property name="hibernate.connection.password" value="rabbit"/>
 		</properties>
 		
 	</persistence-unit>	
