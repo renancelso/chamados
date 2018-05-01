@@ -34,10 +34,10 @@ public class OcorrenciaConsultaControl extends BaseControl{
 
    @PostConstruct
    public void init(){
-      clear();
+      limpar();
    }
 
-   public void clear(){
+   public void limpar(){
       ocorrenciaFiltro = new Ocorrencia();
       ocorrenciaNova = new Ocorrencia();
 
@@ -51,8 +51,8 @@ public class OcorrenciaConsultaControl extends BaseControl{
       mostrarBotaoNovo = true;
    }
 
-   public void listar(){
-      ocorrencias = ocorrenciaService.listar(ocorrenciaFiltro, dataAberturaInicio, dataAberturaFinal, getUsuarioLogado().getEmpresa().getId());
+   public void buscar(){
+      ocorrencias = ocorrenciaService.buscar(ocorrenciaFiltro, dataAberturaInicio, dataAberturaFinal, getUsuarioLogado().getEmpresa().getId());
    }
 
    public void novo(){

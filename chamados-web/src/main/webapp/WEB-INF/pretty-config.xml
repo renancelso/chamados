@@ -64,11 +64,6 @@
         <view-id value="/sistema/ocorrencia/consulta.jsf" />
     </url-mapping>
 
-    <url-mapping id="estatisticas_ocorrencias">
-        <pattern value="/estatisticas_ocorrencias" />
-        <view-id value="/sistema/ocorrencia/estatisticas.jsf" />
-    </url-mapping>
-
     <url-mapping id="historico_versao">
         <pattern value="/historico_versao" />
         <view-id value="/sistema/versao/historico_versao.jsf" />

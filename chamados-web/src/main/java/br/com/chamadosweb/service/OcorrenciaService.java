@@ -4,6 +4,7 @@ import br.com.chamadosweb.padrao.GenericService;
 import br.com.chamadosweb.service.model.Ocorrencia;
 
 import javax.ejb.Stateless;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -15,20 +16,27 @@ import java.util.List;
 public class OcorrenciaService extends GenericService implements OcorrenciaServiceLocal {
 
    @Override
-   public List<Ocorrencia> listar(Ocorrencia ocorrenciaFiltro, Date dataAberturaInicio, Date dataAberturaFim, Long empresa) {
+   public List<Ocorrencia> buscar(Ocorrencia ocorrenciaFiltro, Date dataAberturaInicio, Date dataAberturaFim, Long empresa) {
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
       StringBuilder query = new StringBuilder("select o from Ocorrencia o where 1=1 ");
 
-      if (ocorrenciaFiltro != null && ocorrenciaFiltro.getId() > 0)
-         query.append(" and o.id = ").append(ocorrenciaFiltro.getId());
+      if (ocorrenciaFiltro != null){
+         if (ocorrenciaFiltro.getId() > 0)
+            query.append(" and o.id = ").append(ocorrenciaFiltro.getId());
+
+         if (!ocorrenciaFiltro.getDescricao().equals(""))
+            query.append(" and o.descricao LIKE '%").append(ocorrenciaFiltro.getDescricao()).append("%'");
+      }
 
       if (dataAberturaInicio != null && dataAberturaFim != null){
-         query.append(" and o.dataAbertura BETWEEN ").append(dataAberturaInicio).append(" and ").append(dataAberturaFim);
+         query.append(" and o.dataAbertura BETWEEN '").append(sdf.format(dataAberturaInicio)).append("' and '").append(sdf.format(dataAberturaFim)+"'");
       }else{
          if (dataAberturaInicio != null)
-            query.append(" and o.dataAbertura >= ").append(dataAberturaInicio);
+            query.append(" and o.dataAbertura >= '").append(sdf.format(dataAberturaInicio)+"'");
 
          if (dataAberturaFim != null)
-            query.append(" and o.dataAbertura <= ").append(dataAberturaFim);
+            query.append(" and o.dataAbertura <= '").append(sdf.format(dataAberturaFim)+"'");
       }
 
       if (empresa != null)

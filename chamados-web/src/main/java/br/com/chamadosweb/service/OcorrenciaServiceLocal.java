@@ -14,5 +14,5 @@ import java.util.List;
 @Local
 public interface OcorrenciaServiceLocal extends GenericServiceInterface{
 
-   List<Ocorrencia> listar(Ocorrencia ocorrenciaFiltro, Date dataInicio, Date dataFim, Long empresa);
+   List<Ocorrencia> buscar(Ocorrencia ocorrenciaFiltro, Date dataInicio, Date dataFim, Long empresa);
 }
